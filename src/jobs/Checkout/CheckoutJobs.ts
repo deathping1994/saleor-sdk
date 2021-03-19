@@ -253,6 +253,7 @@ class CheckoutJobs extends JobsHandler<{}> {
 
     this.localStorageHandler.setCheckout({
       ...checkout,
+      lines: data?.lines,
       promoCodeDiscount: data?.promoCodeDiscount,
     });
     return { data };
@@ -280,6 +281,7 @@ class CheckoutJobs extends JobsHandler<{}> {
 
     this.localStorageHandler.setCheckout({
       ...checkout,
+      lines: data?.lines,
       promoCodeDiscount: data?.promoCodeDiscount,
     });
     return { data };
