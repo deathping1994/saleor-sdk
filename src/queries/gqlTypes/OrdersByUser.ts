@@ -202,6 +202,10 @@ export interface OrdersByUser_me_orders_edges_node_lines {
 export interface OrdersByUser_me_orders_edges_node {
   __typename: "Order";
   /**
+   * The ID of the object.
+   */
+  id: string;
+  /**
    * List of order lines.
    */
   lines: (OrdersByUser_me_orders_edges_node_lines | null)[];

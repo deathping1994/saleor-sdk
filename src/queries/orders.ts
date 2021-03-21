@@ -13,6 +13,7 @@ export const ordersByUser = gql`
         }
         edges {
           node {
+            id
             lines {
               thumbnail {
                 alt
