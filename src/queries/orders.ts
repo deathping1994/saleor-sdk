@@ -6,6 +6,7 @@ import { invoiceFragment } from "../fragments/invoice";
 export const ordersByUser = gql`
   query OrdersByUser($perPage: Int!, $after: String) {
     me {
+      id
       orders(first: $perPage, after: $after) {
         pageInfo {
           hasNextPage
@@ -14,24 +15,24 @@ export const ordersByUser = gql`
         edges {
           node {
             id
+            token
+            number
+            statusDisplay
+            created
+            total {
+              gross {
+                amount
+                currency
+              }
+              net {
+                amount
+                currency
+              }
+            }
             lines {
-              thumbnail {
-                alt
-                url
-              }
-              thumbnail2x: thumbnail(size: 510) {
-                url
-              }
+              id
               productName
               quantity
-              totalPrice {
-                net {
-                  amount
-                }
-                gross {
-                  amount
-                }
-              }
               variant {
                 weight {
                   unit
@@ -62,6 +63,13 @@ export const ordersByUser = gql`
                     }
                   }
                 }
+              }
+              thumbnail {
+                alt
+                url
+              }
+              thumbnail2x: thumbnail(size: 510) {
+                url
               }
             }
           }
