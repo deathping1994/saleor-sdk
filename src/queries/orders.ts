@@ -7,9 +7,20 @@ export const ordersByUser = gql`
   query OrdersByUser($perPage: Int!, $after: String) {
     me {
       orders(first: $perPage, after: $after) {
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
         edges {
           node {
             lines {
+              thumbnail {
+                alt
+                url
+              }
+              thumbnail2x: thumbnail(size: 510) {
+                url
+              }
               productName
               quantity
               totalPrice {

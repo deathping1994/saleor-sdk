@@ -427,6 +427,16 @@ export enum StockAvailability {
   OUT_OF_STOCK = "OUT_OF_STOCK",
 }
 
+/**
+ * An enumeration.
+ */
+export enum WeightUnitsEnum {
+  G = "G",
+  KG = "KG",
+  LB = "LB",
+  OZ = "OZ",
+}
+
 export interface AccountInput {
   firstName?: string | null;
   lastName?: string | null;
