@@ -6,7 +6,7 @@
 // ====================================================
 // GraphQL query operation: Wishlist
 // ====================================================
- 
+
 export interface Wishlist_wishlist_edges_node_wishlist_items_edges_node_product_metadata {
   __typename: "MetadataItem";
   /**

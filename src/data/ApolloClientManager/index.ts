@@ -85,6 +85,9 @@ import {
   wishlistRemoveProductVariables,
 } from "../../mutations/gqlTypes/wishlistRemoveProduct";
 
+import { getWishlist } from "../../queries/wishlist";
+import { Wishlist, WishlistVariables } from "../../queries/gqlTypes/Wishlist";
+
 import * as CheckoutQueries from "../../queries/checkout";
 import { CheckoutDetails } from "../../queries/gqlTypes/CheckoutDetails";
 import {
@@ -125,6 +128,27 @@ export class ApolloClientManager {
         query: UserQueries.getUserDetailsQuery,
       })
       .subscribe(value => next(value.data?.me), error, complete);
+  };
+
+  getWishlistItems = async (first: number) => {
+    const { data, errors } = await this.client.query<
+      Wishlist,
+      WishlistVariables
+    >({
+      query: getWishlist,
+      variables: {
+        first,
+      },
+    });
+
+    if (errors?.length) {
+      return {
+        error: errors,
+      };
+    }
+    return {
+      data: data.wishlist,
+    };
   };
 
   addWishlistItems = async (productId: string) => {

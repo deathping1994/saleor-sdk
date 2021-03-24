@@ -47,6 +47,7 @@ export interface Config {
   loadOnStart: {
     auth: boolean;
     checkout: boolean;
+    wishlist: boolean;
   };
 }
 
