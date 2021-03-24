@@ -2,6 +2,7 @@ import {
   ICheckoutModel,
   IJobsModel,
   IPaymentModel,
+  IWishlistModel,
   LocalStorageItems,
 } from "./types";
 import LocalStorageHandlerProxy from "./Proxy";
@@ -29,6 +30,10 @@ export class LocalStorageHandler extends LocalStorageHandlerProxy {
     return LocalStorageHandlerProxy.retrieveItem(LocalStorageItems.CSRF_TOKEN);
   }
 
+  static getWishlist(): IWishlistModel | null {
+    return LocalStorageHandlerProxy.retrieveObject(LocalStorageItems.WISHLIST);
+  }
+
   setSignInToken(token: string | null): void {
     this.saveItem(LocalStorageItems.TOKEN, token);
   }
@@ -47,6 +52,10 @@ export class LocalStorageHandler extends LocalStorageHandlerProxy {
 
   setJobs(jobs: IJobsModel | null): void {
     return this.saveObject(LocalStorageItems.JOB_QUEUE_CHECKOUT, jobs);
+  }
+
+  setWishlist(wishlist: IWishlistModel | null) {
+    return this.saveObject(LocalStorageItems.WISHLIST, wishlist);
   }
 
   clear(): void {

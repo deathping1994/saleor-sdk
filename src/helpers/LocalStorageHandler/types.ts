@@ -1,3 +1,4 @@
+import { Wishlist_wishlist_edges_node_wishlist_items_edges_node_product } from "../../queries/gqlTypes/Wishlist";
 import {
   Checkout_availableShippingMethods,
   Checkout_lines_variant_attributes,
@@ -14,11 +15,17 @@ export enum LocalStorageItems {
   CSRF_TOKEN = "csrf_token",
   CHECKOUT = "data_checkout",
   PAYMENT = "data_payment",
+  WISHLIST = "data_wishlist",
 }
 export enum LocalStorageEvents {
   CLEAR = "clear",
 }
-
+export interface IWishlistModel {
+  items:
+    | Wishlist_wishlist_edges_node_wishlist_items_edges_node_product[]
+    | null
+    | undefined;
+}
 export interface ICheckoutModelLineTotalPrice {
   gross: ICheckoutModelPriceValue;
   net: ICheckoutModelPriceValue;

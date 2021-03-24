@@ -13,6 +13,8 @@ import {
 import * as AuthMutations from "../../mutations/auth";
 import * as UserMutations from "../../mutations/user";
 import * as CheckoutMutations from "../../mutations/checkout";
+import * as WishlistMutations from "../../mutations/wishlist";
+
 import {
   AddCheckoutPromoCode,
   AddCheckoutPromoCodeVariables,
@@ -73,6 +75,16 @@ import {
   UpdateCheckoutShippingMethod,
   UpdateCheckoutShippingMethodVariables,
 } from "../../mutations/gqlTypes/UpdateCheckoutShippingMethod";
+import {
+  wishlistAddProduct,
+  wishlistAddProductVariables,
+} from "../../mutations/gqlTypes/wishlistAddProduct";
+
+import {
+  wishlistRemoveProduct,
+  wishlistRemoveProductVariables,
+} from "../../mutations/gqlTypes/wishlistRemoveProduct";
+
 import * as CheckoutQueries from "../../queries/checkout";
 import { CheckoutDetails } from "../../queries/gqlTypes/CheckoutDetails";
 import {
@@ -113,6 +125,48 @@ export class ApolloClientManager {
         query: UserQueries.getUserDetailsQuery,
       })
       .subscribe(value => next(value.data?.me), error, complete);
+  };
+
+  addWishlistItems = async (productId: string) => {
+    const { data, errors } = await this.client.mutate<
+      wishlistAddProduct,
+      wishlistAddProductVariables
+    >({
+      mutation: WishlistMutations.WishlistAddProduct,
+      variables: {
+        productId,
+      },
+    });
+
+    if (errors?.length) {
+      return {
+        error: errors,
+      };
+    }
+    return {
+      data: data?.WishlistAddProduct?.wishlist,
+    };
+  };
+
+  removeWishlistItems = async (productId: string) => {
+    const { data, errors } = await this.client.mutate<
+      wishlistRemoveProduct,
+      wishlistRemoveProductVariables
+    >({
+      mutation: WishlistMutations.WishlistRemoveProduct,
+      variables: {
+        productId,
+      },
+    });
+
+    if (errors?.length) {
+      return {
+        error: errors,
+      };
+    }
+    return {
+      data: data?.WishlistRemoveProduct?.wishlist,
+    };
   };
 
   getUser = async () => {
@@ -232,8 +286,8 @@ export class ApolloClientManager {
       fetchPolicy: "no-cache",
       mutation: AuthMutations.createOTPTokeMutation,
       variables: {
-        phone,
         otp,
+        phone,
       },
     });
 

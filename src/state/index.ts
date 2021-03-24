@@ -7,6 +7,7 @@ import { NamedObservable } from "../helpers";
 import {
   ICheckoutModel,
   IPaymentModel,
+  IWishlistModel,
   LocalStorageEvents,
   LocalStorageHandler,
   LocalStorageItems,
@@ -59,6 +60,8 @@ export class SaleorState extends NamedObservable<StateItems> {
 
   loaded: SaleorStateLoaded;
 
+  wishlist?: IWishlistModel;
+
   private apolloClientManager: ApolloClientManager;
 
   private jobsManager: JobsManager;
@@ -99,6 +102,11 @@ export class SaleorState extends NamedObservable<StateItems> {
     this.localStorageHandler.subscribeToChange(
       LocalStorageItems.TOKEN,
       this.onSignInTokenUpdate
+    );
+
+    this.localStorageHandler.subscribeToChange(
+      LocalStorageItems.WISHLIST,
+      this.onWishlistUpdate
     );
     this.localStorageHandler.subscribeToChange(
       LocalStorageEvents.CLEAR,
@@ -215,6 +223,11 @@ export class SaleorState extends NamedObservable<StateItems> {
       checkout: true,
       summaryPrices: true,
     });
+  };
+
+  private onWishlistUpdate = (wishlist?: IWishlistModel) => {
+    this.wishlist = wishlist;
+    this.notifyChange(StateItems.WISHLIST, this.wishlist);
   };
 
   private onPaymentUpdate = (payment?: IPaymentModel | null) => {

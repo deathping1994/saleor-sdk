@@ -1,5 +1,6 @@
 import { SaleorState } from "../../state";
 import { LocalStorageHandler } from "../../helpers/LocalStorageHandler/LocalStorageHandler";
+import { Wishlist_wishlist_edges_node_wishlist_items_edges_node_product } from "../../queries/gqlTypes/Wishlist";
 
 export class LocalStorageManager {
   private handler: LocalStorageHandler;
@@ -128,4 +129,23 @@ export class LocalStorageManager {
 
     return alteredCheckout;
   };
+
+  addItemInWishlist = (
+    productList:
+      | Wishlist_wishlist_edges_node_wishlist_items_edges_node_product[]
+      | null
+      | undefined
+  ) => {
+    // const items = this.saleorState.wishlist?.items;
+    // items?.push(product);
+    const wishlist = { items: productList };
+    this.handler.setWishlist(wishlist);
+  };
+
+  // removeItemInWishlist = (productId: string) => {
+  //   const items = this.saleorState.wishlist?.items;
+  //   const updatedItems = items?.filter(item => item.id !== productId);
+  //   const wishlist = { items: updatedItems };
+  //   this.handler.setWishlist(wishlist);
+  // };
 }
