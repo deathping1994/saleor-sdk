@@ -178,6 +178,16 @@ export interface UserOrderByToken_orderByToken_lines_variant_attributes {
   values: (UserOrderByToken_orderByToken_lines_variant_attributes_values | null)[];
 }
 
+export interface UserOrderByToken_orderByToken_lines_variant_product_category {
+  __typename: "Category";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  name: string;
+  slug: string;
+}
+
 export interface UserOrderByToken_orderByToken_lines_variant_product_thumbnail {
   __typename: "Image";
   /**
@@ -214,6 +224,7 @@ export interface UserOrderByToken_orderByToken_lines_variant_product {
    */
   id: string;
   name: string;
+  category: UserOrderByToken_orderByToken_lines_variant_product_category | null;
   /**
    * The main thumbnail for a product.
    */

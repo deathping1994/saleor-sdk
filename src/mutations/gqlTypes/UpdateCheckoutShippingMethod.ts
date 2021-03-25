@@ -407,6 +407,16 @@ export interface UpdateCheckoutShippingMethod_checkoutShippingMethodUpdate_check
   values: (UpdateCheckoutShippingMethod_checkoutShippingMethodUpdate_checkout_lines_variant_attributes_values | null)[];
 }
 
+export interface UpdateCheckoutShippingMethod_checkoutShippingMethodUpdate_checkout_lines_variant_product_category {
+  __typename: "Category";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  name: string;
+  slug: string;
+}
+
 export interface UpdateCheckoutShippingMethod_checkoutShippingMethodUpdate_checkout_lines_variant_product_thumbnail {
   __typename: "Image";
   /**
@@ -443,6 +453,7 @@ export interface UpdateCheckoutShippingMethod_checkoutShippingMethodUpdate_check
    */
   id: string;
   name: string;
+  category: UpdateCheckoutShippingMethod_checkoutShippingMethodUpdate_checkout_lines_variant_product_category | null;
   /**
    * The main thumbnail for a product.
    */

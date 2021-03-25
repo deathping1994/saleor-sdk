@@ -40,7 +40,7 @@ export class SaleorWishlistAPI extends ErrorListener {
     this.saleorState.subscribeToChange(
       StateItems.WISHLIST,
       (wishlist: IWishlistModel) => {
-        this.items = wishlist?.items?.filter(item => item.id);
+        this.items = wishlist?.items;
       }
     );
 

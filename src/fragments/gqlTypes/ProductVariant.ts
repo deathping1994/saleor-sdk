@@ -135,6 +135,16 @@ export interface ProductVariant_attributes {
   values: (ProductVariant_attributes_values | null)[];
 }
 
+export interface ProductVariant_product_category {
+  __typename: "Category";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  name: string;
+  slug: string;
+}
+
 export interface ProductVariant_product_thumbnail {
   __typename: "Image";
   /**
@@ -171,6 +181,7 @@ export interface ProductVariant_product {
    */
   id: string;
   name: string;
+  category: ProductVariant_product_category | null;
   /**
    * The main thumbnail for a product.
    */

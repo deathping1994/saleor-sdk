@@ -66,6 +66,11 @@ export const checkoutProductVariantFragment = gql`
     product {
       id
       name
+      category {
+        id
+        name
+        slug
+      }
       thumbnail {
         url
         alt

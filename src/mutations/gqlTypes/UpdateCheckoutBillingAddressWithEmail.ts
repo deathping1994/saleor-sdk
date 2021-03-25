@@ -424,6 +424,16 @@ export interface UpdateCheckoutBillingAddressWithEmail_checkoutBillingAddressUpd
   values: (UpdateCheckoutBillingAddressWithEmail_checkoutBillingAddressUpdate_checkout_lines_variant_attributes_values | null)[];
 }
 
+export interface UpdateCheckoutBillingAddressWithEmail_checkoutBillingAddressUpdate_checkout_lines_variant_product_category {
+  __typename: "Category";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  name: string;
+  slug: string;
+}
+
 export interface UpdateCheckoutBillingAddressWithEmail_checkoutBillingAddressUpdate_checkout_lines_variant_product_thumbnail {
   __typename: "Image";
   /**
@@ -460,6 +470,7 @@ export interface UpdateCheckoutBillingAddressWithEmail_checkoutBillingAddressUpd
    */
   id: string;
   name: string;
+  category: UpdateCheckoutBillingAddressWithEmail_checkoutBillingAddressUpdate_checkout_lines_variant_product_category | null;
   /**
    * The main thumbnail for a product.
    */
@@ -1014,6 +1025,16 @@ export interface UpdateCheckoutBillingAddressWithEmail_checkoutEmailUpdate_check
   values: (UpdateCheckoutBillingAddressWithEmail_checkoutEmailUpdate_checkout_lines_variant_attributes_values | null)[];
 }
 
+export interface UpdateCheckoutBillingAddressWithEmail_checkoutEmailUpdate_checkout_lines_variant_product_category {
+  __typename: "Category";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  name: string;
+  slug: string;
+}
+
 export interface UpdateCheckoutBillingAddressWithEmail_checkoutEmailUpdate_checkout_lines_variant_product_thumbnail {
   __typename: "Image";
   /**
@@ -1050,6 +1071,7 @@ export interface UpdateCheckoutBillingAddressWithEmail_checkoutEmailUpdate_check
    */
   id: string;
   name: string;
+  category: UpdateCheckoutBillingAddressWithEmail_checkoutEmailUpdate_checkout_lines_variant_product_category | null;
   /**
    * The main thumbnail for a product.
    */
