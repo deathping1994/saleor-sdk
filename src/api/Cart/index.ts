@@ -93,6 +93,8 @@ export class SaleorCartAPI extends ErrorListener {
         this.saleorState.checkout.lines
       );
 
+      console.log("in sdk", data);
+
       if (error) {
         this.fireError(error, ErrorCartTypes.SET_CART_ITEM);
       } else {
@@ -114,7 +116,7 @@ export class SaleorCartAPI extends ErrorListener {
   };
 
   removeItem = async (variantId: string) => {
-    // 1. save in local storage
+    // 1. save in local
     this.localStorageManager.removeItemFromCart(variantId);
     // 2. save online if possible (if checkout id available)
     if (this.saleorState.checkout?.lines) {

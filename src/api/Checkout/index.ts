@@ -350,7 +350,6 @@ export class SaleorCheckoutAPI extends ErrorListener {
           promoCode,
         }
       );
-
       return {
         data,
         dataError,
