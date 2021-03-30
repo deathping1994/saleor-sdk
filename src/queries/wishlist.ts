@@ -106,7 +106,7 @@ export const getWishlist = gql`
                 }
               }
             }
-            variants {
+            variants(first: $first) {
               edges {
                 node {
                   id
