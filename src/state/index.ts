@@ -183,6 +183,7 @@ export class SaleorState extends NamedObservable<StateItems> {
     this.onUserUpdate(null);
     this.onCheckoutUpdate();
     this.onPaymentUpdate();
+    this.onWishlistUpdate(undefined);
   };
 
   private onSignInTokenUpdate = (token: string | null) => {

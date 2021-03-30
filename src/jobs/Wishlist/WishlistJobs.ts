@@ -21,9 +21,11 @@ export class WishlistJobs extends JobsHandler<{}> {
   }
 
   getWishlist = async () => {
-    const { data } = await this.apolloClientManager.getWishlistItems(20);
+    const { data, error } = await this.apolloClientManager.getWishlistItems(20);
     this.localStorageHandler.setWishlist({
       items: data?.items.edges.map(edge => edge.node.product),
     });
+
+    return { data, error };
   };
 }
