@@ -135,6 +135,8 @@ export class SaleorCheckoutAPI extends ErrorListener {
         }
       );
 
+      await this.jobsManager.run("auth", "provideUser", undefined);
+
       return {
         data,
         dataError,
@@ -152,6 +154,8 @@ export class SaleorCheckoutAPI extends ErrorListener {
           shippingAddress,
         }
       );
+
+      await this.jobsManager.run("auth", "provideUser", undefined);
 
       return {
         data,
