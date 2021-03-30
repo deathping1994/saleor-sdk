@@ -241,8 +241,8 @@ export class AuthAPI extends ErrorListener {
       "auth",
       "signInMobile",
       {
-        phone,
         otp,
+        phone,
       }
     );
 
@@ -276,6 +276,9 @@ export class AuthAPI extends ErrorListener {
       await this.jobsManager.run("checkout", "provideCheckout", {
         isUserSignedIn: !!data?.user,
       });
+    }
+    if (this.config.loadOnStart.wishlist) {
+      await this.jobsManager.run("wishlist", "getWishlist", undefined);
     }
 
     return {
