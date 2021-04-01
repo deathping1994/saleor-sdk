@@ -10,7 +10,10 @@ import { sortCheckoutLines } from "./utils";
 
 import {
   IDiscount,
+  IItemDiscount,
   IItems,
+  IMrp,
+  INetPrice,
   IShippingPrice,
   ISubtotalPrice,
   ITotalPrice,
@@ -28,6 +31,12 @@ export class SaleorCartAPI extends ErrorListener {
   shippingPrice: IShippingPrice;
 
   discount?: IDiscount;
+
+  mrp?: IMrp;
+
+  netPrice?: INetPrice;
+
+  itemDiscount?: IItemDiscount;
 
   private apolloClientManager: ApolloClientManager;
 
@@ -64,12 +73,22 @@ export class SaleorCartAPI extends ErrorListener {
     this.saleorState.subscribeToChange(
       StateItems.SUMMARY_PRICES,
       (summaryPrices: ISaleorStateSummeryPrices) => {
-        const { totalPrice, subtotalPrice, shippingPrice, discount } =
-          summaryPrices || {};
+        const {
+          totalPrice,
+          subtotalPrice,
+          shippingPrice,
+          discount,
+          mrp,
+          netPrice,
+          itemDiscount,
+        } = summaryPrices || {};
         this.totalPrice = totalPrice;
         this.subtotalPrice = subtotalPrice;
         this.shippingPrice = shippingPrice;
         this.discount = discount;
+        this.mrp = mrp;
+        this.netPrice = netPrice;
+        this.itemDiscount = itemDiscount;
       }
     );
     this.saleorState.subscribeToChange(

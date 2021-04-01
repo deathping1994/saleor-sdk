@@ -285,7 +285,16 @@ export class SaleorState extends NamedObservable<StateItems> {
                 data => data?.key === "listPrice"
               )[0]?.value!,
               10
-            ) || 0),
+            ) ||
+              line.variant.pricing?.priceUndiscounted?.gross.amount ||
+              0),
+          0
+        );
+
+        const itemsMyNetPrice = items.reduce(
+          (accumulatorPrice, line) =>
+            accumulatorPrice +
+            (line.variant.pricing?.priceUndiscounted?.gross.amount || 0),
           0
         );
 
@@ -331,15 +340,25 @@ export class SaleorState extends NamedObservable<StateItems> {
           amount: round(itemsMrp, 2),
         };
 
+        const netPrice = {
+          amount: itemsMyNetPrice,
+          currency: "INR",
+        };
+
+        const itemDiscount = {
+          amount: mrp.amount - netPrice.amount,
+          currency: "INR",
+        };
+
         return {
           discount,
+          itemDiscount,
           mrp,
+          netPrice,
           shippingPrice,
           subtotalPrice,
           totalPrice,
 
-          // itemDiscount,
-          // netPrice,
           // offerDiscount,
           // orderTotal,
           // prepaidDiscount,
