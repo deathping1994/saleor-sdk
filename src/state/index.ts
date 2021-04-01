@@ -287,14 +287,16 @@ export class SaleorState extends NamedObservable<StateItems> {
               10
             ) ||
               line.variant.pricing?.priceUndiscounted?.gross.amount ||
-              0),
+              0) *
+              line.quantity,
           0
         );
 
         const itemsMyNetPrice = items.reduce(
           (accumulatorPrice, line) =>
             accumulatorPrice +
-            (line.variant.pricing?.priceUndiscounted?.gross.amount || 0),
+            (line.variant.pricing?.priceUndiscounted?.gross.amount || 0) *
+              line.quantity,
           0
         );
 
