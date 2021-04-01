@@ -350,16 +350,21 @@ export class SaleorState extends NamedObservable<StateItems> {
           currency: "INR",
         };
 
+        const offerDiscount = {
+          amount: netPrice.amount - subtotalPrice.net.amount,
+          currency: "INR",
+        };
+
         return {
           discount,
           itemDiscount,
           mrp,
           netPrice,
+          offerDiscount,
           shippingPrice,
           subtotalPrice,
           totalPrice,
 
-          // offerDiscount,
           // orderTotal,
           // prepaidDiscount,
         };
