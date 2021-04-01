@@ -463,6 +463,18 @@ export interface CreateCheckout_checkoutCreate_checkout_lines_variant_product_pr
   isShippingRequired: boolean;
 }
 
+export interface CreateCheckout_checkoutCreate_checkout_lines_variant_product_metadata {
+  __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
+  key: string;
+  /**
+   * Value of a metadata item.
+   */
+  value: string;
+}
+
 export interface CreateCheckout_checkoutCreate_checkout_lines_variant_product {
   __typename: "Product";
   /**
@@ -480,6 +492,10 @@ export interface CreateCheckout_checkoutCreate_checkout_lines_variant_product {
    */
   thumbnail2x: CreateCheckout_checkoutCreate_checkout_lines_variant_product_thumbnail2x | null;
   productType: CreateCheckout_checkoutCreate_checkout_lines_variant_product_productType;
+  /**
+   * List of public metadata items. Can be accessed without permissions.
+   */
+  metadata: (CreateCheckout_checkoutCreate_checkout_lines_variant_product_metadata | null)[];
 }
 
 export interface CreateCheckout_checkoutCreate_checkout_lines_variant {

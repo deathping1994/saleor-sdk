@@ -174,6 +174,18 @@ export interface ProductVariant_product_productType {
   isShippingRequired: boolean;
 }
 
+export interface ProductVariant_product_metadata {
+  __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
+  key: string;
+  /**
+   * Value of a metadata item.
+   */
+  value: string;
+}
+
 export interface ProductVariant_product {
   __typename: "Product";
   /**
@@ -191,6 +203,10 @@ export interface ProductVariant_product {
    */
   thumbnail2x: ProductVariant_product_thumbnail2x | null;
   productType: ProductVariant_product_productType;
+  /**
+   * List of public metadata items. Can be accessed without permissions.
+   */
+  metadata: (ProductVariant_product_metadata | null)[];
 }
 
 export interface ProductVariant {

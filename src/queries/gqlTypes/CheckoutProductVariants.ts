@@ -174,6 +174,18 @@ export interface CheckoutProductVariants_productVariants_edges_node_product_prod
   isShippingRequired: boolean;
 }
 
+export interface CheckoutProductVariants_productVariants_edges_node_product_metadata {
+  __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
+  key: string;
+  /**
+   * Value of a metadata item.
+   */
+  value: string;
+}
+
 export interface CheckoutProductVariants_productVariants_edges_node_product {
   __typename: "Product";
   /**
@@ -191,6 +203,10 @@ export interface CheckoutProductVariants_productVariants_edges_node_product {
    */
   thumbnail2x: CheckoutProductVariants_productVariants_edges_node_product_thumbnail2x | null;
   productType: CheckoutProductVariants_productVariants_edges_node_product_productType;
+  /**
+   * List of public metadata items. Can be accessed without permissions.
+   */
+  metadata: (CheckoutProductVariants_productVariants_edges_node_product_metadata | null)[];
 }
 
 export interface CheckoutProductVariants_productVariants_edges_node {

@@ -217,6 +217,18 @@ export interface UserOrderByToken_orderByToken_lines_variant_product_productType
   isShippingRequired: boolean;
 }
 
+export interface UserOrderByToken_orderByToken_lines_variant_product_metadata {
+  __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
+  key: string;
+  /**
+   * Value of a metadata item.
+   */
+  value: string;
+}
+
 export interface UserOrderByToken_orderByToken_lines_variant_product {
   __typename: "Product";
   /**
@@ -234,6 +246,10 @@ export interface UserOrderByToken_orderByToken_lines_variant_product {
    */
   thumbnail2x: UserOrderByToken_orderByToken_lines_variant_product_thumbnail2x | null;
   productType: UserOrderByToken_orderByToken_lines_variant_product_productType;
+  /**
+   * List of public metadata items. Can be accessed without permissions.
+   */
+  metadata: (UserOrderByToken_orderByToken_lines_variant_product_metadata | null)[];
 }
 
 export interface UserOrderByToken_orderByToken_lines_variant {

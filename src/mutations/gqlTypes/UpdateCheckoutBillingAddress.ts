@@ -463,6 +463,18 @@ export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
   isShippingRequired: boolean;
 }
 
+export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines_variant_product_metadata {
+  __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
+  key: string;
+  /**
+   * Value of a metadata item.
+   */
+  value: string;
+}
+
 export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines_variant_product {
   __typename: "Product";
   /**
@@ -480,6 +492,10 @@ export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
    */
   thumbnail2x: UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines_variant_product_thumbnail2x | null;
   productType: UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines_variant_product_productType;
+  /**
+   * List of public metadata items. Can be accessed without permissions.
+   */
+  metadata: (UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines_variant_product_metadata | null)[];
 }
 
 export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines_variant {

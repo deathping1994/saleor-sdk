@@ -21,4 +21,11 @@ export interface ISaleorStateSummeryPrices {
   subtotalPrice?: ICheckoutModelPrice;
   totalPrice?: ICheckoutModelPrice;
   discount?: ICheckoutModelPriceValue;
+
+  mrp?: ICheckoutModelPriceValue;
+  itemDiscount?: ICheckoutModelPriceValue;
+  netPrice?: ICheckoutModelPriceValue;
+  offerDiscount?: ICheckoutModelPriceValue;
+  orderTotal?: ICheckoutModelPriceValue;
+  prepaidDiscount?: ICheckoutModelPriceValue;
 }

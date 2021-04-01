@@ -251,6 +251,11 @@ export class SaleorState extends NamedObservable<StateItems> {
 
     if (items && items.length) {
       const firstItemTotalPrice = items[0].totalPrice;
+      const firstItemMrpAmount = items[0].variant.product?.metadata.filter(
+        data => data?.key === "listprice"
+      )[0]?.value;
+
+      const firstItemMrp = { amount: firstItemMrpAmount, currency: "INR" };
 
       if (firstItemTotalPrice) {
         const shippingPrice = {
@@ -269,6 +274,18 @@ export class SaleorState extends NamedObservable<StateItems> {
         const itemsGrossPrice = items.reduce(
           (accumulatorPrice, line) =>
             accumulatorPrice + (line.totalPrice?.gross?.amount || 0),
+          0
+        );
+
+        const itemsMrp = items.reduce(
+          (accumulatorPrice, line) =>
+            accumulatorPrice +
+            (parseInt(
+              line.variant.product?.metadata.filter(
+                data => data?.key === "listPrice"
+              )[0]?.value!,
+              10
+            ) || 0),
           0
         );
 
@@ -309,11 +326,23 @@ export class SaleorState extends NamedObservable<StateItems> {
           },
         };
 
+        const mrp = {
+          ...firstItemMrp,
+          amount: round(itemsMrp, 2),
+        };
+
         return {
           discount,
+          mrp,
           shippingPrice,
           subtotalPrice,
           totalPrice,
+
+          // itemDiscount,
+          // netPrice,
+          // offerDiscount,
+          // orderTotal,
+          // prepaidDiscount,
         };
       }
     }

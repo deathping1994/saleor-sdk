@@ -446,6 +446,18 @@ export interface AddCheckoutPromoCode_checkoutAddPromoCode_checkout_lines_varian
   isShippingRequired: boolean;
 }
 
+export interface AddCheckoutPromoCode_checkoutAddPromoCode_checkout_lines_variant_product_metadata {
+  __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
+  key: string;
+  /**
+   * Value of a metadata item.
+   */
+  value: string;
+}
+
 export interface AddCheckoutPromoCode_checkoutAddPromoCode_checkout_lines_variant_product {
   __typename: "Product";
   /**
@@ -463,6 +475,10 @@ export interface AddCheckoutPromoCode_checkoutAddPromoCode_checkout_lines_varian
    */
   thumbnail2x: AddCheckoutPromoCode_checkoutAddPromoCode_checkout_lines_variant_product_thumbnail2x | null;
   productType: AddCheckoutPromoCode_checkoutAddPromoCode_checkout_lines_variant_product_productType;
+  /**
+   * List of public metadata items. Can be accessed without permissions.
+   */
+  metadata: (AddCheckoutPromoCode_checkoutAddPromoCode_checkout_lines_variant_product_metadata | null)[];
 }
 
 export interface AddCheckoutPromoCode_checkoutAddPromoCode_checkout_lines_variant {

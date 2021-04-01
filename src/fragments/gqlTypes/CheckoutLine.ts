@@ -210,6 +210,18 @@ export interface CheckoutLine_variant_product_productType {
   isShippingRequired: boolean;
 }
 
+export interface CheckoutLine_variant_product_metadata {
+  __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
+  key: string;
+  /**
+   * Value of a metadata item.
+   */
+  value: string;
+}
+
 export interface CheckoutLine_variant_product {
   __typename: "Product";
   /**
@@ -227,6 +239,10 @@ export interface CheckoutLine_variant_product {
    */
   thumbnail2x: CheckoutLine_variant_product_thumbnail2x | null;
   productType: CheckoutLine_variant_product_productType;
+  /**
+   * List of public metadata items. Can be accessed without permissions.
+   */
+  metadata: (CheckoutLine_variant_product_metadata | null)[];
 }
 
 export interface CheckoutLine_variant {
