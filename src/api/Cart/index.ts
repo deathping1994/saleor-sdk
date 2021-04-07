@@ -14,6 +14,7 @@ import {
   IItems,
   IMrp,
   INetPrice,
+  IOfferDiscount,
   IShippingPrice,
   ISubtotalPrice,
   ITotalPrice,
@@ -37,6 +38,8 @@ export class SaleorCartAPI extends ErrorListener {
   netPrice?: INetPrice;
 
   itemDiscount?: IItemDiscount;
+
+  offerDiscount?: IOfferDiscount;
 
   private apolloClientManager: ApolloClientManager;
 
@@ -81,6 +84,7 @@ export class SaleorCartAPI extends ErrorListener {
           mrp,
           netPrice,
           itemDiscount,
+          offerDiscount,
         } = summaryPrices || {};
         this.totalPrice = totalPrice;
         this.subtotalPrice = subtotalPrice;
@@ -89,6 +93,7 @@ export class SaleorCartAPI extends ErrorListener {
         this.mrp = mrp;
         this.netPrice = netPrice;
         this.itemDiscount = itemDiscount;
+        this.offerDiscount = offerDiscount;
       }
     );
     this.saleorState.subscribeToChange(

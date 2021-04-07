@@ -245,15 +245,19 @@ export class SaleorState extends NamedObservable<StateItems> {
   private static calculateSummaryPrices(
     checkout?: ICheckoutModel
   ): ISaleorStateSummeryPrices {
-    const items = checkout?.lines;
+    const items = checkout?.lines?.filter(
+      line => line.variant.product?.category?.slug !== "free-gift-products"
+    );
     const shippingMethod = checkout?.shippingMethod;
     const promoCodeDiscount = checkout?.promoCodeDiscount?.discount;
 
     if (items && items.length) {
       const firstItemTotalPrice = items[0].totalPrice;
-      const firstItemMrpAmount = items[0].variant.product?.metadata.filter(
-        data => data?.key === "listprice"
-      )[0]?.value;
+      const firstItemMrpAmount =
+        items[0].variant.product?.metadata.filter(
+          data => data?.key === "listprice"
+        )[0]?.value ||
+        items[0].variant.pricing?.priceUndiscounted?.gross.amount;
 
       const firstItemMrp = { amount: firstItemMrpAmount, currency: "INR" };
 
