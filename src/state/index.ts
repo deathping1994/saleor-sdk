@@ -304,23 +304,23 @@ export class SaleorState extends NamedObservable<StateItems> {
           0
         );
 
-        const subtotalPrice = {
-          ...firstItemTotalPrice,
-          gross: {
-            ...firstItemTotalPrice.gross,
-            amount: round(itemsGrossPrice, 2),
-          },
-          net: {
-            ...firstItemTotalPrice.net,
-            amount: round(itemsNetPrice, 2),
-          },
-        };
-
         const discount = {
           ...promoCodeDiscount,
           amount: promoCodeDiscount?.amount || 0,
           currency:
             promoCodeDiscount?.currency || firstItemTotalPrice.gross.currency,
+        };
+
+        const subtotalPrice = {
+          ...firstItemTotalPrice,
+          gross: {
+            ...firstItemTotalPrice.gross,
+            amount: round(itemsGrossPrice - discount.amount, 2),
+          },
+          net: {
+            ...firstItemTotalPrice.net,
+            amount: round(itemsNetPrice - discount.amount, 2),
+          },
         };
 
         const totalPrice = {
