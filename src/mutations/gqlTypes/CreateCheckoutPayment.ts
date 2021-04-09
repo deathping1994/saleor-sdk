@@ -703,7 +703,7 @@ export interface CreateCheckoutPayment_checkoutPaymentCreate {
 
 export interface CreateCheckoutPayment {
   /**
-   * Create a new payment for given checkout.
+   * (Custom Implementation) Create a new payment via selected gateway for given checkout.
    */
   checkoutPaymentCreate: CreateCheckoutPayment_checkoutPaymentCreate | null;
 }

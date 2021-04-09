@@ -109,6 +109,10 @@ import {
   OTPAuthentication,
   OTPAuthenticationVariables,
 } from "../../mutations/gqlTypes/OTPAuthentication";
+import {
+  checkoutPaymentMethodUpdate,
+  checkoutPaymentMethodUpdateVariables,
+} from "../../mutations/gqlTypes/checkoutPaymentMethodUpdate";
 
 export class ApolloClientManager {
   private client: ApolloClient<any>;
@@ -980,6 +984,46 @@ export class ApolloClientManager {
           data: this.constructCheckoutModel(
             data.checkoutRemovePromoCode.checkout
           ),
+        };
+      }
+      return {};
+    } catch (error) {
+      return {
+        error,
+      };
+    }
+  };
+
+  checkoutPaymentMethodUpdate = async ({
+    checkoutId,
+    gateway: gatewayId,
+  }: Pick<CreatePaymentInput, "checkoutId" | "gateway">) => {
+    try {
+      const variables = {
+        checkoutId,
+        gatewayId,
+      };
+      const { data, errors } = await this.client.mutate<
+        checkoutPaymentMethodUpdate,
+        checkoutPaymentMethodUpdateVariables
+      >({
+        mutation: CheckoutMutations.checkoutPaymentMethodUpdateMutation,
+        variables,
+      });
+
+      if (errors?.length) {
+        return {
+          error: errors,
+        };
+      }
+      if (data?.checkoutPaymentMethodUpdate?.checkoutErrors) {
+        return {
+          error: data?.checkoutPaymentMethodUpdate?.checkoutErrors,
+        };
+      }
+      if (data?.checkoutPaymentMethodUpdate?.checkout) {
+        return {
+          data: data?.checkoutPaymentMethodUpdate?.checkout,
         };
       }
       return {};

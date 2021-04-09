@@ -287,6 +287,44 @@ class CheckoutJobs extends JobsHandler<{}> {
     return { data };
   };
 
+  checkoutPaymentMethodUpdate = async ({
+    checkoutId,
+    gateway,
+  }: Pick<
+    CreatePaymentJobInput,
+    "checkoutId" | "gateway"
+  >): PromiseCheckoutJobRunResponse => {
+    const checkout = LocalStorageHandler.getCheckout();
+
+    const {
+      data,
+      error,
+    } = await this.apolloClientManager.checkoutPaymentMethodUpdate({
+      checkoutId,
+      gateway,
+    });
+
+    if (error) {
+      return {
+        dataError: {
+          error,
+          type: DataErrorCheckoutTypes.CREATE_PAYMENT,
+        },
+      };
+    }
+
+    this.localStorageHandler.setCheckout({
+      ...checkout,
+      availablePaymentGateways: data?.availablePaymentGateways,
+      promoCodeDiscount: {
+        ...checkout?.promoCodeDiscount,
+        discount: data?.discount,
+      },
+    });
+
+    return { data };
+  };
+
   createPayment = async ({
     checkoutId,
     amount,

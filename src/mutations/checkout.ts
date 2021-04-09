@@ -220,3 +220,34 @@ export const completeCheckoutMutation = gql`
     }
   }
 `;
+
+export const checkoutPaymentMethodUpdateMutation = gql`
+  mutation checkoutPaymentMethodUpdate($checkoutId: ID!, $gatewayId: String!) {
+    checkoutPaymentMethodUpdate(
+      checkoutId: $checkoutId
+      gatewayId: $gatewayId
+    ) {
+      checkout {
+        id
+        discount {
+          amount
+          currency
+        }
+        availablePaymentGateways {
+          id
+          name
+          config {
+            field
+            value
+          }
+          currencies
+        }
+      }
+      checkoutErrors {
+        field
+        message
+        code
+      }
+    }
+  }
+`;

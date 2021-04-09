@@ -398,6 +398,44 @@ export class SaleorCheckoutAPI extends ErrorListener {
     };
   };
 
+  checkoutPaymentMethodUpdate = async (
+    input: CreatePaymentInput
+  ): CheckoutResponse => {
+    const checkoutId = this.saleorState.checkout?.id;
+    const billingAddress = this.saleorState.checkout?.billingAddress;
+    const amount = this.saleorState.summaryPrices?.totalPrice?.gross.amount;
+
+    if (
+      checkoutId &&
+      billingAddress &&
+      amount !== null &&
+      amount !== undefined
+    ) {
+      const { data, dataError } = await this.jobsManager.run(
+        "checkout",
+        "checkoutPaymentMethodUpdate",
+        {
+          ...input,
+          checkoutId,
+        }
+      );
+      return {
+        data,
+        dataError,
+        pending: false,
+      };
+    }
+    return {
+      functionError: {
+        error: new Error(
+          "You need to set billing address before creating payment."
+        ),
+        type: FunctionErrorCheckoutTypes.SHIPPING_ADDRESS_NOT_SET,
+      },
+      pending: false,
+    };
+  };
+
   createPayment = async (input: CreatePaymentInput): CheckoutResponse => {
     const checkoutId = this.saleorState.checkout?.id;
     const billingAddress = this.saleorState.checkout?.billingAddress;
