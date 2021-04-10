@@ -1016,7 +1016,7 @@ export class ApolloClientManager {
           error: errors,
         };
       }
-      if (data?.checkoutPaymentMethodUpdate?.checkoutErrors) {
+      if (data?.checkoutPaymentMethodUpdate?.checkoutErrors.length) {
         return {
           error: data?.checkoutPaymentMethodUpdate?.checkoutErrors,
         };
