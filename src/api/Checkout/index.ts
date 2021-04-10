@@ -402,15 +402,8 @@ export class SaleorCheckoutAPI extends ErrorListener {
     input: CreatePaymentInput
   ): CheckoutResponse => {
     const checkoutId = this.saleorState.checkout?.id;
-    const billingAddress = this.saleorState.checkout?.billingAddress;
-    const amount = this.saleorState.summaryPrices?.totalPrice?.gross.amount;
 
-    if (
-      checkoutId &&
-      billingAddress &&
-      amount !== null &&
-      amount !== undefined
-    ) {
+    if (checkoutId) {
       const { data, dataError } = await this.jobsManager.run(
         "checkout",
         "checkoutPaymentMethodUpdate",
