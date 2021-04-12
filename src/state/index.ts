@@ -221,7 +221,7 @@ export class SaleorState extends NamedObservable<StateItems> {
   private onCheckoutUpdate = (checkout?: ICheckoutModel) => {
     this.checkout = checkout;
     this.calculateSummaryPrices(checkout).then(res => {
-      this.summaryPrices = res.summaryPrices;
+      this.summaryPrices = res;
     });
     this.notifyChange(StateItems.CHECKOUT, this.checkout);
     this.notifyChange(StateItems.SUMMARY_PRICES, this.summaryPrices);
@@ -264,7 +264,9 @@ export class SaleorState extends NamedObservable<StateItems> {
     };
   };
 
-  private async calculateSummaryPrices(checkout?: ICheckoutModel) {
+  private async calculateSummaryPrices(
+    checkout?: ICheckoutModel
+  ): Promise<ISaleorStateSummeryPrices> {
     const items = checkout?.lines?.filter(
       line => line.variant.product?.category?.slug !== "free-gift-products"
     );
@@ -408,8 +410,8 @@ export class SaleorState extends NamedObservable<StateItems> {
 
         console.log({ prepaidDiscount });
 
-        return {
-          summaryPrices: {
+        return new Promise(resolve => {
+          resolve({
             discount,
             itemDiscount,
             mrp,
@@ -419,10 +421,8 @@ export class SaleorState extends NamedObservable<StateItems> {
             shippingPrice,
             subtotalPrice,
             totalPrice,
-
-            // orderTotal,
-          },
-        };
+          });
+        });
       }
     }
     return {};
