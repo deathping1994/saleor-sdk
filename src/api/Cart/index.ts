@@ -41,6 +41,8 @@ export class SaleorCartAPI extends ErrorListener {
 
   offerDiscount?: IOfferDiscount;
 
+  prepaidDiscount?: IOfferDiscount;
+
   private apolloClientManager: ApolloClientManager;
 
   private jobsManager: JobsManager;
@@ -85,6 +87,7 @@ export class SaleorCartAPI extends ErrorListener {
           netPrice,
           itemDiscount,
           offerDiscount,
+          prepaidDiscount,
         } = summaryPrices || {};
         this.totalPrice = totalPrice;
         this.subtotalPrice = subtotalPrice;
@@ -94,6 +97,7 @@ export class SaleorCartAPI extends ErrorListener {
         this.netPrice = netPrice;
         this.itemDiscount = itemDiscount;
         this.offerDiscount = offerDiscount;
+        this.prepaidDiscount = prepaidDiscount;
       }
     );
     this.saleorState.subscribeToChange(
