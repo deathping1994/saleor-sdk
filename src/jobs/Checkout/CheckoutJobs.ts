@@ -331,6 +331,7 @@ class CheckoutJobs extends JobsHandler<{}> {
       error,
     } = await this.apolloClientManager.getCheckoutDiscounts({ token });
 
+    console.log({ data, error });
     if (error) {
       return {
         dataError: {
@@ -339,6 +340,8 @@ class CheckoutJobs extends JobsHandler<{}> {
         },
       };
     }
+    console.log({ data, error });
+
     return { data };
   };
 

@@ -1044,22 +1044,21 @@ export class ApolloClientManager {
         CouponPrepaidDiscount,
         CouponPrepaidDiscountVariables
       >({
+        fetchPolicy: "network-only",
         query: CheckoutQueries.GetCouponPrepaidDiscount,
         variables: { token },
       });
 
+      console.log({ data, errors });
       if (errors?.length) {
         return {
           error: errors,
         };
       }
 
-      if (data?.checkoutDiscounts) {
-        return {
-          data: data?.checkoutDiscounts,
-        };
-      }
-      return {};
+      return {
+        data: data?.checkoutDiscounts,
+      };
     } catch (error) {
       return {
         error,

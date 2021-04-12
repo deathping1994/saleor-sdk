@@ -220,7 +220,9 @@ export class SaleorState extends NamedObservable<StateItems> {
 
   private onCheckoutUpdate = (checkout?: ICheckoutModel) => {
     this.checkout = checkout;
-    this.summaryPrices = this.calculateSummaryPrices(checkout);
+    this.calculateSummaryPrices(checkout).then(res => {
+      this.summaryPrices = res.summaryPrices;
+    });
     this.notifyChange(StateItems.CHECKOUT, this.checkout);
     this.notifyChange(StateItems.SUMMARY_PRICES, this.summaryPrices);
     this.onLoadedUpdate({
@@ -243,12 +245,14 @@ export class SaleorState extends NamedObservable<StateItems> {
   };
 
   private getCouponPrepaidDiscount = async (token: any) => {
+    console.log({ token });
     const { data, dataError } = await this.jobsManager.run(
       "checkout",
       "getCheckoutDiscounts",
       { token }
     );
 
+    console.log("in getCouponPrepaidDiscount", { data, dataError });
     if (dataError) {
       return { error: dataError };
     }
@@ -260,25 +264,28 @@ export class SaleorState extends NamedObservable<StateItems> {
     };
   };
 
-  private calculateSummaryPrices(
-    checkout?: ICheckoutModel
-  ): ISaleorStateSummeryPrices {
+  private async calculateSummaryPrices(checkout?: ICheckoutModel) {
     const items = checkout?.lines?.filter(
       line => line.variant.product?.category?.slug !== "free-gift-products"
     );
 
-    const data: Array<
-      | {
-          couponDiscount: any;
-          prepaidDiscount: any;
-        }
-      | undefined
-    > = [];
-    this.getCouponPrepaidDiscount(checkout?.token).then(res => {
-      data.push(res.data);
-    });
+    // const data1: Array<
+    //   | {
+    //       couponDiscount: any;
+    //       prepaidDiscount: any;
+    //     }
+    //   | undefined
+    // > = [];
+    console.log(checkout?.token);
 
-    const prepaidAmount = data[0]?.prepaidDiscount;
+    const { data } =
+      checkout?.token && (await this.getCouponPrepaidDiscount(checkout?.token));
+
+    console.log(data);
+    console.log(data?.prepaidDiscount);
+
+    const prepaidAmount = round(parseFloat(data?.prepaidDiscount), 2);
+    console.log({ prepaidAmount });
     // const couponAmount = data?.couponDiscount;
 
     const shippingMethod = checkout?.shippingMethod;
@@ -399,18 +406,22 @@ export class SaleorState extends NamedObservable<StateItems> {
           currency: "INR",
         };
 
-        return {
-          discount,
-          itemDiscount,
-          mrp,
-          netPrice,
-          offerDiscount,
-          prepaidDiscount,
-          shippingPrice,
-          subtotalPrice,
-          totalPrice,
+        console.log({ prepaidDiscount });
 
-          // orderTotal,
+        return {
+          summaryPrices: {
+            discount,
+            itemDiscount,
+            mrp,
+            netPrice,
+            offerDiscount,
+            prepaidDiscount,
+            shippingPrice,
+            subtotalPrice,
+            totalPrice,
+
+            // orderTotal,
+          },
         };
       }
     }
