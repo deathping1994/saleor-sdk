@@ -325,6 +325,23 @@ class CheckoutJobs extends JobsHandler<{}> {
     return { data };
   };
 
+  getCheckoutDiscounts = async ({ token }: any) => {
+    const {
+      data,
+      error,
+    } = await this.apolloClientManager.getCheckoutDiscounts({ token });
+
+    if (error) {
+      return {
+        dataError: {
+          error,
+          type: DataErrorCheckoutTypes.GET_CHECKOUT_DISCOUNTS,
+        },
+      };
+    }
+    return { data };
+  };
+
   createPayment = async ({
     checkoutId,
     amount,

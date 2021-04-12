@@ -220,7 +220,7 @@ export class SaleorState extends NamedObservable<StateItems> {
 
   private onCheckoutUpdate = (checkout?: ICheckoutModel) => {
     this.checkout = checkout;
-    this.summaryPrices = SaleorState.calculateSummaryPrices(checkout);
+    this.summaryPrices = this.calculateSummaryPrices(checkout);
     this.notifyChange(StateItems.CHECKOUT, this.checkout);
     this.notifyChange(StateItems.SUMMARY_PRICES, this.summaryPrices);
     this.onLoadedUpdate({
@@ -242,12 +242,36 @@ export class SaleorState extends NamedObservable<StateItems> {
     });
   };
 
-  private static calculateSummaryPrices(
+  private getCouponPrepaidDiscount = (token: any) => {
+    const { data, dataError } = this.jobsManager.run(
+      "checkout",
+      "getCheckoutDiscounts",
+      { token }
+    );
+
+    if (dataError) {
+      return { error: dataError };
+    }
+    return {
+      data: {
+        couponDiscount: data.couponDiscount,
+        prepaidDiscount: data.prepaidDiscount,
+      },
+    };
+  };
+
+  private calculateSummaryPrices(
     checkout?: ICheckoutModel
   ): ISaleorStateSummeryPrices {
     const items = checkout?.lines?.filter(
       line => line.variant.product?.category?.slug !== "free-gift-products"
     );
+
+    const { data } = this.getCouponPrepaidDiscount(checkout?.token);
+
+    const prepaidAmount = data?.prepaidDiscount;
+    // const couponAmount = data?.couponDiscount;
+
     const shippingMethod = checkout?.shippingMethod;
     const promoCodeDiscount = checkout?.promoCodeDiscount?.discount;
 
@@ -255,7 +279,7 @@ export class SaleorState extends NamedObservable<StateItems> {
       const firstItemTotalPrice = items[0].totalPrice;
       const firstItemMrpAmount =
         items[0].variant.product?.metadata.filter(
-          data => data?.key === "listprice"
+          metaitem => metaitem?.key === "listprice"
         )[0]?.value ||
         items[0].variant.pricing?.priceUndiscounted?.gross.amount;
 
@@ -286,7 +310,7 @@ export class SaleorState extends NamedObservable<StateItems> {
             accumulatorPrice +
             (parseInt(
               line.variant.product?.metadata.filter(
-                data => data?.key === "listPrice"
+                metaitem => metaitem?.key === "listPrice"
               )[0]?.value!,
               10
             ) ||
@@ -315,11 +339,11 @@ export class SaleorState extends NamedObservable<StateItems> {
           ...firstItemTotalPrice,
           gross: {
             ...firstItemTotalPrice.gross,
-            amount: round(itemsGrossPrice - discount.amount, 2),
+            amount: round(itemsGrossPrice - discount.amount + prepaidAmount, 2),
           },
           net: {
             ...firstItemTotalPrice.net,
-            amount: round(itemsNetPrice - discount.amount, 2),
+            amount: round(itemsNetPrice - discount.amount + prepaidAmount, 2),
           },
         };
 
@@ -361,18 +385,23 @@ export class SaleorState extends NamedObservable<StateItems> {
           currency: "INR",
         };
 
+        const prepaidDiscount = {
+          amount: prepaidAmount,
+          currency: "INR",
+        };
+
         return {
           discount,
           itemDiscount,
           mrp,
           netPrice,
           offerDiscount,
+          prepaidDiscount,
           shippingPrice,
           subtotalPrice,
           totalPrice,
 
           // orderTotal,
-          // prepaidDiscount,
         };
       }
     }
