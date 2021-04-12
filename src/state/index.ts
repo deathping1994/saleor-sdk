@@ -242,8 +242,8 @@ export class SaleorState extends NamedObservable<StateItems> {
     });
   };
 
-  private getCouponPrepaidDiscount = (token: any) => {
-    const { data, dataError } = this.jobsManager.run(
+  private getCouponPrepaidDiscount = async (token: any) => {
+    const { data, dataError } = await this.jobsManager.run(
       "checkout",
       "getCheckoutDiscounts",
       { token }
@@ -267,9 +267,18 @@ export class SaleorState extends NamedObservable<StateItems> {
       line => line.variant.product?.category?.slug !== "free-gift-products"
     );
 
-    const { data } = this.getCouponPrepaidDiscount(checkout?.token);
+    const data: Array<
+      | {
+          couponDiscount: any;
+          prepaidDiscount: any;
+        }
+      | undefined
+    > = [];
+    this.getCouponPrepaidDiscount(checkout?.token).then(res => {
+      data.push(res.data);
+    });
 
-    const prepaidAmount = data?.prepaidDiscount;
+    const prepaidAmount = data[0]?.prepaidDiscount;
     // const couponAmount = data?.couponDiscount;
 
     const shippingMethod = checkout?.shippingMethod;
