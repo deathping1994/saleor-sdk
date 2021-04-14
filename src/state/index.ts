@@ -55,6 +55,8 @@ export class SaleorState extends NamedObservable<StateItems> {
 
   summaryPrices?: ISaleorStateSummeryPrices;
 
+  prepaidDiscount?: number;
+
   // Should be changed it in future to shop object containing payment gateways besides all the shop data
   availablePaymentGateways?: PaymentGateway[] | null;
 
@@ -218,9 +220,23 @@ export class SaleorState extends NamedObservable<StateItems> {
     });
   };
 
+  private getPrepaidDiscount = () => {
+    const { data, dataError } = this.jobsManager.run(
+      "checkout",
+      "getCheckoutDiscounts",
+      {
+        token: this.checkout?.token,
+      }
+    );
+    console.log({ data, dataError });
+    if (dataError) return 0;
+    return data.prepaidDiscount;
+  };
+
   private onCheckoutUpdate = (checkout?: ICheckoutModel) => {
     this.checkout = checkout;
     this.summaryPrices = SaleorState.calculateSummaryPrices(checkout);
+    this.prepaidDiscount = this.getPrepaidDiscount();
     this.notifyChange(StateItems.CHECKOUT, this.checkout);
     this.notifyChange(StateItems.SUMMARY_PRICES, this.summaryPrices);
     this.onLoadedUpdate({

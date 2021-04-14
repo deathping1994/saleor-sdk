@@ -13,3 +13,4 @@ export type IMrp = ICheckoutModelPriceValue | null | undefined;
 export type INetPrice = ICheckoutModelPriceValue | null | undefined;
 export type IItemDiscount = ICheckoutModelPriceValue | null | undefined;
 export type IOfferDiscount = ICheckoutModelPriceValue | null | undefined;
+export type IPrepaidDiscount = number;

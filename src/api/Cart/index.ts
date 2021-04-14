@@ -15,6 +15,7 @@ import {
   IMrp,
   INetPrice,
   IOfferDiscount,
+  IPrepaidDiscount,
   IShippingPrice,
   ISubtotalPrice,
   ITotalPrice,
@@ -40,6 +41,8 @@ export class SaleorCartAPI extends ErrorListener {
   itemDiscount?: IItemDiscount;
 
   offerDiscount?: IOfferDiscount;
+
+  prepaidDiscount?: IPrepaidDiscount;
 
   private apolloClientManager: ApolloClientManager;
 
@@ -96,6 +99,14 @@ export class SaleorCartAPI extends ErrorListener {
         this.offerDiscount = offerDiscount;
       }
     );
+
+    this.saleorState.subscribeToChange(
+      StateItems.PREPAID_DISCOUNT,
+      (prepaidDiscount: number) => {
+        this.prepaidDiscount = prepaidDiscount;
+      }
+    );
+
     this.saleorState.subscribeToChange(
       StateItems.LOADED,
       (loaded: SaleorStateLoaded) => {

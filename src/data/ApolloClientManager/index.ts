@@ -113,6 +113,10 @@ import {
   checkoutPaymentMethodUpdate,
   checkoutPaymentMethodUpdateVariables,
 } from "../../mutations/gqlTypes/checkoutPaymentMethodUpdate";
+import {
+  CouponPrepaidDiscount,
+  CouponPrepaidDiscountVariables,
+} from "../../queries/gqlTypes/CouponPrepaidDiscount";
 
 export class ApolloClientManager {
   private client: ApolloClient<any>;
@@ -1027,6 +1031,34 @@ export class ApolloClientManager {
         };
       }
       return {};
+    } catch (error) {
+      return {
+        error,
+      };
+    }
+  };
+
+  getCheckoutDiscounts = async ({ token }: any) => {
+    try {
+      const { data, errors } = await this.client.query<
+        CouponPrepaidDiscount,
+        CouponPrepaidDiscountVariables
+      >({
+        fetchPolicy: "network-only",
+        query: CheckoutQueries.GetCouponPrepaidDiscount,
+        variables: { token },
+      });
+
+      console.log({ data, errors });
+      if (errors?.length) {
+        return {
+          error: errors,
+        };
+      }
+
+      return {
+        data: data?.checkoutDiscounts,
+      };
     } catch (error) {
       return {
         error,

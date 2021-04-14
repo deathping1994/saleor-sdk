@@ -14,6 +14,7 @@ export enum StateItems {
   PROMO_CODE,
   PAYMENT,
   WISHLIST,
+  PREPAID_DISCOUNT,
 }
 
 export interface ISaleorStateSummeryPrices {

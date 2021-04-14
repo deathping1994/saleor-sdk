@@ -38,3 +38,12 @@ export const checkoutProductVariants = gql`
     }
   }
 `;
+
+export const GetCouponPrepaidDiscount = gql`
+  query CouponPrepaidDiscount($token: UUID!) {
+    checkoutDiscounts(token: $token) {
+      prepaidDiscount
+      couponDiscount
+    }
+  }
+`;
