@@ -287,22 +287,27 @@ export class SaleorState extends NamedObservable<StateItems> {
     //     }
     //   | undefined
     // > = [];
-    console.log(checkout?.token);
 
-    const { data } =
-      checkout?.token && (await this.getCouponPrepaidDiscount(checkout?.token));
+    if (items && items.length && items[0].quantity > 0) {
+      console.log(
+        "🚀 ~ file: index.ts ~ line 293 ~ SaleorState ~ items",
+        items
+      );
+      console.log(checkout?.token);
 
-    console.log(data);
-    console.log(data?.prepaidDiscount);
+      const { data } =
+        checkout?.token &&
+        (await this.getCouponPrepaidDiscount(checkout?.token));
 
-    const prepaidAmount = round(parseFloat(data?.prepaidDiscount), 2);
-    console.log({ prepaidAmount });
-    // const couponAmount = data?.couponDiscount;
+      console.log(data);
+      console.log(data?.prepaidDiscount);
 
-    const shippingMethod = checkout?.shippingMethod;
-    const promoCodeDiscount = checkout?.promoCodeDiscount?.discount;
+      const prepaidAmount = round(parseFloat(data?.prepaidDiscount), 2);
+      console.log({ prepaidAmount });
+      // const couponAmount = data?.couponDiscount;
 
-    if (items && items.length) {
+      const shippingMethod = checkout?.shippingMethod;
+      const promoCodeDiscount = checkout?.promoCodeDiscount?.discount;
       const firstItemTotalPrice = items[0].totalPrice;
       const firstItemMrpAmount =
         items[0].variant.product?.metadata.filter(
