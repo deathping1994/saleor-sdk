@@ -126,7 +126,7 @@ class CheckoutJobs extends JobsHandler<{}> {
     this.localStorageHandler.setCheckout({
       ...checkout,
       availableShippingMethods: data?.availableShippingMethods,
-      billingAsShipping: false,
+      billingAsShipping: true,
       email: data?.email,
       selectedShippingAddressId,
       shippingAddress: data?.shippingAddress,
@@ -161,6 +161,7 @@ class CheckoutJobs extends JobsHandler<{}> {
       availablePaymentGateways: data?.availablePaymentGateways,
       billingAddress: data?.billingAddress,
       billingAsShipping: !!billingAsShipping,
+      email: data?.email,
       selectedBillingAddressId,
     });
     return { data };
@@ -196,7 +197,7 @@ class CheckoutJobs extends JobsHandler<{}> {
       ...checkout,
       availablePaymentGateways: data?.availablePaymentGateways,
       billingAddress: data?.billingAddress,
-      billingAsShipping: false,
+      billingAsShipping: true,
       email: data?.email,
       selectedBillingAddressId,
     });
