@@ -18,6 +18,7 @@ import {
   SetBillingAddressWithEmailJobInput,
 } from "./types";
 import { JobsHandler } from "../JobsHandler";
+import { AddressTypes } from "../../gqlTypes/globalTypes";
 
 export type PromiseCheckoutJobRunResponse = Promise<
   JobRunResponse<DataErrorCheckoutTypes, FunctionErrorCheckoutTypes>
@@ -98,6 +99,40 @@ class CheckoutJobs extends JobsHandler<{}> {
     return {
       data,
     };
+  };
+
+  setAddressType = async ({
+    addressId,
+    type,
+  }: {
+    addressId: string;
+    type: AddressTypes;
+  }) => {
+    const { data, error } = await this.apolloClientManager.setAddressType(
+      addressId,
+      type
+    );
+
+    console.log(
+      "🚀 ~ file: CheckoutJobs.ts ~ line 117 ~ CheckoutJobs ~ data",
+      data
+    );
+
+    console.log(
+      "🚀 ~ file: CheckoutJobs.ts ~ line 122 ~ CheckoutJobs ~ error",
+      error
+    );
+
+    if (error) {
+      return {
+        dataError: {
+          error,
+          type: DataErrorCheckoutTypes.SET_SHIPPING_ADDRESS,
+        },
+      };
+    }
+
+    return { data };
   };
 
   setShippingAddress = async ({

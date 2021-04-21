@@ -1,3 +1,4 @@
+import { AddressTypes } from "../../gqlTypes/globalTypes";
 import { PaymentGateway } from "../../fragments/gqlTypes/PaymentGateway";
 import { ErrorListener } from "../../helpers";
 import {
@@ -112,6 +113,19 @@ export class SaleorCheckoutAPI extends ErrorListener {
       }
     );
   }
+
+  setAddressType = async (addressId: string, type: AddressTypes) => {
+    const { data, dataError } = await this.jobsManager.run(
+      "checkout",
+      "setAddressType",
+      { addressId, type }
+    );
+
+    return {
+      data,
+      dataError,
+    };
+  };
 
   setShippingAddress = async (
     shippingAddress: IAddress,
