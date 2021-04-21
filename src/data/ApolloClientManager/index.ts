@@ -3,7 +3,7 @@ import ApolloClient from "apollo-client";
 import { Checkout } from "../../fragments/gqlTypes/Checkout";
 import { Payment } from "../../fragments/gqlTypes/Payment";
 import { User } from "../../fragments/gqlTypes/User";
-import { CountryCode } from "../../gqlTypes/globalTypes";
+import { AddressTypes, CountryCode } from "../../gqlTypes/globalTypes";
 import {
   ICheckoutAddress,
   ICheckoutModel,
@@ -117,6 +117,10 @@ import {
   CouponPrepaidDiscount,
   CouponPrepaidDiscountVariables,
 } from "../../queries/gqlTypes/CouponPrepaidDiscount";
+import {
+  UpdateCheckoutAddressType,
+  UpdateCheckoutAddressTypeVariables,
+} from "../../mutations/gqlTypes/UpdateCheckoutAddressType";
 
 export class ApolloClientManager {
   private client: ApolloClient<any>;
@@ -707,6 +711,35 @@ export class ApolloClientManager {
       }
     }
     return {};
+  };
+
+  setAddressType = async (addressId: string, type: AddressTypes) => {
+    try {
+      const { data, errors } = await this.client.mutate<
+        UpdateCheckoutAddressType,
+        UpdateCheckoutAddressTypeVariables
+      >({
+        mutation: CheckoutMutations.updateCheckoutAddressType,
+        variables: { addressId, type },
+      });
+
+      if (errors?.length) {
+        return {
+          error: errors,
+        };
+      }
+      if (
+        data?.addressTypeUpdate?.addressLink?.id &&
+        data?.addressTypeUpdate?.addressLink?.type
+      ) {
+        return { data };
+      }
+      return {};
+    } catch (error) {
+      return {
+        error,
+      };
+    }
   };
 
   setShippingAddress = async (

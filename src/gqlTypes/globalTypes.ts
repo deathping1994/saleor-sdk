@@ -54,6 +54,24 @@ export enum AddressTypeEnum {
 /**
  * An enumeration.
  */
+export enum AddressTypeType {
+  ADDRESSTYPES_HOME = "ADDRESSTYPES_HOME",
+  ADDRESSTYPES_OTHER = "ADDRESSTYPES_OTHER",
+  ADDRESSTYPES_WORK = "ADDRESSTYPES_WORK",
+}
+
+/**
+ * An enumeration.
+ */
+export enum AddressTypes {
+  HOME = "HOME",
+  OTHER = "OTHER",
+  WORK = "WORK",
+}
+
+/**
+ * An enumeration.
+ */
 export enum CheckoutErrorCode {
   BILLING_ADDRESS_NOT_SET = "BILLING_ADDRESS_NOT_SET",
   CHECKOUT_NOT_FULLY_PAID = "CHECKOUT_NOT_FULLY_PAID",

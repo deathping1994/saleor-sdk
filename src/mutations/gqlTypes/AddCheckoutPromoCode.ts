@@ -645,7 +645,7 @@ export interface AddCheckoutPromoCode_checkoutAddPromoCode {
 
 export interface AddCheckoutPromoCode {
   /**
-   * Adds a gift card or a voucher to a checkout.
+   * (Custom Implementation) Adds a gift card or a voucher to a checkout.
    */
   checkoutAddPromoCode: AddCheckoutPromoCode_checkoutAddPromoCode | null;
 }

@@ -645,7 +645,7 @@ export interface RemoveCheckoutPromoCode_checkoutRemovePromoCode {
 
 export interface RemoveCheckoutPromoCode {
   /**
-   * Remove a gift card or a voucher from a checkout.
+   * (Custom Implementation) Remove a gift card or a voucher from a checkout.
    */
   checkoutRemovePromoCode: RemoveCheckoutPromoCode_checkoutRemovePromoCode | null;
 }

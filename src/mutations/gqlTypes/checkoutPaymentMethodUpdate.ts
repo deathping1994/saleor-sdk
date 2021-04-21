@@ -94,7 +94,7 @@ export interface checkoutPaymentMethodUpdate_checkoutPaymentMethodUpdate {
 
 export interface checkoutPaymentMethodUpdate {
   /**
-   * Create a new banner
+   * Set the payment method of checkout
    */
   checkoutPaymentMethodUpdate: checkoutPaymentMethodUpdate_checkoutPaymentMethodUpdate | null;
 }
