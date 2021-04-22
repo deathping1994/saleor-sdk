@@ -113,15 +113,15 @@ class CheckoutJobs extends JobsHandler<{}> {
       type
     );
 
-    console.log(
-      "🚀 ~ file: CheckoutJobs.ts ~ line 117 ~ CheckoutJobs ~ data",
-      data
-    );
+    // console.log(
+    // "🚀 ~ file: CheckoutJobs.ts ~ line 117 ~ CheckoutJobs ~ data",
+    // data
+    // );
 
-    console.log(
-      "🚀 ~ file: CheckoutJobs.ts ~ line 122 ~ CheckoutJobs ~ error",
-      error
-    );
+    // console.log(
+    // "🚀 ~ file: CheckoutJobs.ts ~ line 122 ~ CheckoutJobs ~ error",
+    // error
+    // );
 
     if (error) {
       return {
@@ -367,7 +367,7 @@ class CheckoutJobs extends JobsHandler<{}> {
       error,
     } = await this.apolloClientManager.getCheckoutDiscounts({ token });
 
-    console.log({ data, error });
+    // console.log({ data, error });
     if (error) {
       return {
         dataError: {
@@ -376,7 +376,7 @@ class CheckoutJobs extends JobsHandler<{}> {
         },
       };
     }
-    console.log({ data, error });
+    // console.log({ data, error });
 
     return { data };
   };

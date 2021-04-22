@@ -1082,7 +1082,7 @@ export class ApolloClientManager {
         variables: { token },
       });
 
-      console.log({ data, errors });
+      // console.log({ data, errors });
       if (errors?.length) {
         return {
           error: errors,

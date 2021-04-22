@@ -121,7 +121,7 @@ export class SaleorCartAPI extends ErrorListener {
         this.saleorState.checkout.lines
       );
 
-      console.log("in sdk", data);
+      // console.log("in sdk", data);
 
       if (error) {
         this.fireError(error, ErrorCartTypes.SET_CART_ITEM);
