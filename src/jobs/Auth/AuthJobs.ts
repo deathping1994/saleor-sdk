@@ -131,13 +131,13 @@ export class AuthJobs extends JobsHandler<AuthJobsEventsValues> {
   };
 
   signInMobile = async ({
-    phone,
-    otp,
     checkoutId,
+    otp,
+    phone,
   }: {
-    phone: string;
-    otp: string;
     checkoutId: any;
+    otp: string;
+    phone: string;
   }): PromiseAuthJobRunResponse => {
     const { data, error } = await this.apolloClientManager.signInMobile(
       checkoutId,

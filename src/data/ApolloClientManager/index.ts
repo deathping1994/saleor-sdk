@@ -314,7 +314,7 @@ export class ApolloClientManager {
     };
   };
 
-  signInMobile = async (phone: string, otp: string, checkoutId: any) => {
+  signInMobile = async (checkoutId: any, otp: string, phone: string) => {
     const { data, errors } = await this.client.mutate<
       OTPAuthentication,
       OTPAuthenticationVariables
