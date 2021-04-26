@@ -314,7 +314,7 @@ export class ApolloClientManager {
     };
   };
 
-  signInMobile = async (phone: string, otp: string) => {
+  signInMobile = async (phone: string, otp: string, checkoutId: any) => {
     const { data, errors } = await this.client.mutate<
       OTPAuthentication,
       OTPAuthenticationVariables
@@ -322,6 +322,7 @@ export class ApolloClientManager {
       fetchPolicy: "no-cache",
       mutation: AuthMutations.createOTPTokeMutation,
       variables: {
+        checkoutId,
         otp,
         phone,
       },

@@ -68,4 +68,5 @@ export interface OTPAuthentication {
 export interface OTPAuthenticationVariables {
   phone: string;
   otp: string;
+  checkoutId?: string | null;
 }

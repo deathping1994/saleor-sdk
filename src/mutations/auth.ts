@@ -64,8 +64,12 @@ export const requestOTPMutation = gql`
 `;
 
 export const createOTPTokeMutation = gql`
-  mutation OTPAuthentication($phone: String!, $otp: String!) {
-    CreateTokenOTP: otpTokenCreate(otp: $otp, phone: $phone) {
+  mutation OTPAuthentication($phone: String!, $otp: String!, $checkoutId: ID) {
+    CreateTokenOTP: otpTokenCreate(
+      otp: $otp
+      phone: $phone
+      checkoutId: $checkoutId
+    ) {
       token
       refreshToken
       csrfToken

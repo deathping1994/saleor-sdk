@@ -235,12 +235,14 @@ export class AuthAPI extends ErrorListener {
   signInMobile = async (
     phone: string,
     otp: string,
+    checkoutId: any,
     autoSignIn: boolean = false
   ): PromiseRunResponse<DataErrorAuthTypes> => {
     const { data, dataError } = await this.jobsManager.run(
       "auth",
       "signInMobile",
       {
+        checkoutId,
         otp,
         phone,
       }
