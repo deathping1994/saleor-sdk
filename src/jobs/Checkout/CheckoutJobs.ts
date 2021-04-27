@@ -113,16 +113,6 @@ class CheckoutJobs extends JobsHandler<{}> {
       type
     );
 
-    // console.log(
-    // "🚀 ~ file: CheckoutJobs.ts ~ line 117 ~ CheckoutJobs ~ data",
-    // data
-    // );
-
-    // console.log(
-    // "🚀 ~ file: CheckoutJobs.ts ~ line 122 ~ CheckoutJobs ~ error",
-    // error
-    // );
-
     if (error) {
       return {
         dataError: {

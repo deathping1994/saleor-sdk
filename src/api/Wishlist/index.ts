@@ -52,15 +52,28 @@ export class SaleorWishlistAPI extends ErrorListener {
     );
   }
 
+  // addItemInWishlist = async (productId: string) => {
+  //   // 1. save in local storage
+
+  //   // 2. save online if possible (if checkout id available)
+  //   const { data } = await this.apolloClientManager.addWishlistItems(productId);
+
+  //   this.localStorageManager.addItemInWishlist(
+  //     data ? data[0]?.wishlist.items.edges.map(edge => edge.node.product) : []
+  //   );
+  // };
+
   addItemInWishlist = async (productId: string) => {
-    // 1. save in local storage
-
-    // 2. save online if possible (if checkout id available)
-    const { data } = await this.apolloClientManager.addWishlistItems(productId);
-
-    this.localStorageManager.addItemInWishlist(
-      data ? data[0]?.wishlist.items.edges.map(edge => edge.node.product) : []
+    const { data, dataError } = await this.jobsManager.run(
+      "wishlist",
+      "addItemInWishlist",
+      { productId }
     );
+
+    return {
+      data,
+      dataError,
+    };
   };
 
   removeItemInWishlist = async (productId: string) => {

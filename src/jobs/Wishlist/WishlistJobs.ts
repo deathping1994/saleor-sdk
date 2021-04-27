@@ -28,4 +28,20 @@ export class WishlistJobs extends JobsHandler<{}> {
 
     return { data, error };
   };
+
+  addItemInWishlist = async ({ productId }: { productId: string }) => {
+    const { data, error } = await this.apolloClientManager.addWishlistItems(
+      productId
+    );
+
+    if (error) {
+      return {
+        dataError: {
+          error,
+        },
+      };
+    }
+
+    return { data };
+  };
 }
