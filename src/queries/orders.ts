@@ -15,6 +15,10 @@ export const ordersByUser = gql`
         edges {
           node {
             id
+            metadata {
+              key
+              value
+            }
             token
             number
             statusDisplay
