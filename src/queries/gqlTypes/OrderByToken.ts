@@ -9,6 +9,18 @@ import { PaymentChargeStatusEnum, OrderStatus } from "./../../gqlTypes/globalTyp
 // GraphQL query operation: OrderByToken
 // ====================================================
 
+export interface OrderByToken_orderByToken_metadata {
+  __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
+  key: string;
+  /**
+   * Value of a metadata item.
+   */
+  value: string;
+}
+
 export interface OrderByToken_orderByToken_shippingAddress_country {
   __typename: "CountryDisplay";
   /**
@@ -513,6 +525,10 @@ export interface OrderByToken_orderByToken {
    * User-friendly number of an order.
    */
   number: string | null;
+  /**
+   * List of public metadata items. Can be accessed without permissions.
+   */
+  metadata: (OrderByToken_orderByToken_metadata | null)[];
   shippingAddress: OrderByToken_orderByToken_shippingAddress | null;
   /**
    * List of order lines.

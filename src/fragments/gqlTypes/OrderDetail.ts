@@ -9,6 +9,18 @@ import { PaymentChargeStatusEnum, OrderStatus } from "./../../gqlTypes/globalTyp
 // GraphQL fragment: OrderDetail
 // ====================================================
 
+export interface OrderDetail_metadata {
+  __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
+  key: string;
+  /**
+   * Value of a metadata item.
+   */
+  value: string;
+}
+
 export interface OrderDetail_shippingAddress_country {
   __typename: "CountryDisplay";
   /**
@@ -513,6 +525,10 @@ export interface OrderDetail {
    * User-friendly number of an order.
    */
   number: string | null;
+  /**
+   * List of public metadata items. Can be accessed without permissions.
+   */
+  metadata: (OrderDetail_metadata | null)[];
   shippingAddress: OrderDetail_shippingAddress | null;
   /**
    * List of order lines.

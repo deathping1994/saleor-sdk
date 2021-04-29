@@ -21,6 +21,18 @@ export interface OrdersByUser_me_orders_pageInfo {
   endCursor: string | null;
 }
 
+export interface OrdersByUser_me_orders_edges_node_metadata {
+  __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
+  key: string;
+  /**
+   * Value of a metadata item.
+   */
+  value: string;
+}
+
 export interface OrdersByUser_me_orders_edges_node_total_gross {
   __typename: "Money";
   /**
@@ -213,6 +225,10 @@ export interface OrdersByUser_me_orders_edges_node {
    * The ID of the object.
    */
   id: string;
+  /**
+   * List of public metadata items. Can be accessed without permissions.
+   */
+  metadata: (OrdersByUser_me_orders_edges_node_metadata | null)[];
   token: string;
   /**
    * User-friendly number of an order.

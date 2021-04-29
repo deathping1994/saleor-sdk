@@ -26,6 +26,18 @@ export interface CompleteCheckout_checkoutComplete_errors {
   message: string | null;
 }
 
+export interface CompleteCheckout_checkoutComplete_order_metadata {
+  __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
+  key: string;
+  /**
+   * Value of a metadata item.
+   */
+  value: string;
+}
+
 export interface CompleteCheckout_checkoutComplete_order_shippingAddress_country {
   __typename: "CountryDisplay";
   /**
@@ -530,6 +542,10 @@ export interface CompleteCheckout_checkoutComplete_order {
    * User-friendly number of an order.
    */
   number: string | null;
+  /**
+   * List of public metadata items. Can be accessed without permissions.
+   */
+  metadata: (CompleteCheckout_checkoutComplete_order_metadata | null)[];
   shippingAddress: CompleteCheckout_checkoutComplete_order_shippingAddress | null;
   /**
    * List of order lines.
