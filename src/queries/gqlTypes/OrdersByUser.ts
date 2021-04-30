@@ -81,6 +81,18 @@ export interface OrdersByUser_me_orders_edges_node_lines_variant_weight {
   value: number;
 }
 
+export interface OrdersByUser_me_orders_edges_node_lines_variant_product_weight {
+  __typename: "Weight";
+  /**
+   * Weight unit.
+   */
+  unit: WeightUnitsEnum;
+  /**
+   * Weight value.
+   */
+  value: number;
+}
+
 export interface OrdersByUser_me_orders_edges_node_lines_variant_product_pricing_discount_net {
   __typename: "Money";
   /**
@@ -163,6 +175,7 @@ export interface OrdersByUser_me_orders_edges_node_lines_variant_product_pricing
 
 export interface OrdersByUser_me_orders_edges_node_lines_variant_product {
   __typename: "Product";
+  weight: OrdersByUser_me_orders_edges_node_lines_variant_product_weight | null;
   name: string;
   /**
    * Lists the storefront product's pricing, the current price and discounts, only meant for displaying.

@@ -3,6 +3,8 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
+import { WeightUnitsEnum } from "./../../gqlTypes/globalTypes";
+
 // ====================================================
 // GraphQL fragment: ProductVariant
 // ====================================================
@@ -135,6 +137,18 @@ export interface ProductVariant_attributes {
   values: (ProductVariant_attributes_values | null)[];
 }
 
+export interface ProductVariant_product_weight {
+  __typename: "Weight";
+  /**
+   * Weight unit.
+   */
+  unit: WeightUnitsEnum;
+  /**
+   * Weight value.
+   */
+  value: number;
+}
+
 export interface ProductVariant_product_category {
   __typename: "Category";
   /**
@@ -193,6 +207,7 @@ export interface ProductVariant_product {
    */
   id: string;
   name: string;
+  weight: ProductVariant_product_weight | null;
   category: ProductVariant_product_category | null;
   /**
    * The main thumbnail for a product.

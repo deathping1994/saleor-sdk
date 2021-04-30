@@ -3,6 +3,8 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
+import { WeightUnitsEnum } from "./../../gqlTypes/globalTypes";
+
 // ====================================================
 // GraphQL query operation: CheckoutProductVariants
 // ====================================================
@@ -135,6 +137,18 @@ export interface CheckoutProductVariants_productVariants_edges_node_attributes {
   values: (CheckoutProductVariants_productVariants_edges_node_attributes_values | null)[];
 }
 
+export interface CheckoutProductVariants_productVariants_edges_node_product_weight {
+  __typename: "Weight";
+  /**
+   * Weight unit.
+   */
+  unit: WeightUnitsEnum;
+  /**
+   * Weight value.
+   */
+  value: number;
+}
+
 export interface CheckoutProductVariants_productVariants_edges_node_product_category {
   __typename: "Category";
   /**
@@ -193,6 +207,7 @@ export interface CheckoutProductVariants_productVariants_edges_node_product {
    */
   id: string;
   name: string;
+  weight: CheckoutProductVariants_productVariants_edges_node_product_weight | null;
   category: CheckoutProductVariants_productVariants_edges_node_product_category | null;
   /**
    * The main thumbnail for a product.

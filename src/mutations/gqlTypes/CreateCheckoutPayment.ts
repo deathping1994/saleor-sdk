@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { PaymentInput, PaymentErrorCode } from "./../../gqlTypes/globalTypes";
+import { PaymentInput, WeightUnitsEnum, PaymentErrorCode } from "./../../gqlTypes/globalTypes";
 
 // ====================================================
 // GraphQL mutation operation: CreateCheckoutPayment
@@ -407,6 +407,18 @@ export interface CreateCheckoutPayment_checkoutPaymentCreate_checkout_lines_vari
   values: (CreateCheckoutPayment_checkoutPaymentCreate_checkout_lines_variant_attributes_values | null)[];
 }
 
+export interface CreateCheckoutPayment_checkoutPaymentCreate_checkout_lines_variant_product_weight {
+  __typename: "Weight";
+  /**
+   * Weight unit.
+   */
+  unit: WeightUnitsEnum;
+  /**
+   * Weight value.
+   */
+  value: number;
+}
+
 export interface CreateCheckoutPayment_checkoutPaymentCreate_checkout_lines_variant_product_category {
   __typename: "Category";
   /**
@@ -465,6 +477,7 @@ export interface CreateCheckoutPayment_checkoutPaymentCreate_checkout_lines_vari
    */
   id: string;
   name: string;
+  weight: CreateCheckoutPayment_checkoutPaymentCreate_checkout_lines_variant_product_weight | null;
   category: CreateCheckoutPayment_checkoutPaymentCreate_checkout_lines_variant_product_category | null;
   /**
    * The main thumbnail for a product.

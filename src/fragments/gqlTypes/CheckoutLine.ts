@@ -3,6 +3,8 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
+import { WeightUnitsEnum } from "./../../gqlTypes/globalTypes";
+
 // ====================================================
 // GraphQL fragment: CheckoutLine
 // ====================================================
@@ -171,6 +173,18 @@ export interface CheckoutLine_variant_attributes {
   values: (CheckoutLine_variant_attributes_values | null)[];
 }
 
+export interface CheckoutLine_variant_product_weight {
+  __typename: "Weight";
+  /**
+   * Weight unit.
+   */
+  unit: WeightUnitsEnum;
+  /**
+   * Weight value.
+   */
+  value: number;
+}
+
 export interface CheckoutLine_variant_product_category {
   __typename: "Category";
   /**
@@ -229,6 +243,7 @@ export interface CheckoutLine_variant_product {
    */
   id: string;
   name: string;
+  weight: CheckoutLine_variant_product_weight | null;
   category: CheckoutLine_variant_product_category | null;
   /**
    * The main thumbnail for a product.

@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { PaymentChargeStatusEnum, OrderStatus } from "./../../gqlTypes/globalTypes";
+import { PaymentChargeStatusEnum, OrderStatus, WeightUnitsEnum } from "./../../gqlTypes/globalTypes";
 
 // ====================================================
 // GraphQL query operation: OrderByToken
@@ -190,6 +190,18 @@ export interface OrderByToken_orderByToken_lines_variant_attributes {
   values: (OrderByToken_orderByToken_lines_variant_attributes_values | null)[];
 }
 
+export interface OrderByToken_orderByToken_lines_variant_product_weight {
+  __typename: "Weight";
+  /**
+   * Weight unit.
+   */
+  unit: WeightUnitsEnum;
+  /**
+   * Weight value.
+   */
+  value: number;
+}
+
 export interface OrderByToken_orderByToken_lines_variant_product_category {
   __typename: "Category";
   /**
@@ -248,6 +260,7 @@ export interface OrderByToken_orderByToken_lines_variant_product {
    */
   id: string;
   name: string;
+  weight: OrderByToken_orderByToken_lines_variant_product_weight | null;
   category: OrderByToken_orderByToken_lines_variant_product_category | null;
   /**
    * The main thumbnail for a product.

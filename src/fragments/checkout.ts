@@ -66,6 +66,10 @@ export const checkoutProductVariantFragment = gql`
     product {
       id
       name
+      weight {
+        unit
+        value
+      }
       category {
         id
         name
@@ -107,6 +111,7 @@ export const checkoutLineFragment = gql`
   fragment CheckoutLine on CheckoutLine {
     id
     quantity
+
     totalPrice {
       ...Price
     }

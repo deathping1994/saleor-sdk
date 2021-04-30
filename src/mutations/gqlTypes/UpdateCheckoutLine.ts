@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { CheckoutLineInput, CheckoutErrorCode } from "./../../gqlTypes/globalTypes";
+import { CheckoutLineInput, WeightUnitsEnum, CheckoutErrorCode } from "./../../gqlTypes/globalTypes";
 
 // ====================================================
 // GraphQL mutation operation: UpdateCheckoutLine
@@ -407,6 +407,18 @@ export interface UpdateCheckoutLine_checkoutLinesUpdate_checkout_lines_variant_a
   values: (UpdateCheckoutLine_checkoutLinesUpdate_checkout_lines_variant_attributes_values | null)[];
 }
 
+export interface UpdateCheckoutLine_checkoutLinesUpdate_checkout_lines_variant_product_weight {
+  __typename: "Weight";
+  /**
+   * Weight unit.
+   */
+  unit: WeightUnitsEnum;
+  /**
+   * Weight value.
+   */
+  value: number;
+}
+
 export interface UpdateCheckoutLine_checkoutLinesUpdate_checkout_lines_variant_product_category {
   __typename: "Category";
   /**
@@ -465,6 +477,7 @@ export interface UpdateCheckoutLine_checkoutLinesUpdate_checkout_lines_variant_p
    */
   id: string;
   name: string;
+  weight: UpdateCheckoutLine_checkoutLinesUpdate_checkout_lines_variant_product_weight | null;
   category: UpdateCheckoutLine_checkoutLinesUpdate_checkout_lines_variant_product_category | null;
   /**
    * The main thumbnail for a product.

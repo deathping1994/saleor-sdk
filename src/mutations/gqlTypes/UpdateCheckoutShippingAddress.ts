@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { AddressInput, CheckoutErrorCode } from "./../../gqlTypes/globalTypes";
+import { AddressInput, CheckoutErrorCode, WeightUnitsEnum } from "./../../gqlTypes/globalTypes";
 
 // ====================================================
 // GraphQL mutation operation: UpdateCheckoutShippingAddress
@@ -424,6 +424,18 @@ export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_che
   values: (UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant_attributes_values | null)[];
 }
 
+export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant_product_weight {
+  __typename: "Weight";
+  /**
+   * Weight unit.
+   */
+  unit: WeightUnitsEnum;
+  /**
+   * Weight value.
+   */
+  value: number;
+}
+
 export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant_product_category {
   __typename: "Category";
   /**
@@ -482,6 +494,7 @@ export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_che
    */
   id: string;
   name: string;
+  weight: UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant_product_weight | null;
   category: UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant_product_category | null;
   /**
    * The main thumbnail for a product.
@@ -1041,6 +1054,18 @@ export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_line
   values: (UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant_attributes_values | null)[];
 }
 
+export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant_product_weight {
+  __typename: "Weight";
+  /**
+   * Weight unit.
+   */
+  unit: WeightUnitsEnum;
+  /**
+   * Weight value.
+   */
+  value: number;
+}
+
 export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant_product_category {
   __typename: "Category";
   /**
@@ -1099,6 +1124,7 @@ export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_line
    */
   id: string;
   name: string;
+  weight: UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant_product_weight | null;
   category: UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant_product_category | null;
   /**
    * The main thumbnail for a product.

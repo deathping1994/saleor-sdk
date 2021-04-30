@@ -35,6 +35,7 @@ export const ordersByUser = gql`
             }
             lines {
               id
+
               productName
               quantity
               variant {
@@ -44,6 +45,10 @@ export const ordersByUser = gql`
                 }
                 name
                 product {
+                  weight {
+                    unit
+                    value
+                  }
                   name
                   pricing {
                     discount {
