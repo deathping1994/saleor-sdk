@@ -31,6 +31,20 @@ export const orderDetailFragment = gql`
     id
     token
     number
+    invoices {
+      createdAt
+      id
+      message
+      externalUrl
+      number
+      status
+      updatedAt
+      url
+      metadata {
+        key
+        value
+      }
+    }
     metadata {
       key
       value
