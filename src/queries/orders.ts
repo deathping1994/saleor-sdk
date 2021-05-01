@@ -49,6 +49,10 @@ export const ordersByUser = gql`
                     unit
                     value
                   }
+                  metadata {
+                    key
+                    value
+                  }
                   name
                   pricing {
                     discount {
