@@ -151,6 +151,16 @@ export interface OrdersByUser_me_orders_edges_node_lines_variant_product_metadat
   value: string;
 }
 
+export interface OrdersByUser_me_orders_edges_node_lines_variant_product_category {
+  __typename: "Category";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  name: string;
+  slug: string;
+}
+
 export interface OrdersByUser_me_orders_edges_node_lines_variant_product_pricing_discount_net {
   __typename: "Money";
   /**
@@ -238,6 +248,7 @@ export interface OrdersByUser_me_orders_edges_node_lines_variant_product {
    * List of public metadata items. Can be accessed without permissions.
    */
   metadata: (OrdersByUser_me_orders_edges_node_lines_variant_product_metadata | null)[];
+  category: OrdersByUser_me_orders_edges_node_lines_variant_product_category | null;
   name: string;
   /**
    * Lists the storefront product's pricing, the current price and discounts, only meant for displaying.

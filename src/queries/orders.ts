@@ -67,6 +67,11 @@ export const ordersByUser = gql`
                     key
                     value
                   }
+                  category {
+                    id
+                    name
+                    slug
+                  }
                   name
                   pricing {
                     discount {
