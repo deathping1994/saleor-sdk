@@ -3,57 +3,11 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { PaymentChargeStatusEnum, OrderStatus, JobStatusEnum, WeightUnitsEnum } from "./../../gqlTypes/globalTypes";
+import { PaymentChargeStatusEnum, OrderStatus, WeightUnitsEnum } from "./../../gqlTypes/globalTypes";
 
 // ====================================================
 // GraphQL fragment: OrderDetail
 // ====================================================
-
-export interface OrderDetail_invoices_metadata {
-  __typename: "MetadataItem";
-  /**
-   * Key of a metadata item.
-   */
-  key: string;
-  /**
-   * Value of a metadata item.
-   */
-  value: string;
-}
-
-export interface OrderDetail_invoices {
-  __typename: "Invoice";
-  /**
-   * Created date time of job in ISO 8601 format.
-   */
-  createdAt: any;
-  /**
-   * The ID of the object.
-   */
-  id: string;
-  /**
-   * Job message.
-   */
-  message: string | null;
-  externalUrl: string | null;
-  number: string | null;
-  /**
-   * Job status.
-   */
-  status: JobStatusEnum;
-  /**
-   * Date time of job last update in ISO 8601 format.
-   */
-  updatedAt: any;
-  /**
-   * URL to download an invoice.
-   */
-  url: string | null;
-  /**
-   * List of public metadata items. Can be accessed without permissions.
-   */
-  metadata: (OrderDetail_invoices_metadata | null)[];
-}
 
 export interface OrderDetail_metadata {
   __typename: "MetadataItem";
@@ -584,10 +538,6 @@ export interface OrderDetail {
    * User-friendly number of an order.
    */
   number: string | null;
-  /**
-   * List of order invoices.
-   */
-  invoices: (OrderDetail_invoices | null)[] | null;
   /**
    * List of public metadata items. Can be accessed without permissions.
    */

@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { CheckoutErrorCode, PaymentChargeStatusEnum, OrderStatus, JobStatusEnum, WeightUnitsEnum } from "./../../gqlTypes/globalTypes";
+import { CheckoutErrorCode, PaymentChargeStatusEnum, OrderStatus, WeightUnitsEnum } from "./../../gqlTypes/globalTypes";
 
 // ====================================================
 // GraphQL mutation operation: CompleteCheckout
@@ -24,52 +24,6 @@ export interface CompleteCheckout_checkoutComplete_errors {
    * The error message.
    */
   message: string | null;
-}
-
-export interface CompleteCheckout_checkoutComplete_order_invoices_metadata {
-  __typename: "MetadataItem";
-  /**
-   * Key of a metadata item.
-   */
-  key: string;
-  /**
-   * Value of a metadata item.
-   */
-  value: string;
-}
-
-export interface CompleteCheckout_checkoutComplete_order_invoices {
-  __typename: "Invoice";
-  /**
-   * Created date time of job in ISO 8601 format.
-   */
-  createdAt: any;
-  /**
-   * The ID of the object.
-   */
-  id: string;
-  /**
-   * Job message.
-   */
-  message: string | null;
-  externalUrl: string | null;
-  number: string | null;
-  /**
-   * Job status.
-   */
-  status: JobStatusEnum;
-  /**
-   * Date time of job last update in ISO 8601 format.
-   */
-  updatedAt: any;
-  /**
-   * URL to download an invoice.
-   */
-  url: string | null;
-  /**
-   * List of public metadata items. Can be accessed without permissions.
-   */
-  metadata: (CompleteCheckout_checkoutComplete_order_invoices_metadata | null)[];
 }
 
 export interface CompleteCheckout_checkoutComplete_order_metadata {
@@ -601,10 +555,6 @@ export interface CompleteCheckout_checkoutComplete_order {
    * User-friendly number of an order.
    */
   number: string | null;
-  /**
-   * List of order invoices.
-   */
-  invoices: (CompleteCheckout_checkoutComplete_order_invoices | null)[] | null;
   /**
    * List of public metadata items. Can be accessed without permissions.
    */
