@@ -146,7 +146,8 @@ export class SaleorState extends NamedObservable<StateItems> {
       this.onPaymentUpdate(LocalStorageHandler.getPayment());
     }
     if (config.loadOnStart.wishlist) {
-      await this.jobsManager.run("wishlist", "getWishlist", undefined);
+      if (this.user)
+        await this.jobsManager.run("wishlist", "getWishlist", undefined);
     }
   };
 
