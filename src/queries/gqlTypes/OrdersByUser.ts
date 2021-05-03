@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { WeightUnitsEnum } from "./../../gqlTypes/globalTypes";
+import { JobStatusEnum, WeightUnitsEnum } from "./../../gqlTypes/globalTypes";
 
 // ====================================================
 // GraphQL query operation: OrdersByUser
@@ -19,6 +19,52 @@ export interface OrdersByUser_me_orders_pageInfo {
    * When paginating forwards, the cursor to continue.
    */
   endCursor: string | null;
+}
+
+export interface OrdersByUser_me_orders_edges_node_invoices_metadata {
+  __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
+  key: string;
+  /**
+   * Value of a metadata item.
+   */
+  value: string;
+}
+
+export interface OrdersByUser_me_orders_edges_node_invoices {
+  __typename: "Invoice";
+  /**
+   * Created date time of job in ISO 8601 format.
+   */
+  createdAt: any;
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  /**
+   * Job message.
+   */
+  message: string | null;
+  externalUrl: string | null;
+  number: string | null;
+  /**
+   * Job status.
+   */
+  status: JobStatusEnum;
+  /**
+   * Date time of job last update in ISO 8601 format.
+   */
+  updatedAt: any;
+  /**
+   * URL to download an invoice.
+   */
+  url: string | null;
+  /**
+   * List of public metadata items. Can be accessed without permissions.
+   */
+  metadata: (OrdersByUser_me_orders_edges_node_invoices_metadata | null)[];
 }
 
 export interface OrdersByUser_me_orders_edges_node_metadata {
@@ -197,6 +243,10 @@ export interface OrdersByUser_me_orders_edges_node_lines_variant_product_pricing
 
 export interface OrdersByUser_me_orders_edges_node_lines_variant_product {
   __typename: "Product";
+  /**
+   * The ID of the object.
+   */
+  id: string;
   weight: OrdersByUser_me_orders_edges_node_lines_variant_product_weight | null;
   /**
    * List of public metadata items. Can be accessed without permissions.
@@ -212,6 +262,10 @@ export interface OrdersByUser_me_orders_edges_node_lines_variant_product {
 
 export interface OrdersByUser_me_orders_edges_node_lines_variant {
   __typename: "ProductVariant";
+  /**
+   * The ID of the object.
+   */
+  id: string;
   weight: OrdersByUser_me_orders_edges_node_lines_variant_weight | null;
   name: string;
   product: OrdersByUser_me_orders_edges_node_lines_variant_product;
@@ -265,6 +319,10 @@ export interface OrdersByUser_me_orders_edges_node {
    * The ID of the object.
    */
   id: string;
+  /**
+   * List of order invoices.
+   */
+  invoices: (OrdersByUser_me_orders_edges_node_invoices | null)[] | null;
   /**
    * List of public metadata items. Can be accessed without permissions.
    */

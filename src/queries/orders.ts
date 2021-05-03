@@ -15,20 +15,20 @@ export const ordersByUser = gql`
         edges {
           node {
             id
-            # invoices {
-            #   createdAt
-            #   id
-            #   message
-            #   externalUrl
-            #   number
-            #   status
-            #   updatedAt
-            #   url
-            #   metadata {
-            #     key
-            #     value
-            #   }
-            # }
+            invoices {
+              createdAt
+              id
+              message
+              externalUrl
+              number
+              status
+              updatedAt
+              url
+              metadata {
+                key
+                value
+              }
+            }
             metadata {
               key
               value
@@ -53,12 +53,14 @@ export const ordersByUser = gql`
               productName
               quantity
               variant {
+                id
                 weight {
                   unit
                   value
                 }
                 name
                 product {
+                  id
                   weight {
                     unit
                     value
