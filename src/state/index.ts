@@ -16,7 +16,7 @@ import { JobsManager } from "../jobs";
 import { Config } from "../types";
 import { ISaleorStateSummeryPrices, StateItems } from "./types";
 import { AuthJobsEvents } from "../jobs/Auth";
-import { BROWSER_NO_CREDENTIAL_API_MESSAGE } from "../api/Auth";
+// import { BROWSER_NO_CREDENTIAL_API_MESSAGE } from "../api/Auth";
 
 export interface SaleorStateLoaded {
   user: boolean;
@@ -160,14 +160,14 @@ export class SaleorState extends NamedObservable<StateItems> {
 
     if (dataError || !data?.isValid) {
       await this.jobsManager.run("auth", "signOut", undefined);
-      try {
-        if (navigator.credentials?.preventSilentAccess) {
-          await navigator.credentials.preventSilentAccess();
-        }
-      } catch (credentialsError) {
-        // eslint-disable-next-line no-console
-        console.warn(BROWSER_NO_CREDENTIAL_API_MESSAGE, credentialsError);
-      }
+      // try {
+      //   if (navigator.credentials?.preventSilentAccess) {
+      //     await navigator.credentials.preventSilentAccess();
+      //   }
+      // } catch (credentialsError) {
+      //   // eslint-disable-next-line no-console
+      //   console.warn(BROWSER_NO_CREDENTIAL_API_MESSAGE, credentialsError);
+      // }
     }
   };
 

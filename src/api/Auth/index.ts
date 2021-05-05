@@ -7,7 +7,7 @@ import { StateItems } from "../../state/types";
 import { PromiseRunResponse } from "../types";
 import { DataErrorAuthTypes } from "./types";
 import { Config } from "../../types";
-import { CREDENTIAL_API_EXISTS } from "../../consts";
+// import { CREDENTIAL_API_EXISTS } from "../../consts";
 
 export const BROWSER_NO_CREDENTIAL_API_MESSAGE =
   "Saleor SDK is unable to use browser Credential Management API.";
@@ -94,9 +94,9 @@ export class AuthAPI extends ErrorListener {
       }
     );
 
-    if (!this.saleorState.signInToken && CREDENTIAL_API_EXISTS) {
-      this.autoSignIn();
-    }
+    // if (!this.saleorState.signInToken && CREDENTIAL_API_EXISTS) {
+    //   this.autoSignIn();
+    // }
   }
 
   /**
@@ -181,31 +181,31 @@ export class AuthAPI extends ErrorListener {
    * Tries to authenticate user with given email and password.
    * @param email Email used for authentication.
    * @param password Password used for authentication.
-   * @param autoSignIn Indicates if SDK should try to sign in user with given credentials in future without explicitly calling this method. True by default.
+  //  * @param autoSignIn Indicates if SDK should try to sign in user with given credentials in future without explicitly calling this method. True by default.
    */
   signIn = async (
     email: string,
-    password: string,
-    autoSignIn: boolean = true
+    password: string
+    // autoSignIn: boolean
   ): PromiseRunResponse<DataErrorAuthTypes> => {
     const { data, dataError } = await this.jobsManager.run("auth", "signIn", {
       email,
       password,
     });
 
-    try {
-      if (autoSignIn && !dataError?.error && CREDENTIAL_API_EXISTS) {
-        await navigator.credentials.store(
-          new window.PasswordCredential({
-            id: email,
-            password,
-          })
-        );
-      }
-    } catch (credentialsError) {
-      // eslint-disable-next-line no-console
-      console.warn(BROWSER_NO_CREDENTIAL_API_MESSAGE, credentialsError);
-    }
+    // try {
+    //   if (autoSignIn && !dataError?.error && CREDENTIAL_API_EXISTS) {
+    //     await navigator.credentials.store(
+    //       new window.PasswordCredential({
+    //         id: email,
+    //         password,
+    //       })
+    //     );
+    //   }
+    // } catch (credentialsError) {
+    //   // eslint-disable-next-line no-console
+    //   console.warn(BROWSER_NO_CREDENTIAL_API_MESSAGE, credentialsError);
+    // }
 
     if (dataError) {
       return {
@@ -235,8 +235,8 @@ export class AuthAPI extends ErrorListener {
   signInMobile = async (
     checkoutId: any,
     otp: string,
-    phone: string,
-    autoSignIn: boolean = false
+    phone: string
+    // autoSignIn: boolean
   ): PromiseRunResponse<DataErrorAuthTypes> => {
     const { data, dataError } = await this.jobsManager.run(
       "auth",
@@ -248,19 +248,19 @@ export class AuthAPI extends ErrorListener {
       }
     );
 
-    try {
-      if (autoSignIn && !dataError?.error && CREDENTIAL_API_EXISTS) {
-        await navigator.credentials.store(
-          new window.PasswordCredential({
-            id: phone,
-            otp,
-          })
-        );
-      }
-    } catch (credentialsError) {
-      // eslint-disable-next-line no-console
-      console.warn(BROWSER_NO_CREDENTIAL_API_MESSAGE, credentialsError);
-    }
+    // try {
+    //   if (autoSignIn && !dataError?.error && CREDENTIAL_API_EXISTS) {
+    //     await navigator.credentials.store(
+    //       new window.PasswordCredential({
+    //         id: phone,
+    //         otp,
+    //       })
+    //     );
+    //   }
+    // } catch (credentialsError) {
+    //   // eslint-disable-next-line no-console
+    //   console.warn(BROWSER_NO_CREDENTIAL_API_MESSAGE, credentialsError);
+    // }
 
     if (dataError) {
       return {
@@ -295,14 +295,14 @@ export class AuthAPI extends ErrorListener {
    */
   signOut = async (): PromiseRunResponse<DataErrorAuthTypes> => {
     await this.jobsManager.run("auth", "signOut", undefined);
-    try {
-      if (navigator.credentials?.preventSilentAccess) {
-        await navigator.credentials.preventSilentAccess();
-      }
-    } catch (credentialsError) {
-      // eslint-disable-next-line no-console
-      console.warn(BROWSER_NO_CREDENTIAL_API_MESSAGE, credentialsError);
-    }
+    // try {
+    //   if (navigator.credentials?.preventSilentAccess) {
+    //     await navigator.credentials.preventSilentAccess();
+    //   }
+    // } catch (credentialsError) {
+    //   // eslint-disable-next-line no-console
+    //   console.warn(BROWSER_NO_CREDENTIAL_API_MESSAGE, credentialsError);
+    // }
 
     return {
       pending: false,
@@ -336,27 +336,27 @@ export class AuthAPI extends ErrorListener {
     };
   };
 
-  private autoSignIn = async () => {
-    let credentials;
-    try {
-      credentials = await navigator.credentials.get({
-        password: true,
-      });
-    } catch (credentialsError) {
-      // eslint-disable-next-line no-console
-      console.warn(BROWSER_NO_CREDENTIAL_API_MESSAGE, credentialsError);
-    }
+  // private autoSignIn = async () => {
+  //   let credentials;
+  //   try {
+  //     credentials = await navigator.credentials.get({
+  //       password: true,
+  //     });
+  //   } catch (credentialsError) {
+  //     // eslint-disable-next-line no-console
+  //     console.warn(BROWSER_NO_CREDENTIAL_API_MESSAGE, credentialsError);
+  //   }
 
-    if (credentials && "password" in credentials && credentials.password) {
-      const { dataError } = await this.signIn(
-        credentials.id,
-        credentials.password,
-        true
-      );
+  //   if (credentials && "password" in credentials && credentials.password) {
+  //     const { dataError } = await this.signIn(
+  //       credentials.id,
+  //       credentials.password,
+  //       true
+  //     );
 
-      if (dataError?.error) {
-        this.fireError(dataError.error, DataErrorAuthTypes.SIGN_IN);
-      }
-    }
-  };
+  //     if (dataError?.error) {
+  //       this.fireError(dataError.error, DataErrorAuthTypes.SIGN_IN);
+  //     }
+  //   }
+  // };
 }
