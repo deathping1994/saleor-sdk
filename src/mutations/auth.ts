@@ -78,6 +78,10 @@ export const createOTPTokeMutation = gql`
         email
         firstName
         lastName
+        metadata {
+          key
+          value
+        }
       }
       otpErrors {
         code

@@ -9,6 +9,18 @@ import { OTPErrorCodeEnum } from "./../../gqlTypes/globalTypes";
 // GraphQL mutation operation: OTPAuthentication
 // ====================================================
 
+export interface OTPAuthentication_CreateTokenOTP_user_metadata {
+  __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
+  key: string;
+  /**
+   * Value of a metadata item.
+   */
+  value: string;
+}
+
 export interface OTPAuthentication_CreateTokenOTP_user {
   __typename: "User";
   /**
@@ -18,6 +30,10 @@ export interface OTPAuthentication_CreateTokenOTP_user {
   email: string;
   firstName: string;
   lastName: string;
+  /**
+   * List of public metadata items. Can be accessed without permissions.
+   */
+  metadata: (OTPAuthentication_CreateTokenOTP_user_metadata | null)[];
 }
 
 export interface OTPAuthentication_CreateTokenOTP_otpErrors {

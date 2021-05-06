@@ -26,6 +26,18 @@ export interface SetPassword_setPassword_errors {
   message: string | null;
 }
 
+export interface SetPassword_setPassword_user_metadata {
+  __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
+  key: string;
+  /**
+   * Value of a metadata item.
+   */
+  value: string;
+}
+
 export interface SetPassword_setPassword_user_defaultShippingAddress_country {
   __typename: "CountryDisplay";
   /**
@@ -159,6 +171,10 @@ export interface SetPassword_setPassword_user {
   firstName: string;
   lastName: string;
   isStaff: boolean;
+  /**
+   * List of public metadata items. Can be accessed without permissions.
+   */
+  metadata: (SetPassword_setPassword_user_metadata | null)[];
   defaultShippingAddress: SetPassword_setPassword_user_defaultShippingAddress | null;
   defaultBillingAddress: SetPassword_setPassword_user_defaultBillingAddress | null;
   /**

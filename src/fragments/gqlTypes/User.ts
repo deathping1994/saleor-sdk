@@ -7,6 +7,18 @@
 // GraphQL fragment: User
 // ====================================================
 
+export interface User_metadata {
+  __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
+  key: string;
+  /**
+   * Value of a metadata item.
+   */
+  value: string;
+}
+
 export interface User_defaultShippingAddress_country {
   __typename: "CountryDisplay";
   /**
@@ -140,6 +152,10 @@ export interface User {
   firstName: string;
   lastName: string;
   isStaff: boolean;
+  /**
+   * List of public metadata items. Can be accessed without permissions.
+   */
+  metadata: (User_metadata | null)[];
   defaultShippingAddress: User_defaultShippingAddress | null;
   defaultBillingAddress: User_defaultBillingAddress | null;
   /**

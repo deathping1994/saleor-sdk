@@ -26,6 +26,18 @@ export interface AccountUpdate_accountUpdate_errors {
   message: string | null;
 }
 
+export interface AccountUpdate_accountUpdate_user_metadata {
+  __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
+  key: string;
+  /**
+   * Value of a metadata item.
+   */
+  value: string;
+}
+
 export interface AccountUpdate_accountUpdate_user_defaultShippingAddress_country {
   __typename: "CountryDisplay";
   /**
@@ -159,6 +171,10 @@ export interface AccountUpdate_accountUpdate_user {
   firstName: string;
   lastName: string;
   isStaff: boolean;
+  /**
+   * List of public metadata items. Can be accessed without permissions.
+   */
+  metadata: (AccountUpdate_accountUpdate_user_metadata | null)[];
   defaultShippingAddress: AccountUpdate_accountUpdate_user_defaultShippingAddress | null;
   defaultBillingAddress: AccountUpdate_accountUpdate_user_defaultBillingAddress | null;
   /**
