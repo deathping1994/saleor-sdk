@@ -15,6 +15,9 @@ export const ordersByUser = gql`
         edges {
           node {
             id
+            shippingAddress {
+              postalCode
+            }
             invoices {
               createdAt
               id
@@ -58,6 +61,7 @@ export const ordersByUser = gql`
                   unit
                   value
                 }
+                sku
                 name
                 product {
                   id

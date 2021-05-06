@@ -21,6 +21,11 @@ export interface OrdersByUser_me_orders_pageInfo {
   endCursor: string | null;
 }
 
+export interface OrdersByUser_me_orders_edges_node_shippingAddress {
+  __typename: "Address";
+  postalCode: string;
+}
+
 export interface OrdersByUser_me_orders_edges_node_invoices_metadata {
   __typename: "MetadataItem";
   /**
@@ -267,6 +272,7 @@ export interface OrdersByUser_me_orders_edges_node_lines_variant {
    */
   id: string;
   weight: OrdersByUser_me_orders_edges_node_lines_variant_weight | null;
+  sku: string;
   name: string;
   product: OrdersByUser_me_orders_edges_node_lines_variant_product;
 }
@@ -319,6 +325,7 @@ export interface OrdersByUser_me_orders_edges_node {
    * The ID of the object.
    */
   id: string;
+  shippingAddress: OrdersByUser_me_orders_edges_node_shippingAddress | null;
   /**
    * List of order invoices.
    */
