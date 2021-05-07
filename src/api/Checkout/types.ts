@@ -56,8 +56,8 @@ export interface ICheckout {
   shippingAddress?: IAddress | null;
   shippingMethod?: IShippingMethod | null;
   billingAddress?: IAddress | null;
-  subtotalPrice: ICheckoutModelPrice | null;
-  totalPrice: ICheckoutModelPrice | null;
+  subtotalPrice: ICheckoutModelPrice | null | undefined;
+  totalPrice: ICheckoutModelPrice | null | undefined;
 }
 
 export enum FunctionErrorCheckoutTypes {
