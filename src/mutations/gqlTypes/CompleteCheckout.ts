@@ -403,6 +403,10 @@ export interface CompleteCheckout_checkoutComplete_order_lines_totalPrice {
 
 export interface CompleteCheckout_checkoutComplete_order_lines {
   __typename: "OrderLine";
+  /**
+   * The ID of the object.
+   */
+  id: string;
   productName: string;
   quantity: number;
   /**

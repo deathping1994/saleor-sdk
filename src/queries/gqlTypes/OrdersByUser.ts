@@ -23,6 +23,10 @@ export interface OrdersByUser_me_orders_pageInfo {
 
 export interface OrdersByUser_me_orders_edges_node_shippingAddress {
   __typename: "Address";
+  /**
+   * The ID of the object.
+   */
+  id: string;
   postalCode: string;
 }
 

@@ -386,6 +386,10 @@ export interface OrderByToken_orderByToken_lines_totalPrice {
 
 export interface OrderByToken_orderByToken_lines {
   __typename: "OrderLine";
+  /**
+   * The ID of the object.
+   */
+  id: string;
   productName: string;
   quantity: number;
   /**

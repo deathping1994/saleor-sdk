@@ -53,6 +53,7 @@ export const orderDetailFragment = gql`
       ...Address
     }
     lines {
+      id
       productName
       quantity
 

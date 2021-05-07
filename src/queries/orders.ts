@@ -16,6 +16,7 @@ export const ordersByUser = gql`
           node {
             id
             shippingAddress {
+              id
               postalCode
             }
             invoices {
