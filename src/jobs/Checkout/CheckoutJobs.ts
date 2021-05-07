@@ -253,6 +253,8 @@ class CheckoutJobs extends JobsHandler<{}> {
       ...checkout,
       promoCodeDiscount: data?.promoCodeDiscount,
       shippingMethod: data?.shippingMethod,
+      subtotalPrice: data?.subtotalPrice,
+      totalPrice: data?.totalPrice,
     });
     return { data };
   };
@@ -281,6 +283,8 @@ class CheckoutJobs extends JobsHandler<{}> {
       ...checkout,
       lines: data?.lines,
       promoCodeDiscount: data?.promoCodeDiscount,
+      subtotalPrice: data?.subtotalPrice,
+      totalPrice: data?.totalPrice,
     });
     return { data };
   };
@@ -309,6 +313,8 @@ class CheckoutJobs extends JobsHandler<{}> {
       ...checkout,
       lines: data?.lines,
       promoCodeDiscount: data?.promoCodeDiscount,
+      subtotalPrice: data?.subtotalPrice,
+      totalPrice: data?.totalPrice,
     });
     return { data };
   };
@@ -346,6 +352,8 @@ class CheckoutJobs extends JobsHandler<{}> {
         ...checkout?.promoCodeDiscount,
         discount: data?.discount,
       },
+      subtotalPrice: data?.subtotalPrice,
+      totalPrice: data?.totalPrice,
     });
 
     return { data };

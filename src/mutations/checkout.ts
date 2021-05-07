@@ -244,26 +244,15 @@ export const completeCheckoutMutation = gql`
 `;
 
 export const checkoutPaymentMethodUpdateMutation = gql`
+  ${checkoutFragment}
+
   mutation checkoutPaymentMethodUpdate($checkoutId: ID!, $gatewayId: String!) {
     checkoutPaymentMethodUpdate(
       checkoutId: $checkoutId
       gatewayId: $gatewayId
     ) {
       checkout {
-        id
-        discount {
-          amount
-          currency
-        }
-        availablePaymentGateways {
-          id
-          name
-          config {
-            field
-            value
-          }
-          currencies
-        }
+        ...Checkout
       }
       checkoutErrors {
         field
