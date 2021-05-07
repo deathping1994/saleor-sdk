@@ -122,8 +122,8 @@ export interface ICheckoutModel {
   availableShippingMethods?: Checkout_availableShippingMethods[];
   availablePaymentGateways?: Checkout_availablePaymentGateways[];
   shippingMethod?: ICheckoutModelShippingMethod | null;
-  subtotalPrice: ICheckoutModelPrice | null;
-  totalPrice: ICheckoutModelPrice | null;
+  subtotalPrice?: ICheckoutModelPrice | null;
+  totalPrice?: ICheckoutModelPrice | null;
 }
 
 export interface IPaymentModel {
