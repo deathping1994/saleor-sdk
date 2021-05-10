@@ -277,8 +277,12 @@ export class SaleorState extends NamedObservable<StateItems> {
   private async calculateSummaryPrices(
     checkout?: ICheckoutModel
   ): Promise<ISaleorStateSummeryPrices> {
+    const freeGiftProductsRegex = /free-gift-products(-[0-9])*/;
+
     const items = checkout?.lines?.filter(
-      line => line.variant.product?.category?.slug !== "free-gift-products"
+      line =>
+        line.variant.product?.category?.slug &&
+        !freeGiftProductsRegex.test(line.variant.product?.category?.slug)
     );
 
     // const data1: Array<
