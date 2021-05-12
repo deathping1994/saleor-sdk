@@ -30,7 +30,9 @@ export class CartQueuedJobs extends QueuedJobsHandler<ErrorCartTypes> {
       );
       if (error && this.onErrorListener) {
         this.onErrorListener(error, ErrorCartTypes.SET_CART_ITEM);
-      } else if (data) {
+        return { error };
+      }
+      if (data) {
         this.localStorageHandler.setCheckout({
           ...checkout,
           availablePaymentGateways: data.availablePaymentGateways,
@@ -41,7 +43,9 @@ export class CartQueuedJobs extends QueuedJobsHandler<ErrorCartTypes> {
           subtotalPrice: data.subtotalPrice,
           totalPrice: data.totalPrice,
         });
+        return { data };
       }
     }
+    return {};
   };
 }

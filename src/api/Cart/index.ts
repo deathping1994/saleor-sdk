@@ -231,7 +231,16 @@ export class SaleorCartAPI extends ErrorListener {
       }
     }
     if (this.saleorState.checkout?.id) {
-      this.jobsManager.addToQueue("cart", "setCartItem");
+      const { error } = await this.jobsManager.addToQueue(
+        "cart",
+        "setCartItem"
+      );
+      if (error) {
+        this.localStorageManager.updateItemInCart(variantId, quantity);
+        return {
+          error,
+        };
+      }
       return {
         pending: true,
       };
