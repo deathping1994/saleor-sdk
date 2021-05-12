@@ -236,7 +236,7 @@ export class SaleorCartAPI extends ErrorListener {
         "setCartItem"
       );
       if (error) {
-        this.localStorageManager.updateItemInCart(variantId, quantity);
+        this.localStorageManager.updateItemInCart(variantId, quantity - 1);
         return {
           error,
         };
