@@ -6,6 +6,7 @@ export const WishlistAddProduct = gql`
       wishlist {
         id
         wishlist {
+          id
           createdAt
           items(first: 20) {
             edges {
@@ -123,6 +124,7 @@ export const WishlistRemoveProduct = gql`
       wishlist {
         id
         wishlist {
+          id
           createdAt
           items(first: 20) {
             edges {

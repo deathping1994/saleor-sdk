@@ -395,6 +395,10 @@ export interface wishlistAddProduct_WishlistAddProduct_wishlist_wishlist_items {
 
 export interface wishlistAddProduct_WishlistAddProduct_wishlist_wishlist {
   __typename: "Wishlist";
+  /**
+   * The ID of the object.
+   */
+  id: string;
   createdAt: any;
   items: wishlistAddProduct_WishlistAddProduct_wishlist_wishlist_items;
 }
