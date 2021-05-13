@@ -133,7 +133,16 @@ export class SaleorCartAPI extends ErrorListener {
       }
     }
     if (this.saleorState.checkout?.id) {
-      this.jobsManager.addToQueue("cart", "setCartItem");
+      const { error } = await this.jobsManager.addToQueue(
+        "cart",
+        "setCartItem"
+      );
+      if (error) {
+        this.localStorageManager.removeItemFromCart(variantId);
+        return {
+          error,
+        };
+      }
       return {
         pending: true,
       };
@@ -143,7 +152,7 @@ export class SaleorCartAPI extends ErrorListener {
     };
   };
 
-  removeItem = async (variantId: string) => {
+  removeItem = async (variantId: string, quantity: number) => {
     // 1. save in local
     this.localStorageManager.removeItemFromCart(variantId);
     // 2. save online if possible (if checkout id available)
@@ -165,7 +174,16 @@ export class SaleorCartAPI extends ErrorListener {
       }
     }
     if (this.saleorState.checkout?.id) {
-      this.jobsManager.addToQueue("cart", "setCartItem");
+      const { error } = await this.jobsManager.addToQueue(
+        "cart",
+        "setCartItem"
+      );
+      if (error) {
+        this.localStorageManager.addItemToCart(variantId, quantity);
+        return {
+          error,
+        };
+      }
       return {
         pending: true,
       };
@@ -198,7 +216,15 @@ export class SaleorCartAPI extends ErrorListener {
       }
     }
     if (this.saleorState.checkout?.id) {
-      this.jobsManager.addToQueue("cart", "setCartItem");
+      const { error } = await this.jobsManager.addToQueue(
+        "cart",
+        "setCartItem"
+      );
+      if (error) {
+        return {
+          error,
+        };
+      }
       return {
         pending: true,
       };
