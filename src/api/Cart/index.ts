@@ -234,7 +234,11 @@ export class SaleorCartAPI extends ErrorListener {
     };
   };
 
-  updateItem = async (variantId: string, quantity: number) => {
+  updateItem = async (
+    variantId: string,
+    quantity: number,
+    prevQuantity: number
+  ) => {
     // 1. save in local storage
     this.localStorageManager.updateItemInCart(variantId, quantity);
 
@@ -262,7 +266,7 @@ export class SaleorCartAPI extends ErrorListener {
         "setCartItem"
       );
       if (error) {
-        this.localStorageManager.updateItemInCart(variantId, quantity - 1);
+        this.localStorageManager.updateItemInCart(variantId, prevQuantity);
         return {
           error,
         };
