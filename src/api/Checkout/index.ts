@@ -20,6 +20,7 @@ import {
   IPromoCodeDiscount,
   CreatePaymentInput,
   CompleteCheckoutInput,
+  PaymentMethodUpdateInput,
 } from "./types";
 
 type CheckoutResponse = PromiseRunResponse<
@@ -417,7 +418,7 @@ export class SaleorCheckoutAPI extends ErrorListener {
   };
 
   checkoutPaymentMethodUpdate = async (
-    input: CreatePaymentInput
+    input: PaymentMethodUpdateInput
   ): CheckoutResponse => {
     const checkoutId = this.saleorState.checkout?.id;
 
