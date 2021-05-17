@@ -1094,7 +1094,7 @@ export class ApolloClientManager {
       }
 
       return {
-        data: data?.checkoutDiscounts,
+        data,
       };
     } catch (error) {
       return {

@@ -268,8 +268,10 @@ export class SaleorState extends NamedObservable<StateItems> {
     }
     return {
       data: {
-        couponDiscount: data.couponDiscount,
-        prepaidDiscount: data.prepaidDiscount,
+        cashbackDiscount: data.checkoutDiscounts.cashbackDiscount,
+        cashbackRecieve: data.cashback.amount,
+        couponDiscount: data.checkoutDiscounts.couponDiscount,
+        prepaidDiscount: data.checkoutDiscounts.prepaidDiscount,
       },
     };
   };
@@ -304,6 +306,8 @@ export class SaleorState extends NamedObservable<StateItems> {
       // console.log(data?.prepaidDiscount);
 
       const prepaidAmount = round(parseFloat(data?.prepaidDiscount), 2);
+      const cashbackAmount = round(parseFloat(data?.cashbackDiscount), 2);
+      const cashbackRecieveAmount = round(parseFloat(data?.cashbackRecieve), 2);
       // console.log({ prepaidAmount });
       // const couponAmount = data?.couponDiscount;
 
@@ -423,10 +427,22 @@ export class SaleorState extends NamedObservable<StateItems> {
           currency: "INR",
         };
 
+        const cashbackDiscount = {
+          amount: cashbackAmount,
+          currency: "INR",
+        };
+
+        const cashbackRecieve = {
+          amount: cashbackRecieveAmount,
+          currency: "INR",
+        };
+
         // console.log({ prepaidDiscount });
 
         return new Promise(resolve => {
           resolve({
+            cashbackDiscount,
+            cashbackRecieve,
             discount,
             itemDiscount,
             mrp,

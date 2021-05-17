@@ -14,8 +14,15 @@ export interface CouponPrepaidDiscount_checkoutDiscounts {
   cashbackDiscount: any | null;
 }
 
+export interface CouponPrepaidDiscount_cashback {
+  __typename: "CashbackType";
+  amount: any | null;
+  willAddOn: any | null;
+}
+
 export interface CouponPrepaidDiscount {
   checkoutDiscounts: CouponPrepaidDiscount_checkoutDiscounts | null;
+  cashback: CouponPrepaidDiscount_cashback | null;
 }
 
 export interface CouponPrepaidDiscountVariables {

@@ -46,5 +46,9 @@ export const GetCouponPrepaidDiscount = gql`
       couponDiscount
       cashbackDiscount
     }
+    cashback(checkoutToken: $token) {
+      amount
+      willAddOn
+    }
   }
 `;

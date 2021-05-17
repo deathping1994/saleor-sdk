@@ -9,12 +9,15 @@ import { ApolloClientManager } from "../../data/ApolloClientManager";
 import { sortCheckoutLines } from "./utils";
 
 import {
+  ICashbackDiscount,
+  ICashbackRecieve,
   IDiscount,
   IItemDiscount,
   IItems,
   IMrp,
   INetPrice,
   IOfferDiscount,
+  IPrepaidDiscount,
   IShippingPrice,
   ISubtotalPrice,
   ITotalPrice,
@@ -41,7 +44,11 @@ export class SaleorCartAPI extends ErrorListener {
 
   offerDiscount?: IOfferDiscount;
 
-  prepaidDiscount?: IOfferDiscount;
+  prepaidDiscount?: IPrepaidDiscount;
+
+  cashbackDiscount?: ICashbackDiscount;
+
+  cashbackRecieve?: ICashbackRecieve;
 
   private apolloClientManager: ApolloClientManager;
 
@@ -88,6 +95,8 @@ export class SaleorCartAPI extends ErrorListener {
           itemDiscount,
           offerDiscount,
           prepaidDiscount,
+          cashbackDiscount,
+          cashbackRecieve,
         } = summaryPrices || {};
         this.totalPrice = totalPrice;
         this.subtotalPrice = subtotalPrice;
@@ -98,6 +107,8 @@ export class SaleorCartAPI extends ErrorListener {
         this.itemDiscount = itemDiscount;
         this.offerDiscount = offerDiscount;
         this.prepaidDiscount = prepaidDiscount;
+        this.cashbackDiscount = cashbackDiscount;
+        this.cashbackRecieve = cashbackRecieve;
       }
     );
     this.saleorState.subscribeToChange(
