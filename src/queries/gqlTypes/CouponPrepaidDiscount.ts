@@ -11,6 +11,7 @@ export interface CouponPrepaidDiscount_checkoutDiscounts {
   __typename: "DiscountsType";
   prepaidDiscount: any | null;
   couponDiscount: any | null;
+  cashbackDiscount: any | null;
 }
 
 export interface CouponPrepaidDiscount {
