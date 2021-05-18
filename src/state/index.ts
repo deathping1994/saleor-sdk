@@ -376,11 +376,20 @@ export class SaleorState extends NamedObservable<StateItems> {
           ...firstItemTotalPrice,
           gross: {
             ...firstItemTotalPrice.gross,
-            amount: round(itemsGrossPrice - discount.amount + prepaidAmount, 2),
+            amount: round(
+              itemsGrossPrice -
+                discount.amount +
+                prepaidAmount +
+                cashbackAmount,
+              2
+            ),
           },
           net: {
             ...firstItemTotalPrice.net,
-            amount: round(itemsNetPrice - discount.amount + prepaidAmount, 2),
+            amount: round(
+              itemsNetPrice - discount.amount + prepaidAmount + cashbackAmount,
+              2
+            ),
           },
         };
 
