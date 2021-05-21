@@ -131,6 +131,20 @@ export class SaleorCheckoutAPI extends ErrorListener {
     };
   };
 
+  getLatestCheckout = async () => {
+    const { data, dataError } = await this.jobsManager.run(
+      "checkout",
+      "provideCheckout",
+      {
+        isUserSignedIn: !!this.saleorState.user,
+      }
+    );
+    return {
+      data,
+      dataError,
+    };
+  };
+
   setShippingAddress = async (
     shippingAddress: IAddress,
     email: string
