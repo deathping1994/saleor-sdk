@@ -72,10 +72,9 @@ export class JobsManager {
     jobName: J
   ) {
     if (navigator.onLine) {
-      this.runJob(jobGroup, jobName);
-    } else {
-      this.enqueueJob(jobGroup, jobName);
+      return this.runJob(jobGroup, jobName);
     }
+    return this.enqueueJob(jobGroup, jobName);
   }
 
   /**
@@ -119,10 +118,10 @@ export class JobsManager {
     const func = this.queuedJobs[jobGroup][jobName];
 
     if (typeof func === "function") {
-      func();
+      return func();
     }
 
-    this.dequeueJob(jobGroup, jobName);
+    return this.dequeueJob(jobGroup, jobName);
   }
 
   private enqueueJob<
