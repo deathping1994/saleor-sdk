@@ -477,6 +477,7 @@ export interface CheckoutDetails_checkout_lines_variant_product {
    */
   id: string;
   name: string;
+  isAvailableForPurchase: boolean;
   weight: CheckoutDetails_checkout_lines_variant_product_weight | null;
   category: CheckoutDetails_checkout_lines_variant_product_category | null;
   /**
