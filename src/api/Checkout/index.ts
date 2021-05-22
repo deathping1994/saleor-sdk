@@ -4,6 +4,7 @@ import { ErrorListener } from "../../helpers";
 import {
   ICheckoutModel,
   IPaymentModel,
+  LocalStorageHandler,
 } from "../../helpers/LocalStorageHandler";
 import { JobsManager } from "../../jobs";
 import { SaleorState, SaleorStateLoaded } from "../../state";
@@ -125,6 +126,23 @@ export class SaleorCheckoutAPI extends ErrorListener {
       { addressId, type }
     );
 
+    return {
+      data,
+      dataError,
+    };
+  };
+
+  getLatestCheckout = async () => {
+    const { data, dataError } = await this.jobsManager.run(
+      "checkout",
+      "provideCheckout",
+      {
+        isUserSignedIn: !!this.saleorState.user,
+      }
+    );
+    const localStorageHandler = new LocalStorageHandler();
+    localStorageHandler.setCheckout(data);
+    console.log("get chekchout", data, LocalStorageHandler.getCheckout());
     return {
       data,
       dataError,

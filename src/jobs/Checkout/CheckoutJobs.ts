@@ -56,8 +56,11 @@ class CheckoutJobs extends JobsHandler<{}> {
         },
       };
     }
-    this.localStorageHandler.setCheckout(data || checkout);
-
+    this.localStorageHandler.setCheckout({
+      ...checkout,
+      lines: data?.lines
+    });
+    console.log("provide chekchout", data, checkout, error, LocalStorageHandler.getCheckout());
     return {
       data,
     };
