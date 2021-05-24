@@ -63,6 +63,18 @@ export class SaleorWishlistAPI extends ErrorListener {
   //   );
   // };
 
+  getWishlist = async () => {
+    const { data, dataError } = await this.jobsManager.run(
+      "wishlist",
+      "getWishlist",
+      undefined
+    );
+    return {
+      data,
+      dataError,
+    };
+  };
+
   addItemInWishlist = async (productId: string) => {
     const { data, dataError } = await this.jobsManager.run(
       "wishlist",
