@@ -133,17 +133,21 @@ export class SaleorCartAPI extends ErrorListener {
       }
     }
     if (this.saleorState.checkout?.id) {
-      const { error } = await this.jobsManager.addToQueue(
+      const { data, error } = await this.jobsManager.addToQueue(
         "cart",
         "setCartItem"
       );
+
+      console.log("in sdk", data, error);
       if (error) {
         this.localStorageManager.removeItemFromCart(variantId);
         return {
           error,
         };
       }
+
       return {
+        data,
         pending: true,
       };
     }
