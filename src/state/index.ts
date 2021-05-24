@@ -127,11 +127,14 @@ export class SaleorState extends NamedObservable<StateItems> {
     /**
      * Before making any fetch, first try to verify token if it exists.
      */
+    console.log("create checkout 1", LocalStorageHandler.getCheckout()?.id);
+
     if (LocalStorageHandler.getSignInToken()) {
       this.onSignInTokenVerifyingUpdate(true);
       await this.verityToken();
     }
-    if (LocalStorageHandler.getCheckout()?.id) {
+    if (!LocalStorageHandler.getCheckout()?.id) {
+      console.log("create checkout 2", LocalStorageHandler.getCheckout()?.id);
       await this.jobsManager.run("checkout", "createCheckout", {
         email: "dummy123@example.com",
         lines: [],
