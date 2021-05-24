@@ -420,6 +420,7 @@ export class ApolloClientManager {
     isUserSignedIn: boolean,
     checkoutToken: string | null
   ) => {
+    console.log("get Checkout called");
     let checkout: Checkout | null;
     try {
       checkout = await new Promise((resolve, reject) => {
