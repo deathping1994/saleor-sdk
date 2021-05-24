@@ -131,6 +131,12 @@ export class SaleorState extends NamedObservable<StateItems> {
       this.onSignInTokenVerifyingUpdate(true);
       await this.verityToken();
     }
+    if (LocalStorageHandler.getCheckout()?.id) {
+      await this.jobsManager.run("checkout", "createCheckout", {
+        email: "dummy123@example.com",
+        lines: [],
+      });
+    }
     this.onSignInTokenVerifyingUpdate(false);
 
     /**
