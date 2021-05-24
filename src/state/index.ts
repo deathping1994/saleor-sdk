@@ -34,6 +34,23 @@ const defaultSaleorStateLoaded = {
   user: false,
 };
 
+const dummyAddress = {
+  city: "delhi",
+  companyName: "nkjnk",
+  country: {
+    code: "IN",
+    country: "India",
+  },
+  countryArea: "Delhi",
+  firstName: "dummy",
+  id: "1",
+  lastName: "dummy",
+  phone: "7894561230",
+  postalCode: "110006",
+  streetAddress1: "dummy",
+  streetAddress2: "dummy",
+};
+
 export class SaleorState extends NamedObservable<StateItems> {
   user?: User | null;
 
@@ -136,8 +153,10 @@ export class SaleorState extends NamedObservable<StateItems> {
     if (!LocalStorageHandler.getCheckout()?.id) {
       console.log("create checkout 2", LocalStorageHandler.getCheckout()?.id);
       await this.jobsManager.run("checkout", "createCheckout", {
-        email: "dummy123@example.com",
+        billingAddress: dummyAddress,
+        email: "dummy123@dummy.com",
         lines: [],
+        shippingAddress: dummyAddress,
       });
     }
     this.onSignInTokenVerifyingUpdate(false);
