@@ -34,7 +34,7 @@ const defaultSaleorStateLoaded = {
   user: false,
 };
 
-const dummyAddress = {
+export const dummyAddress = {
   city: "delhi",
   companyName: "nkjnk",
   country: {
@@ -50,6 +50,8 @@ const dummyAddress = {
   streetAddress1: "dummy",
   streetAddress2: "dummy",
 };
+
+export const dummyEmail = "dummy@dummy.com";
 
 export class SaleorState extends NamedObservable<StateItems> {
   user?: User | null;
@@ -144,17 +146,17 @@ export class SaleorState extends NamedObservable<StateItems> {
     /**
      * Before making any fetch, first try to verify token if it exists.
      */
-    console.log("create checkout 1", LocalStorageHandler.getCheckout()?.id);
+    // console.log("create checkout 1", LocalStorageHandler.getCheckout()?.id);
 
     if (LocalStorageHandler.getSignInToken()) {
       this.onSignInTokenVerifyingUpdate(true);
       await this.verityToken();
     }
     if (!LocalStorageHandler.getCheckout()?.id) {
-      console.log("create checkout 2", LocalStorageHandler.getCheckout()?.id);
+      // console.log("create checkout 2", LocalStorageHandler.getCheckout()?.id);
       await this.jobsManager.run("checkout", "createCheckout", {
         billingAddress: dummyAddress,
-        email: "dummy123@dummy.com",
+        email: dummyEmail,
         lines: [],
         shippingAddress: dummyAddress,
       });

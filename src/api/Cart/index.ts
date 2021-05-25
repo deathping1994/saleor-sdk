@@ -138,7 +138,7 @@ export class SaleorCartAPI extends ErrorListener {
         "setCartItem"
       );
 
-      console.log("in sdk", data, error);
+      // console.log("in sdk", data, error);
       if (error) {
         this.localStorageManager.removeItemFromCart(variantId);
         return {
