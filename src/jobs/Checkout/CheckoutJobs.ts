@@ -65,13 +65,13 @@ class CheckoutJobs extends JobsHandler<{}> {
       token: data?.token,
       totalPrice: data?.totalPrice,
     });
-    console.log(
-      "provide chekchout",
-      data,
-      checkout,
-      error,
-      LocalStorageHandler.getCheckout()
-    );
+    // console.log(
+    //   "provide chekchout",
+    //   data,
+    //   checkout,
+    //   error,
+    //   LocalStorageHandler.getCheckout()
+    // );
     return {
       data,
     };
