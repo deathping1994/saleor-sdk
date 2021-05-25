@@ -7,7 +7,12 @@ import {
   LocalStorageHandler,
 } from "../../helpers/LocalStorageHandler";
 import { JobsManager } from "../../jobs";
-import { SaleorState, SaleorStateLoaded } from "../../state";
+import {
+  dummyAddress,
+  dummyEmail,
+  SaleorState,
+  SaleorStateLoaded,
+} from "../../state";
 import { StateItems } from "../../state/types";
 
 import { PromiseRunResponse } from "../types";
@@ -126,6 +131,23 @@ export class SaleorCheckoutAPI extends ErrorListener {
       { addressId, type }
     );
 
+    return {
+      data,
+      dataError,
+    };
+  };
+
+  createCheckout = async () => {
+    const { data, dataError } = await this.jobsManager.run(
+      "checkout",
+      "createCheckout",
+      {
+        billingAddress: dummyAddress,
+        email: dummyEmail,
+        lines: [],
+        shippingAddress: dummyAddress,
+      }
+    );
     return {
       data,
       dataError,
