@@ -105,6 +105,20 @@ export class AuthAPI extends ErrorListener {
    * @param password Password used for new account.
    * @param redirectUrl URL used for redirection.
    */
+
+  getUser = async () => {
+    const { data, dataError } = await this.jobsManager.run(
+      "auth",
+      "provideUser",
+      undefined
+    );
+
+    return {
+      data,
+      dataError,
+    };
+  };
+
   registerAccount = async (
     email: string,
     password: string,
