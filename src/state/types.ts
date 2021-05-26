@@ -28,4 +28,6 @@ export interface ISaleorStateSummeryPrices {
   offerDiscount?: ICheckoutModelPriceValue;
   orderTotal?: ICheckoutModelPriceValue;
   prepaidDiscount?: ICheckoutModelPriceValue;
+  cashbackDiscount?: ICheckoutModelPriceValue;
+  cashbackRecieve?: ICheckoutModelPriceValue;
 }

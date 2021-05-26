@@ -19,6 +19,7 @@ import {
 } from "./types";
 import { JobsHandler } from "../JobsHandler";
 import { AddressTypes } from "../../gqlTypes/globalTypes";
+import { CheckoutPaymentUpdateInput } from "../../data/ApolloClientManager/types";
 
 export type PromiseCheckoutJobRunResponse = Promise<
   JobRunResponse<DataErrorCheckoutTypes, FunctionErrorCheckoutTypes>
@@ -161,6 +162,7 @@ class CheckoutJobs extends JobsHandler<{}> {
         },
       };
     }
+    console.log("data s", data);
 
     this.localStorageHandler.setCheckout({
       ...checkout,
@@ -170,6 +172,10 @@ class CheckoutJobs extends JobsHandler<{}> {
       selectedShippingAddressId,
       shippingAddress: data?.shippingAddress,
     });
+
+    const checkout2 = LocalStorageHandler.getCheckout();
+    console.log("data s", checkout2);
+
     return { data };
   };
 
@@ -194,6 +200,7 @@ class CheckoutJobs extends JobsHandler<{}> {
         },
       };
     }
+    console.log("data b", data);
 
     this.localStorageHandler.setCheckout({
       ...checkout,
@@ -202,7 +209,10 @@ class CheckoutJobs extends JobsHandler<{}> {
       billingAsShipping: !!billingAsShipping,
       email: data?.email,
       selectedBillingAddressId,
+      shippingAddress: data?.shippingAddress,
     });
+    const checkout2 = LocalStorageHandler.getCheckout();
+    console.log("data b", checkout2);
     return { data };
   };
 
@@ -336,10 +346,8 @@ class CheckoutJobs extends JobsHandler<{}> {
   checkoutPaymentMethodUpdate = async ({
     checkoutId,
     gateway,
-  }: Pick<
-    CreatePaymentJobInput,
-    "checkoutId" | "gateway"
-  >): PromiseCheckoutJobRunResponse => {
+    useCashback,
+  }: CheckoutPaymentUpdateInput): PromiseCheckoutJobRunResponse => {
     const checkout = LocalStorageHandler.getCheckout();
 
     const {
@@ -348,6 +356,7 @@ class CheckoutJobs extends JobsHandler<{}> {
     } = await this.apolloClientManager.checkoutPaymentMethodUpdate({
       checkoutId,
       gateway,
+      useCashback,
     });
 
     if (error) {

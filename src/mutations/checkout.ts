@@ -246,10 +246,15 @@ export const completeCheckoutMutation = gql`
 export const checkoutPaymentMethodUpdateMutation = gql`
   ${checkoutFragment}
 
-  mutation checkoutPaymentMethodUpdate($checkoutId: ID!, $gatewayId: String!) {
+  mutation checkoutPaymentMethodUpdate(
+    $checkoutId: ID!
+    $gatewayId: String!
+    $useCashback: Boolean!
+  ) {
     checkoutPaymentMethodUpdate(
       checkoutId: $checkoutId
       gatewayId: $gatewayId
+      useCashback: $useCashback
     ) {
       checkout {
         ...Checkout
