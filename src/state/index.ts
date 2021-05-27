@@ -154,12 +154,27 @@ export class SaleorState extends NamedObservable<StateItems> {
     }
     if (!LocalStorageHandler.getCheckout()?.id) {
       // console.log("create checkout 2", LocalStorageHandler.getCheckout()?.id);
-      await this.jobsManager.run("checkout", "createCheckout", {
-        billingAddress: dummyAddress,
-        email: dummyEmail,
-        lines: [],
-        shippingAddress: dummyAddress,
-      });
+      const { data } = await this.jobsManager.run(
+        "checkout",
+        "createCheckout",
+        {
+          billingAddress: dummyAddress,
+          email: dummyEmail,
+          lines: [],
+          shippingAddress: dummyAddress,
+        }
+      );
+
+      const { data: sData, dataError } = await this.jobsManager.run(
+        "checkout",
+        "setShippingAddress",
+        {
+          checkoutId: data.id,
+          email: dummyEmail,
+          shippingAddress: dummyAddress,
+        }
+      );
+      console.log(sData, dataError);
     }
     this.onSignInTokenVerifyingUpdate(false);
 
