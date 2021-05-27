@@ -294,18 +294,53 @@ export class SaleorState extends NamedObservable<StateItems> {
 
     // console.log("in getCouponPrepaidDiscount", { data, dataError });
 
+    if (dataError.length > 0) {
+      return {
+        error: {
+          dataError,
+        },
+      };
+    }
+    if (data)
+      return {
+        data: {
+          cashbackDiscount: data.checkoutDiscounts.cashbackDiscout || 0,
+          couponDiscount: data.checkoutDiscounts.couponDiscount || 0,
+          prepaidDiscount: data.checkoutDiscounts.prepaidDiscount || 0,
+        },
+      };
     return {
       data: {
-        cashbackDiscount: data.checkoutDiscounts.cashbackDiscount
-          ? data.checkoutDiscounts.cashbackDiscount
-          : 0,
-        // cashbackRecieve:
-        //   data.cashback && data.cashback.amount ? data.cashback.amount : 0,
-        couponDiscount: data.checkoutDiscounts.couponDiscount,
-        prepaidDiscount: data.checkoutDiscounts.prepaidDiscount,
+        cashbackDiscount: 0,
+        couponDiscount: 0,
+        prepaidDiscount: 0,
       },
-      error: {
-        dataError,
+    };
+  };
+
+  private getCashbackRecieveAmount = async (token: any) => {
+    const { data, dataError } = await this.jobsManager.run(
+      "checkout",
+      "getCheckoutDiscounts",
+      { token }
+    );
+
+    if (dataError.length > 0) {
+      return {
+        error: {
+          dataError,
+        },
+      };
+    }
+    if (data)
+      return {
+        data: {
+          cashbackRecieve: data.cashback.amount || 0,
+        },
+      };
+    return {
+      data: {
+        cashbackRecieve: 0,
       },
     };
   };
@@ -332,17 +367,25 @@ export class SaleorState extends NamedObservable<StateItems> {
     if (items && items.length && items[0].quantity > 0) {
       // console.log(checkout?.token);
 
-      const { data } =
+      const { data, error } =
         checkout?.token &&
         (await this.getCouponPrepaidDiscount(checkout?.token));
 
+      const { data: cashbackRecieveData, error: cashbackRecieveError } =
+        checkout?.token &&
+        (await this.getCashbackRecieveAmount(checkout?.token));
       // console.log(data);
       // console.log(data?.prepaidDiscount);
 
-      const prepaidAmount = round(parseFloat(data?.prepaidDiscount), 2);
-      const cashbackAmount = round(parseFloat(data?.cashbackDiscount), 2);
-      // const cashbackRecieveAmount = round(parseFloat(data?.cashbackRecieve), 2);
-      const cashbackRecieveAmount = 0;
+      const prepaidAmount =
+        error.length > 0 ? 0 : round(parseFloat(data?.prepaidDiscount), 2);
+      const cashbackAmount =
+        error.length > 0 ? 0 : round(parseFloat(data?.cashbackDiscount), 2);
+      const cashbackRecieveAmount =
+        cashbackRecieveError.length > 0
+          ? 0
+          : round(parseFloat(cashbackRecieveData?.cashbackRecieve), 2);
+      // const cashbackRecieveAmount = cashbackRecieveData.cashbackRecieve;
       // console.log({ prepaidAmount });
       // const couponAmount = data?.couponDiscount;
 

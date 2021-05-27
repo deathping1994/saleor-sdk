@@ -49,6 +49,15 @@ export const GetCouponPrepaidDiscount = gql`
   }
 `;
 
+export const GetCashbackRecieveAmount = gql`
+  query CashbackRecieveAmount($token: UUID!) {
+    cashback(checkoutToken: $token) {
+      amount
+      willAddOn
+    }
+  }
+`;
+
 /*
  cashback(checkoutToken: $token) {
       amount

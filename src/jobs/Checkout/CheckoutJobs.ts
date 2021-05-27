@@ -59,9 +59,11 @@ class CheckoutJobs extends JobsHandler<{}> {
     }
     this.localStorageHandler.setCheckout({
       ...checkout,
+      billingAddress: data?.billingAddress,
       id: data?.id,
       lines: data?.lines,
       promoCodeDiscount: data?.promoCodeDiscount,
+      shippingAddress: data?.shippingAddress,
       subtotalPrice: data?.subtotalPrice,
       token: data?.token,
       totalPrice: data?.totalPrice,
@@ -389,22 +391,39 @@ class CheckoutJobs extends JobsHandler<{}> {
     } = await this.apolloClientManager.getCheckoutDiscounts({ token });
 
     // console.log({ data, error });
-    // if (error) {
-    //   return {
-    //     dataError: {
-    //       error,
-    //       type: DataErrorCheckoutTypes.GET_CHECKOUT_DISCOUNTS,
-    //     },
-    //   };
-    // }
+    if (error) {
+      return {
+        dataError: {
+          error,
+          type: DataErrorCheckoutTypes.GET_CHECKOUT_DISCOUNTS,
+        },
+      };
+    }
     // console.log({ data, error });
 
     return {
       data,
-      dataError: {
-        error,
-        type: DataErrorCheckoutTypes.GET_CHECKOUT_DISCOUNTS,
-      },
+    };
+  };
+
+  getCashbackRecieveAmount = async ({ token }: any) => {
+    const {
+      data,
+      error,
+    } = await this.apolloClientManager.getCashbackRecieveAmount({ token });
+
+    if (error) {
+      return {
+        dataError: {
+          error,
+          type: DataErrorCheckoutTypes.GET_CHECKOUT_DISCOUNTS,
+        },
+      };
+    }
+    // console.log({ data, error });
+
+    return {
+      data,
     };
   };
 
