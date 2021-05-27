@@ -299,8 +299,8 @@ export class SaleorState extends NamedObservable<StateItems> {
         cashbackDiscount: data.checkoutDiscounts.cashbackDiscount
           ? data.checkoutDiscounts.cashbackDiscount
           : 0,
-        cashbackRecieve:
-          data.cashback && data.cashback.amount ? data.cashback.amount : 0,
+        // cashbackRecieve:
+        //   data.cashback && data.cashback.amount ? data.cashback.amount : 0,
         couponDiscount: data.checkoutDiscounts.couponDiscount,
         prepaidDiscount: data.checkoutDiscounts.prepaidDiscount,
       },
@@ -341,7 +341,8 @@ export class SaleorState extends NamedObservable<StateItems> {
 
       const prepaidAmount = round(parseFloat(data?.prepaidDiscount), 2);
       const cashbackAmount = round(parseFloat(data?.cashbackDiscount), 2);
-      const cashbackRecieveAmount = round(parseFloat(data?.cashbackRecieve), 2);
+      // const cashbackRecieveAmount = round(parseFloat(data?.cashbackRecieve), 2);
+      const cashbackRecieveAmount = 0;
       // console.log({ prepaidAmount });
       // const couponAmount = data?.couponDiscount;
 

@@ -477,6 +477,10 @@ export interface UserCheckoutDetails_me_checkout_lines_variant_product {
    */
   id: string;
   name: string;
+  /**
+   * Whether the product is available for purchase.
+   */
+  isAvailableForPurchase: boolean | null;
   weight: UserCheckoutDetails_me_checkout_lines_variant_product_weight | null;
   category: UserCheckoutDetails_me_checkout_lines_variant_product_category | null;
   /**

@@ -477,6 +477,10 @@ export interface UpdateCheckoutLine_checkoutLinesUpdate_checkout_lines_variant_p
    */
   id: string;
   name: string;
+  /**
+   * Whether the product is available for purchase.
+   */
+  isAvailableForPurchase: boolean | null;
   weight: UpdateCheckoutLine_checkoutLinesUpdate_checkout_lines_variant_product_weight | null;
   category: UpdateCheckoutLine_checkoutLinesUpdate_checkout_lines_variant_product_category | null;
   /**
@@ -658,7 +662,7 @@ export interface UpdateCheckoutLine_checkoutLinesUpdate {
 
 export interface UpdateCheckoutLine {
   /**
-   * Updates checkout line in the existing checkout.
+   * (Custom implementation) Updates checkout line in the existing checkout.
    */
   checkoutLinesUpdate: UpdateCheckoutLine_checkoutLinesUpdate | null;
 }

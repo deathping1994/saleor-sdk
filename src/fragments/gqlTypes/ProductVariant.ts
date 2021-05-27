@@ -207,6 +207,10 @@ export interface ProductVariant_product {
    */
   id: string;
   name: string;
+  /**
+   * Whether the product is available for purchase.
+   */
+  isAvailableForPurchase: boolean | null;
   weight: ProductVariant_product_weight | null;
   category: ProductVariant_product_category | null;
   /**
