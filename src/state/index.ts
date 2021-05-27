@@ -293,15 +293,19 @@ export class SaleorState extends NamedObservable<StateItems> {
     );
 
     // console.log("in getCouponPrepaidDiscount", { data, dataError });
-    if (dataError) {
-      return { error: dataError };
-    }
+
     return {
       data: {
-        cashbackDiscount: data.checkoutDiscounts.cashbackDiscount,
-        cashbackRecieve: data.cashback.amount,
+        cashbackDiscount: data.checkoutDiscounts.cashbackDiscount
+          ? data.checkoutDiscounts.cashbackDiscount
+          : 0,
+        cashbackRecieve:
+          data.cashback && data.cashback.amount ? data.cashback.amount : 0,
         couponDiscount: data.checkoutDiscounts.couponDiscount,
         prepaidDiscount: data.checkoutDiscounts.prepaidDiscount,
+      },
+      error: {
+        dataError,
       },
     };
   };
