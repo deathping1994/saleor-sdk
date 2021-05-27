@@ -377,14 +377,15 @@ export class SaleorState extends NamedObservable<StateItems> {
       // console.log(data);
       // console.log(data?.prepaidDiscount);
 
-      const prepaidAmount =
-        error.length > 0 ? 0 : round(parseFloat(data?.prepaidDiscount), 2);
-      const cashbackAmount =
-        error.length > 0 ? 0 : round(parseFloat(data?.cashbackDiscount), 2);
-      const cashbackRecieveAmount =
-        cashbackRecieveError.length > 0
-          ? 0
-          : round(parseFloat(cashbackRecieveData?.cashbackRecieve), 2);
+      const prepaidAmount = error
+        ? 0
+        : round(parseFloat(data?.prepaidDiscount), 2);
+      const cashbackAmount = error
+        ? 0
+        : round(parseFloat(data?.cashbackDiscount), 2);
+      const cashbackRecieveAmount = cashbackRecieveError
+        ? 0
+        : round(parseFloat(cashbackRecieveData?.cashbackRecieve), 2);
       // const cashbackRecieveAmount = cashbackRecieveData.cashbackRecieve;
       // console.log({ prepaidAmount });
       // const couponAmount = data?.couponDiscount;
