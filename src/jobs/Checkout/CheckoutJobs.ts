@@ -57,17 +57,7 @@ class CheckoutJobs extends JobsHandler<{}> {
         },
       };
     }
-    this.localStorageHandler.setCheckout({
-      ...checkout,
-      billingAddress: data?.billingAddress,
-      id: data?.id,
-      lines: data?.lines,
-      promoCodeDiscount: data?.promoCodeDiscount,
-      shippingAddress: data?.shippingAddress,
-      subtotalPrice: data?.subtotalPrice,
-      token: data?.token,
-      totalPrice: data?.totalPrice,
-    });
+    if (data) this.localStorageHandler.setCheckout(data);
     // console.log(
     //   "provide chekchout",
     //   data,
