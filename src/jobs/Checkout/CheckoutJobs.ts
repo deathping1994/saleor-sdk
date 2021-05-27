@@ -57,7 +57,19 @@ class CheckoutJobs extends JobsHandler<{}> {
         },
       };
     }
-    if (data) this.localStorageHandler.setCheckout(data);
+    this.localStorageHandler.setCheckout({
+      ...checkout,
+      availableShippingMethods: data?.availableShippingMethods,
+      billingAddress: data?.billingAddress,
+      id: data?.id,
+      lines: data?.lines,
+      promoCodeDiscount: data?.promoCodeDiscount,
+      shippingAddress: data?.shippingAddress,
+      shippingMethod: data?.shippingMethod,
+      subtotalPrice: data?.subtotalPrice,
+      token: data?.token,
+      totalPrice: data?.totalPrice,
+    });
     // console.log(
     //   "provide chekchout",
     //   data,
