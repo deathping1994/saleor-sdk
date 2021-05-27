@@ -294,7 +294,7 @@ export class SaleorState extends NamedObservable<StateItems> {
 
     // console.log("in getCouponPrepaidDiscount", { data, dataError });
 
-    if (dataError && dataError.length > 0) {
+    if (dataError) {
       return {
         error: {
           dataError,
@@ -321,11 +321,11 @@ export class SaleorState extends NamedObservable<StateItems> {
   private getCashbackRecieveAmount = async (token: any) => {
     const { data, dataError } = await this.jobsManager.run(
       "checkout",
-      "getCheckoutDiscounts",
+      "getCashbackRecieveAmount",
       { token }
     );
 
-    if (dataError && dataError.length > 0) {
+    if (dataError) {
       return {
         error: {
           dataError,
