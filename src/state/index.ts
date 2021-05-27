@@ -294,7 +294,7 @@ export class SaleorState extends NamedObservable<StateItems> {
 
     // console.log("in getCouponPrepaidDiscount", { data, dataError });
 
-    if (dataError.length > 0) {
+    if (dataError && dataError.length > 0) {
       return {
         error: {
           dataError,
@@ -325,7 +325,7 @@ export class SaleorState extends NamedObservable<StateItems> {
       { token }
     );
 
-    if (dataError.length > 0) {
+    if (dataError && dataError.length > 0) {
       return {
         error: {
           dataError,
