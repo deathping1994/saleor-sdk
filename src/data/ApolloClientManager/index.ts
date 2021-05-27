@@ -1088,14 +1088,15 @@ export class ApolloClientManager {
       });
 
       // console.log({ data, errors });
-      if (errors?.length) {
-        return {
-          error: errors,
-        };
-      }
+      // if (errors?.length) {
+      //   return {
+      //     error: errors,
+      //   };
+      // }
 
       return {
         data,
+        error: errors,
       };
     } catch (error) {
       return {
