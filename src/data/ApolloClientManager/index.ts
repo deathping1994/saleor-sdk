@@ -103,6 +103,7 @@ import {
   CompleteCheckoutInput,
   VerifySignInTokenInput,
   RefreshSignInTokenInput,
+  CheckoutPaymentUpdateInput,
 } from "./types";
 
 import {
@@ -420,6 +421,7 @@ export class ApolloClientManager {
     isUserSignedIn: boolean,
     checkoutToken: string | null
   ) => {
+    // console.log("get Checkout called");
     let checkout: Checkout | null;
     try {
       checkout = await new Promise((resolve, reject) => {
@@ -1035,11 +1037,13 @@ export class ApolloClientManager {
   checkoutPaymentMethodUpdate = async ({
     checkoutId,
     gateway: gatewayId,
-  }: Pick<CreatePaymentInput, "checkoutId" | "gateway">) => {
+    useCashback,
+  }: CheckoutPaymentUpdateInput) => {
     try {
       const variables = {
         checkoutId,
         gatewayId,
+        useCashback,
       };
       const { data, errors } = await this.client.mutate<
         checkoutPaymentMethodUpdate,
@@ -1091,7 +1095,7 @@ export class ApolloClientManager {
       }
 
       return {
-        data: data?.checkoutDiscounts,
+        data,
       };
     } catch (error) {
       return {

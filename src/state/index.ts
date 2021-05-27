@@ -34,6 +34,25 @@ const defaultSaleorStateLoaded = {
   user: false,
 };
 
+export const dummyAddress = {
+  city: "delhi",
+  companyName: "nkjnk",
+  country: {
+    code: "IN",
+    country: "India",
+  },
+  countryArea: "Delhi",
+  firstName: "dummy",
+  id: "1",
+  lastName: "dummy",
+  phone: "7894561230",
+  postalCode: "110006",
+  streetAddress1: "dummy",
+  streetAddress2: "dummy",
+};
+
+export const dummyEmail = "dummy@dummy.com";
+
 export class SaleorState extends NamedObservable<StateItems> {
   user?: User | null;
 
@@ -127,9 +146,20 @@ export class SaleorState extends NamedObservable<StateItems> {
     /**
      * Before making any fetch, first try to verify token if it exists.
      */
+    // console.log("create checkout 1", LocalStorageHandler.getCheckout()?.id);
+
     if (LocalStorageHandler.getSignInToken()) {
       this.onSignInTokenVerifyingUpdate(true);
       await this.verityToken();
+    }
+    if (!LocalStorageHandler.getCheckout()?.id) {
+      // console.log("create checkout 2", LocalStorageHandler.getCheckout()?.id);
+      await this.jobsManager.run("checkout", "createCheckout", {
+        billingAddress: dummyAddress,
+        email: dummyEmail,
+        lines: [],
+        shippingAddress: dummyAddress,
+      });
     }
     this.onSignInTokenVerifyingUpdate(false);
 
@@ -268,8 +298,10 @@ export class SaleorState extends NamedObservable<StateItems> {
     }
     return {
       data: {
-        couponDiscount: data.couponDiscount,
-        prepaidDiscount: data.prepaidDiscount,
+        cashbackDiscount: data.checkoutDiscounts.cashbackDiscount,
+        cashbackRecieve: data.cashback.amount,
+        couponDiscount: data.checkoutDiscounts.couponDiscount,
+        prepaidDiscount: data.checkoutDiscounts.prepaidDiscount,
       },
     };
   };
@@ -304,6 +336,8 @@ export class SaleorState extends NamedObservable<StateItems> {
       // console.log(data?.prepaidDiscount);
 
       const prepaidAmount = round(parseFloat(data?.prepaidDiscount), 2);
+      const cashbackAmount = round(parseFloat(data?.cashbackDiscount), 2);
+      const cashbackRecieveAmount = round(parseFloat(data?.cashbackRecieve), 2);
       // console.log({ prepaidAmount });
       // const couponAmount = data?.couponDiscount;
 
@@ -372,11 +406,20 @@ export class SaleorState extends NamedObservable<StateItems> {
           ...firstItemTotalPrice,
           gross: {
             ...firstItemTotalPrice.gross,
-            amount: round(itemsGrossPrice - discount.amount + prepaidAmount, 2),
+            amount: round(
+              itemsGrossPrice -
+                discount.amount +
+                prepaidAmount +
+                cashbackAmount,
+              2
+            ),
           },
           net: {
             ...firstItemTotalPrice.net,
-            amount: round(itemsNetPrice - discount.amount + prepaidAmount, 2),
+            amount: round(
+              itemsNetPrice - discount.amount + prepaidAmount + cashbackAmount,
+              2
+            ),
           },
         };
 
@@ -423,10 +466,22 @@ export class SaleorState extends NamedObservable<StateItems> {
           currency: "INR",
         };
 
+        const cashbackDiscount = {
+          amount: cashbackAmount,
+          currency: "INR",
+        };
+
+        const cashbackRecieve = {
+          amount: cashbackRecieveAmount,
+          currency: "INR",
+        };
+
         // console.log({ prepaidDiscount });
 
         return new Promise(resolve => {
           resolve({
+            cashbackDiscount,
+            cashbackRecieve,
             discount,
             itemDiscount,
             mrp,

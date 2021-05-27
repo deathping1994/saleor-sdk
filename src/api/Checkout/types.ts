@@ -85,6 +85,11 @@ export interface CreatePaymentInput {
   returnUrl?: string;
 }
 
+export interface PaymentMethodUpdateInput {
+  gateway: string;
+  useCashback: boolean;
+}
+
 export interface CompleteCheckoutInput {
   paymentData?: object;
   redirectUrl?: string;

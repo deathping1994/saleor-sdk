@@ -666,4 +666,5 @@ export interface checkoutPaymentMethodUpdate {
 export interface checkoutPaymentMethodUpdateVariables {
   checkoutId: string;
   gatewayId: string;
+  useCashback: boolean;
 }

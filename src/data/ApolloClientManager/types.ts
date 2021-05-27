@@ -38,6 +38,11 @@ export interface CreatePaymentInput {
   returnUrl?: string;
 }
 
+export interface CheckoutPaymentUpdateInput {
+  checkoutId: string;
+  gateway: string;
+  useCashback: boolean;
+}
 export interface CompleteCheckoutInput {
   checkoutId: string;
   paymentData?: object;
