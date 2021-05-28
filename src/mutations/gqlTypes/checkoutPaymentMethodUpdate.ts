@@ -477,6 +477,10 @@ export interface checkoutPaymentMethodUpdate_checkoutPaymentMethodUpdate_checkou
    */
   id: string;
   name: string;
+  /**
+   * Whether the product is available for purchase.
+   */
+  isAvailableForPurchase: boolean | null;
   weight: checkoutPaymentMethodUpdate_checkoutPaymentMethodUpdate_checkout_lines_variant_product_weight | null;
   category: checkoutPaymentMethodUpdate_checkoutPaymentMethodUpdate_checkout_lines_variant_product_category | null;
   /**
@@ -666,4 +670,5 @@ export interface checkoutPaymentMethodUpdate {
 export interface checkoutPaymentMethodUpdateVariables {
   checkoutId: string;
   gatewayId: string;
+  useCashback: boolean;
 }

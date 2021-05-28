@@ -103,6 +103,7 @@ import {
   CompleteCheckoutInput,
   VerifySignInTokenInput,
   RefreshSignInTokenInput,
+  CheckoutPaymentUpdateInput,
 } from "./types";
 
 import {
@@ -121,6 +122,10 @@ import {
   UpdateCheckoutAddressType,
   UpdateCheckoutAddressTypeVariables,
 } from "../../mutations/gqlTypes/UpdateCheckoutAddressType";
+import {
+  CashbackRecieveAmount,
+  CashbackRecieveAmountVariables,
+} from "../../queries/gqlTypes/CashbackRecieveAmount";
 
 export class ApolloClientManager {
   private client: ApolloClient<any>;
@@ -1036,11 +1041,13 @@ export class ApolloClientManager {
   checkoutPaymentMethodUpdate = async ({
     checkoutId,
     gateway: gatewayId,
-  }: Pick<CreatePaymentInput, "checkoutId" | "gateway">) => {
+    useCashback,
+  }: CheckoutPaymentUpdateInput) => {
     try {
       const variables = {
         checkoutId,
         gatewayId,
+        useCashback,
       };
       const { data, errors } = await this.client.mutate<
         checkoutPaymentMethodUpdate,
@@ -1085,6 +1092,34 @@ export class ApolloClientManager {
       });
 
       // console.log({ data, errors });
+      // if (errors?.length) {
+      //   return {
+      //     error: errors,
+      //   };
+      // }
+
+      return {
+        data,
+        error: errors,
+      };
+    } catch (error) {
+      return {
+        error,
+      };
+    }
+  };
+
+  getCashbackRecieveAmount = async ({ token }: any) => {
+    try {
+      const { data, errors } = await this.client.query<
+        CashbackRecieveAmount,
+        CashbackRecieveAmountVariables
+      >({
+        fetchPolicy: "network-only",
+        query: CheckoutQueries.GetCashbackRecieveAmount,
+        variables: { token },
+      });
+
       if (errors?.length) {
         return {
           error: errors,
@@ -1092,7 +1127,7 @@ export class ApolloClientManager {
       }
 
       return {
-        data: data?.checkoutDiscounts,
+        data,
       };
     } catch (error) {
       return {

@@ -477,6 +477,10 @@ export interface UpdateCheckoutShippingMethod_checkoutShippingMethodUpdate_check
    */
   id: string;
   name: string;
+  /**
+   * Whether the product is available for purchase.
+   */
+  isAvailableForPurchase: boolean | null;
   weight: UpdateCheckoutShippingMethod_checkoutShippingMethodUpdate_checkout_lines_variant_product_weight | null;
   category: UpdateCheckoutShippingMethod_checkoutShippingMethodUpdate_checkout_lines_variant_product_category | null;
   /**

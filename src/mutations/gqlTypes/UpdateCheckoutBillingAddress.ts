@@ -494,6 +494,10 @@ export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
    */
   id: string;
   name: string;
+  /**
+   * Whether the product is available for purchase.
+   */
+  isAvailableForPurchase: boolean | null;
   weight: UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines_variant_product_weight | null;
   category: UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines_variant_product_category | null;
   /**

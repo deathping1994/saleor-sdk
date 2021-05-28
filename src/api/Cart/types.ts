@@ -14,3 +14,5 @@ export type INetPrice = ICheckoutModelPriceValue | null | undefined;
 export type IItemDiscount = ICheckoutModelPriceValue | null | undefined;
 export type IOfferDiscount = ICheckoutModelPriceValue | null | undefined;
 export type IPrepaidDiscount = ICheckoutModelPriceValue | null | undefined;
+export type ICashbackDiscount = ICheckoutModelPriceValue | null | undefined;
+export type ICashbackRecieve = ICheckoutModelPriceValue | null | undefined;

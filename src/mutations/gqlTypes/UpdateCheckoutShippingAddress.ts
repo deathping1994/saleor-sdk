@@ -494,6 +494,10 @@ export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_che
    */
   id: string;
   name: string;
+  /**
+   * Whether the product is available for purchase.
+   */
+  isAvailableForPurchase: boolean | null;
   weight: UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant_product_weight | null;
   category: UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant_product_category | null;
   /**
@@ -1124,6 +1128,10 @@ export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_line
    */
   id: string;
   name: string;
+  /**
+   * Whether the product is available for purchase.
+   */
+  isAvailableForPurchase: boolean | null;
   weight: UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant_product_weight | null;
   category: UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant_product_category | null;
   /**
@@ -1305,7 +1313,7 @@ export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate {
 
 export interface UpdateCheckoutShippingAddress {
   /**
-   * Update shipping address in the existing checkout.
+   * (Custom implementation) Update shipping address in the existing checkout.
    */
   checkoutShippingAddressUpdate: UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate | null;
   /**
