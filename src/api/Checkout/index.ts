@@ -142,7 +142,7 @@ export class SaleorCheckoutAPI extends ErrorListener {
     );
     const localStorageHandler = new LocalStorageHandler();
     localStorageHandler.setCheckout(data);
-    console.log("get chekchout", data, LocalStorageHandler.getCheckout());
+    // console.log("get chekchout", data, LocalStorageHandler.getCheckout());
     return {
       data,
       dataError,
