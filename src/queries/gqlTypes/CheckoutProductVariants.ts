@@ -207,6 +207,10 @@ export interface CheckoutProductVariants_productVariants_edges_node_product {
    */
   id: string;
   name: string;
+  /**
+   * Whether the product is available for purchase.
+   */
+  isAvailableForPurchase: boolean | null;
   weight: CheckoutProductVariants_productVariants_edges_node_product_weight | null;
   category: CheckoutProductVariants_productVariants_edges_node_product_category | null;
   /**

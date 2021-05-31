@@ -122,6 +122,10 @@ import {
   UpdateCheckoutAddressType,
   UpdateCheckoutAddressTypeVariables,
 } from "../../mutations/gqlTypes/UpdateCheckoutAddressType";
+import {
+  CashbackRecieveAmount,
+  CashbackRecieveAmountVariables,
+} from "../../queries/gqlTypes/CashbackRecieveAmount";
 
 export class ApolloClientManager {
   private client: ApolloClient<any>;
@@ -1088,6 +1092,34 @@ export class ApolloClientManager {
       });
 
       // console.log({ data, errors });
+      // if (errors?.length) {
+      //   return {
+      //     error: errors,
+      //   };
+      // }
+
+      return {
+        data,
+        error: errors,
+      };
+    } catch (error) {
+      return {
+        error,
+      };
+    }
+  };
+
+  getCashbackRecieveAmount = async ({ token }: any) => {
+    try {
+      const { data, errors } = await this.client.query<
+        CashbackRecieveAmount,
+        CashbackRecieveAmountVariables
+      >({
+        fetchPolicy: "network-only",
+        query: CheckoutQueries.GetCashbackRecieveAmount,
+        variables: { token },
+      });
+
       if (errors?.length) {
         return {
           error: errors,

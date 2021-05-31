@@ -477,6 +477,10 @@ export interface RemoveCheckoutPromoCode_checkoutRemovePromoCode_checkout_lines_
    */
   id: string;
   name: string;
+  /**
+   * Whether the product is available for purchase.
+   */
+  isAvailableForPurchase: boolean | null;
   weight: RemoveCheckoutPromoCode_checkoutRemovePromoCode_checkout_lines_variant_product_weight | null;
   category: RemoveCheckoutPromoCode_checkoutRemovePromoCode_checkout_lines_variant_product_category | null;
   /**

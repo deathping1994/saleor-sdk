@@ -477,6 +477,10 @@ export interface CreateCheckoutPayment_checkoutPaymentCreate_checkout_lines_vari
    */
   id: string;
   name: string;
+  /**
+   * Whether the product is available for purchase.
+   */
+  isAvailableForPurchase: boolean | null;
   weight: CreateCheckoutPayment_checkoutPaymentCreate_checkout_lines_variant_product_weight | null;
   category: CreateCheckoutPayment_checkoutPaymentCreate_checkout_lines_variant_product_category | null;
   /**
