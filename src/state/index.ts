@@ -371,26 +371,23 @@ export class SaleorState extends NamedObservable<StateItems> {
         !freeGiftProductsRegex.test(line.variant.product?.category?.slug)
     );
 
-    // const data1: Array<
-    //   | {
-    //       couponDiscount: any;
-    //       prepaidDiscount: any;
-    //     }
-    //   | undefined
-    // > = [];
+    if (items && items.length && items[0].quantity > 0 && checkout?.token) {
+      console.log("checkout token", checkout.token);
 
-    if (items && items.length && items[0].quantity > 0) {
-      // console.log(checkout?.token);
+      const { data, error } = await this.getCouponPrepaidDiscount(
+        checkout.token
+      );
+      console.log("getCouponPrepaidDiscount checkout token", data, error);
 
-      const { data, error } =
-        checkout?.token &&
-        (await this.getCouponPrepaidDiscount(checkout?.token));
-
-      const { data: cashbackRecieveData, error: cashbackRecieveError } =
-        checkout?.token &&
-        (await this.getCashbackRecieveAmount(checkout?.token));
-      // console.log(data);
-      // console.log(data?.prepaidDiscount);
+      const {
+        data: cashbackRecieveData,
+        error: cashbackRecieveError,
+      } = await this.getCashbackRecieveAmount(checkout.token);
+      console.log(
+        "getCashbackRecieveAmount checkout token",
+        cashbackRecieveData,
+        cashbackRecieveError
+      );
 
       const prepaidAmount = error
         ? 0
