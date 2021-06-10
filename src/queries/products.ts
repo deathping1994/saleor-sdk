@@ -63,7 +63,14 @@ export const productDetails = gql`
     }
   }
 `;
-
+export const productCacheDetails = gql`
+  ${productFragment}
+  query ProductDetailsCache($id: ID, $slug: String, $countryCode: CountryCode) {
+    product(id: $id, slug: $slug) {
+      ...ProductDetails
+    }
+  }
+`;
 export const variantsProducts = gql`
   query VariantsProducts($ids: [ID]) {
     productVariants(ids: $ids, first: 100) {

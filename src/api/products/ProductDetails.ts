@@ -4,7 +4,7 @@ import {
   ProductDetailsVariables,
 } from "../../queries/gqlTypes/ProductDetails";
 import { ProductDetails as Product } from "../../fragments/gqlTypes/ProductDetails";
-import { productDetails } from "../../queries/products";
+import { productCacheDetails, productDetails } from "../../queries/products";
 
 export class ProductDetails extends BaseDetails<
   ProductDetailsQuery,
@@ -17,6 +17,12 @@ export class ProductDetails extends BaseDetails<
   query = (variables: ProductDetailsVariables) =>
     this.client!.query<ProductDetailsQuery, ProductDetailsVariables>({
       query: productDetails,
+      variables,
+    });
+
+  queryCache = (variables: ProductDetailsVariables) =>
+    this.client!.query<ProductDetailsQuery, ProductDetailsVariables>({
+      query: productCacheDetails,
       variables,
     });
 }
