@@ -96,38 +96,15 @@ export const productCacheDetails = gql`
         id
         name
         slug
-        products(first: 3) {
-          edges {
-            node {
-              ...BaseProduct
-              ...ProductPricingField
-              variants {
-                ...ProductVariantFields
-              }
-              metadata {
-                key
-                value
-              }
+      }
 
-              isAvailable
-              isAvailableForPurchase
-              availableForPurchase
-            }
-          }
-        }
-      }
-      images {
-        alt
-        url
-      }
       attributes {
         ...SelectedAttributeFields
       }
       variants {
         ...ProductVariantFields
       }
-      seoDescription
-      seoTitle
+
       isAvailable
       isAvailableForPurchase
       availableForPurchase
