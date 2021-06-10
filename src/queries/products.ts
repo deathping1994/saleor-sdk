@@ -5,6 +5,8 @@ import {
   baseProductFragment,
   productFragment,
   productPricingFragment,
+  productVariantFragment,
+  selectedAttributeFragment,
 } from "../fragments/products";
 
 export const productList = gql`
@@ -63,12 +65,76 @@ export const productDetails = gql`
     }
   }
 `;
+// export const productCacheDetails = gql`
+//   ${productFragment}
+//   query ProductDetailsCache($id: ID, $slug: String) {
+//     product(id: $id, slug: $slug) {
+//       ...ProductDetails
+//     }
+//   }
+// `;
+
 export const productCacheDetails = gql`
-  ${productFragment}
-  query ProductDetailsCache($id: ID, $slug: String) {
-    product(id: $id, slug: $slug) {
-      ...ProductDetails
+  ${baseProductFragment}
+  ${selectedAttributeFragment}
+  ${productVariantFragment}
+  ${productPricingFragment}
+  query ProductDetailsCache($id: ID!) {
+    product(id: $id) {
+      ...BasicProductFields
+      ...ProductPricingField
+      descriptionJson
+      metadata {
+        key
+        value
+      }
+      weight {
+        unit
+        value
+      }
+      category {
+        id
+        name
+        slug
+        products(first: 3) {
+          edges {
+            node {
+              ...BasicProductFields
+              ...ProductPricingField
+              variants {
+                ...ProductVariantFields
+              }
+              metadata {
+                key
+                value
+              }
+
+              isAvailable
+              isAvailableForPurchase
+              availableForPurchase
+            }
+          }
+        }
+      }
+      images {
+        id
+        alt
+        url
+      }
+      attributes {
+        ...SelectedAttributeFields
+      }
+      variants {
+        ...ProductVariantFields
+      }
+      seoDescription
+      seoTitle
+      isAvailable
+      isAvailableForPurchase
+      availableForPurchase
     }
+
+    productOffers(productId: $id)
   }
 `;
 export const variantsProducts = gql`

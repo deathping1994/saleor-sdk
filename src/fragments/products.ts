@@ -6,8 +6,6 @@ export const baseProductFragment = gql`
     id
     name
     slug
-    seoDescription
-    seoTitle
     thumbnail {
       url
       alt
@@ -15,6 +13,7 @@ export const baseProductFragment = gql`
     thumbnail2x: thumbnail(size: 510) {
       url
     }
+    isAvailableForPurchase
   }
 `;
 
@@ -23,7 +22,6 @@ export const selectedAttributeFragment = gql`
     attribute {
       id
       name
-      slug
     }
     values {
       id
@@ -38,13 +36,18 @@ export const productVariantFragment = gql`
     id
     sku
     name
-    quantityAvailable(countryCode: IN)
     isAvailable
+    quantityAvailable(countryCode: IN)
     images {
       id
       url
       alt
     }
+    weight {
+      unit
+      value
+    }
+
     pricing {
       onSale
       priceUndiscounted {
