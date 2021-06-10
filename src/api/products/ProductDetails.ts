@@ -21,7 +21,7 @@ export class ProductDetails extends BaseDetails<
     });
 
   queryCache = (variables: ProductDetailsVariables) =>
-    this.client!.query<ProductDetailsQuery, ProductDetailsVariables>({
+    this.client?.readQuery<ProductDetailsQuery, ProductDetailsVariables>({
       query: productCacheDetails,
       variables,
     });
