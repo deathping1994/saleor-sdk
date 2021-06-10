@@ -43,6 +43,14 @@ export class ProductsAPI
     return details;
   };
 
+  getCachedDetails = async (variables: ProductDetailsVariables) => {
+    const details = new ProductDetails(this.client);
+
+    await details.queryCache(variables);
+
+    return details;
+  };
+
   /**
    * Method returning list of products with ability to request next page
    * @param params List parameters
