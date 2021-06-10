@@ -31,6 +31,30 @@ export const productList = gql`
   }
 `;
 
+export const productListCache = gql`
+  ${baseProductFragment}
+  ${productPricingFragment}
+  ${pageInfo}
+  query ProductListCache(
+    $after: String
+    $first: Int!
+    $sortBy: ProductOrder
+    $filter: ProductFilterInput
+  ) {
+    products(after: $after, first: $first, sortBy: $sortBy, filter: $filter) {
+      edges {
+        node {
+          ...BaseProduct
+          ...ProductPricingField
+        }
+      }
+      pageInfo {
+        ...PageInfo
+      }
+    }
+  }
+`;
+
 export const productDetails = gql`
   ${productFragment}
   query ProductDetails($id: ID, $slug: String, $countryCode: CountryCode) {

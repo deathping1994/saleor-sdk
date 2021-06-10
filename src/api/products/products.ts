@@ -54,4 +54,12 @@ export class ProductsAPI
 
     return list;
   };
+
+  getCachedList = async (variables: ProductListVariables) => {
+    const list = new ProductList(this.client);
+
+    await list.queryCache(variables);
+
+    return list;
+  };
 }
