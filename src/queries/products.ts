@@ -65,7 +65,7 @@ export const productDetails = gql`
 `;
 export const productCacheDetails = gql`
   ${productFragment}
-  query ProductDetailsCache($id: ID, $slug: String, $countryCode: CountryCode) {
+  query ProductDetailsCache($id: ID, $slug: String) {
     product(id: $id, slug: $slug) {
       ...ProductDetails
     }
