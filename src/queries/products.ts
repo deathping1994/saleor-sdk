@@ -59,7 +59,7 @@ export const productListCache = gql`
 
 export const productDetails = gql`
   ${productFragment}
-  query ProductDetails($id: ID, $slug: String, $countryCode: CountryCode) {
+  query ProductDetails($id: ID, $slug: String) {
     product(id: $id, slug: $slug) {
       ...ProductDetails
     }
@@ -81,7 +81,7 @@ export const productCacheDetails = gql`
   ${productPricingFragment}
   query ProductDetailsCache($id: ID!) {
     product(id: $id) {
-      ...BasicProductFields
+      ...BaseProduct
       ...ProductPricingField
       descriptionJson
       metadata {
@@ -99,7 +99,7 @@ export const productCacheDetails = gql`
         products(first: 3) {
           edges {
             node {
-              ...BasicProductFields
+              ...BaseProduct
               ...ProductPricingField
               variants {
                 ...ProductVariantFields
@@ -117,7 +117,6 @@ export const productCacheDetails = gql`
         }
       }
       images {
-        id
         alt
         url
       }
