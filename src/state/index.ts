@@ -340,6 +340,7 @@ export class SaleorState extends NamedObservable<StateItems> {
       { token }
     );
 
+    console.log("getCashbackRecieveAmount", data, dataError);
     if (dataError) {
       return {
         error: {
@@ -350,7 +351,7 @@ export class SaleorState extends NamedObservable<StateItems> {
     if (data)
       return {
         data: {
-          cashbackRecieve: data.cashback.amount || 0,
+          cashbackRecieve: data.cashback ? data.cashback.amount : 0,
         },
       };
     return {
@@ -389,9 +390,12 @@ export class SaleorState extends NamedObservable<StateItems> {
       const { data: cashbackRecieveData, error: cashbackRecieveError } =
         checkout?.token &&
         (await this.getCashbackRecieveAmount(checkout?.token));
-      // console.log(data);
-      // console.log(data?.prepaidDiscount);
 
+      console.log(
+        "getCashbackRecieveAmount",
+        cashbackRecieveData,
+        cashbackRecieveError
+      );
       const prepaidAmount = error
         ? 0
         : round(parseFloat(data?.prepaidDiscount), 2);
@@ -401,9 +405,6 @@ export class SaleorState extends NamedObservable<StateItems> {
       const cashbackRecieveAmount = cashbackRecieveError
         ? 0
         : round(parseFloat(cashbackRecieveData?.cashbackRecieve), 2);
-      // const cashbackRecieveAmount = cashbackRecieveData.cashbackRecieve;
-      // console.log({ prepaidAmount });
-      // const couponAmount = data?.couponDiscount;
 
       const shippingMethod = checkout?.shippingMethod;
       const promoCodeDiscount = checkout?.promoCodeDiscount?.discount;
