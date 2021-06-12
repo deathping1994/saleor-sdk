@@ -543,6 +543,21 @@ export class SaleorState extends NamedObservable<StateItems> {
 
         // console.log({ prepaidDiscount });
 
+        console.log(
+          "summary prices",
+          cashbackDiscount,
+          cashbackRecieve,
+          discount,
+          itemDiscount,
+          mrp,
+          netPrice,
+          offerDiscount,
+          prepaidDiscount,
+          shippingPrice,
+          subtotalPrice,
+          totalPrice
+        );
+
         return new Promise(resolve => {
           resolve({
             cashbackDiscount,
