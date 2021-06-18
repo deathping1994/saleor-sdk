@@ -347,7 +347,7 @@ export class SaleorState extends NamedObservable<StateItems> {
         },
       };
     }
-    if (data)
+    if (data && data.cashback)
       return {
         data: {
           cashbackRecieve: data.cashback.amount || 0,
