@@ -316,7 +316,7 @@ export class SaleorState extends NamedObservable<StateItems> {
         },
       };
     }
-    if (data)
+    if (data && data.checkoutDiscounts)
       return {
         data: {
           cashbackDiscount: data.checkoutDiscounts.cashbackDiscout || 0,
@@ -339,7 +339,7 @@ export class SaleorState extends NamedObservable<StateItems> {
       "getCashbackRecieveAmount",
       { token }
     );
-
+    console.log("getCashbackRecieveAmount", data, dataError);
     if (dataError) {
       return {
         error: {
@@ -347,7 +347,7 @@ export class SaleorState extends NamedObservable<StateItems> {
         },
       };
     }
-    if (data)
+    if (data && data.cashback)
       return {
         data: {
           cashbackRecieve: data.cashback.amount || 0,
