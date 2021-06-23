@@ -28,6 +28,6 @@ export class Jobs implements IJobs {
     this.auth = new AuthJobs(localStorageHandler, apolloClientManager);
     this.checkout = new CheckoutJobs(localStorageHandler, apolloClientManager);
     this.wishlist = new WishlistJobs(localStorageHandler, apolloClientManager);
-    this.wallet = new WalletJobs(localStorageHandler, apolloClientManager);
+    this.wallet = new WalletJobs(apolloClientManager);
   }
 }
