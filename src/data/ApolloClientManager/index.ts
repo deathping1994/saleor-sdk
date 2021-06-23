@@ -127,6 +127,9 @@ import {
   CashbackRecieveAmountVariables,
 } from "../../queries/gqlTypes/CashbackRecieveAmount";
 
+import { GetWalletAmount } from "../../queries/wallet";
+import { GetWallet } from "../../queries/gqlTypes/GetWallet";
+
 export class ApolloClientManager {
   private client: ApolloClient<any>;
 
@@ -145,6 +148,21 @@ export class ApolloClientManager {
         query: UserQueries.getUserDetailsQuery,
       })
       .subscribe(value => next(value.data?.me), error, complete);
+  };
+
+  getWalletAmount = async () => {
+    const { data, errors } = await this.client.query<GetWallet, undefined>({
+      query: GetWalletAmount,
+    });
+
+    if (errors?.length) {
+      return {
+        error: errors,
+      };
+    }
+    return {
+      data: data.wallet?.amount,
+    };
   };
 
   getWishlistItems = async (first: number) => {

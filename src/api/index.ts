@@ -15,6 +15,7 @@ import { CollectionsAPI } from "./collections/collections";
 import { CategoriesAPI } from "./categories/categories";
 import { ProductsAPI } from "./products/products";
 import { SaleorWishlistAPI } from "./Wishlist";
+import { SaleorWalletAPI } from "./Wallet";
 
 export * from "./Checkout";
 export * from "./Cart";
@@ -33,6 +34,8 @@ export class SaleorAPI {
   collections: CollectionsAPI;
 
   products: ProductsAPI;
+
+  wallet: SaleorWalletAPI;
 
   /**
    * @deprecated Please do not use it anymore. Reference to API Proxy will be removed in future.
@@ -88,6 +91,13 @@ export class SaleorAPI {
     this.wishlist = new SaleorWishlistAPI(
       localStorageManager,
       apolloClientManager,
+      saleorState,
+      jobsManager
+    );
+
+    this.wallet = new SaleorWalletAPI(
+      // localStorageManager,
+      // apolloClientManager,
       saleorState,
       jobsManager
     );
