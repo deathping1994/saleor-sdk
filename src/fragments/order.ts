@@ -45,6 +45,7 @@ export const orderDetailFragment = gql`
     #     value
     #   }
     # }
+
     metadata {
       key
       value

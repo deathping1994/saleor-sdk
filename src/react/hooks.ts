@@ -4,3 +4,4 @@ export const useAuth = hookFactory("auth");
 export const useCheckout = hookFactory("checkout");
 export const useCart = hookFactory("cart");
 export const useWishlist = hookFactory("wishlist");
+export const useWallet = hookFactory("wallet");
