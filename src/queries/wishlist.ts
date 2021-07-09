@@ -21,7 +21,9 @@ export const getWishlist = gql`
                 url
               }
               images {
+                id
                 url
+                alt
               }
               variants {
                 id
