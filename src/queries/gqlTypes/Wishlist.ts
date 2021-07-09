@@ -30,9 +30,14 @@ export interface Wishlist_wishlist_items_edges_node_product_thumbnail {
 export interface Wishlist_wishlist_items_edges_node_product_images {
   __typename: "ProductImage";
   /**
+   * The ID of the object.
+   */
+  id: string;
+  /**
    * The URL of the image.
    */
   url: string;
+  alt: string;
 }
 
 export interface Wishlist_wishlist_items_edges_node_product_variants_images {

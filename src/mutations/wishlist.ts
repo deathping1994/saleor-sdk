@@ -24,6 +24,8 @@ export const WishlistAddProduct = gql`
                     url
                   }
                   images {
+                    id
+                    alt
                     url
                   }
                   variants {
@@ -142,6 +144,8 @@ export const WishlistRemoveProduct = gql`
                     url
                   }
                   images {
+                    id
+                    alt
                     url
                   }
                   variants {

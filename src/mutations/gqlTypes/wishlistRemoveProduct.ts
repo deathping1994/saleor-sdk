@@ -30,6 +30,11 @@ export interface wishlistRemoveProduct_WishlistRemoveProduct_wishlist_wishlist_i
 export interface wishlistRemoveProduct_WishlistRemoveProduct_wishlist_wishlist_items_edges_node_product_images {
   __typename: "ProductImage";
   /**
+   * The ID of the object.
+   */
+  id: string;
+  alt: string;
+  /**
    * The URL of the image.
    */
   url: string;
