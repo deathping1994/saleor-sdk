@@ -288,6 +288,7 @@ export class SaleorCartAPI extends ErrorListener {
       }
       return {
         data,
+        error,
         pending: true,
       };
     }

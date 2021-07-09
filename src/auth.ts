@@ -36,6 +36,13 @@ export function setAuthToken(token: string) {
   dispatchEvent(authEvent);
 }
 
+export function setAuthCSRFTokens(authToken: string, csrfToken: string) {
+  localStorage.setItem("token", authToken);
+  localStorage.setItem("csrf_token", csrfToken);
+  const authEvent = new Event("auth");
+  dispatchEvent(authEvent);
+}
+
 interface ResponseError extends ErrorResponse {
   networkError?: Error & {
     statusCode?: number;
