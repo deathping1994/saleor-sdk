@@ -7,6 +7,7 @@ import { StateItems } from "../../state/types";
 import { PromiseRunResponse } from "../types";
 import { DataErrorAuthTypes } from "./types";
 import { Config } from "../../types";
+import { setAuthToken } from "../../auth";
 // import { CREDENTIAL_API_EXISTS } from "../../consts";
 
 export const BROWSER_NO_CREDENTIAL_API_MESSAGE =
@@ -349,6 +350,14 @@ export class AuthAPI extends ErrorListener {
     };
   };
 
+  setToken = async (token: string) => {
+    setAuthToken(token);
+    await this.jobsManager.run("auth", "provideUser", undefined);
+    this.jobsManager.run("checkout", "provideCheckout", {
+      isUserSignedIn: true,
+    });
+    this.jobsManager.run("wishlist", "getWishlist", undefined);
+  };
   // private autoSignIn = async () => {
   //   let credentials;
   //   try {
