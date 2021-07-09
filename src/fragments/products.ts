@@ -122,6 +122,7 @@ export const productFragment = gql`
     images {
       id
       url
+      alt
     }
     attributes {
       ...SelectedAttributeFields
