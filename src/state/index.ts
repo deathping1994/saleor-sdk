@@ -137,10 +137,6 @@ export class SaleorState extends NamedObservable<StateItems> {
         this.onSignInTokenRefreshUpdate(value);
       }
     });
-    this.jobsManager.attachEventListener("auth", (event, value) => {
-      console.log(value, event);
-      // this.onSignInTokenUpdate(value);
-    });
   };
 
   /**
