@@ -1,4 +1,5 @@
 import gql from "graphql-tag";
+import { userFragment } from "./auth";
 
 import {
   checkoutAddressFragment,
@@ -22,6 +23,7 @@ export const orderDetailFragment = gql`
   ${orderPriceFragment}
   ${checkoutAddressFragment}
   ${checkoutProductVariantFragment}
+  ${userFragment}
   fragment OrderDetail on Order {
     userEmail
     paymentStatus
@@ -31,6 +33,9 @@ export const orderDetailFragment = gql`
     id
     token
     number
+    user {
+      ...User
+    }
     # invoices {
     #   createdAt
     #   id
