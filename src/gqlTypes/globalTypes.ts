@@ -534,8 +534,6 @@ export interface ProductFilterInput {
   stocks?: ProductStockFilterInput | null;
   search?: string | null;
   price?: PriceRangeInput | null;
-  discount?: IntRangeInput | null;
-  rating?: IntRangeInput | null;
   minimalPrice?: PriceRangeInput | null;
   productTypes?: (string | null)[] | null;
   ids?: (string | null)[] | null;

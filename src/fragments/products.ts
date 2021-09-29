@@ -24,6 +24,10 @@ export const selectedAttributeFragment = gql`
       id
       name
       slug
+      metadata {
+        key
+        value
+      }
     }
     values {
       id
@@ -59,6 +63,10 @@ export const productVariantFragment = gql`
         id
         name
         slug
+        metadata {
+          key
+          value
+        }
       }
       values {
         id
