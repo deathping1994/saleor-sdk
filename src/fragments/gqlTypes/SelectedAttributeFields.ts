@@ -7,18 +7,6 @@
 // GraphQL fragment: SelectedAttributeFields
 // ====================================================
 
-export interface SelectedAttributeFields_attribute_metadata {
-  __typename: "MetadataItem";
-  /**
-   * Key of a metadata item.
-   */
-  key: string;
-  /**
-   * Value of a metadata item.
-   */
-  value: string;
-}
-
 export interface SelectedAttributeFields_attribute {
   __typename: "Attribute";
   /**
@@ -33,10 +21,6 @@ export interface SelectedAttributeFields_attribute {
    * Internal representation of an attribute name.
    */
   slug: string | null;
-  /**
-   * List of public metadata items. Can be accessed without permissions.
-   */
-  metadata: (SelectedAttributeFields_attribute_metadata | null)[];
 }
 
 export interface SelectedAttributeFields_values {

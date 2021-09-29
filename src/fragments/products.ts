@@ -24,10 +24,6 @@ export const selectedAttributeFragment = gql`
       id
       name
       slug
-      metadata {
-        key
-        value
-      }
     }
     values {
       id
