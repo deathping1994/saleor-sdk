@@ -1,4 +1,5 @@
 import gql from "graphql-tag";
+import { userFragment } from "../fragments/auth";
 
 import { accountErrorFragment } from "../fragments/errors";
 
@@ -85,6 +86,47 @@ export const createOTPTokeMutation = gql`
       }
       otpErrors {
         code
+        field
+        message
+      }
+    }
+  }
+`;
+
+export const REGISTER_ACCOUNT = gql`
+  ${userFragment}
+  mutation AccountRegisterV2($input: AccountRegisterInputV2!) {
+    accountRegisterV2(input: $input) {
+      user {
+        ...User
+      }
+      accountErrors {
+        field
+        message
+      }
+      errors {
+        field
+        message
+      }
+    }
+  }
+`;
+
+export const CONFIRM_ACCOUNT = gql`
+  ${userFragment}
+  mutation ConfirmAccountV2($otp: String!, $phone: String!) {
+    confirmAccountV2(otp: $otp, phone: $phone) {
+      token
+      refreshToken
+      csrfToken
+      user {
+        ...User
+      }
+      accountErrors {
+        field
+        message
+      }
+      errors {
         field
         message
       }

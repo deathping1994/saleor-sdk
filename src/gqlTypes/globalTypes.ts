@@ -462,6 +462,12 @@ export interface AccountInput {
   defaultShippingAddress?: AddressInput | null;
 }
 
+export interface AccountRegisterInputV2 {
+  email: string;
+  phone: string;
+  password?: string | null;
+}
+
 export interface AddressInput {
   firstName?: string | null;
   lastName?: string | null;
@@ -534,6 +540,8 @@ export interface ProductFilterInput {
   stocks?: ProductStockFilterInput | null;
   search?: string | null;
   price?: PriceRangeInput | null;
+  discount?: IntRangeInput | null;
+  rating?: IntRangeInput | null;
   minimalPrice?: PriceRangeInput | null;
   productTypes?: (string | null)[] | null;
   ids?: (string | null)[] | null;
