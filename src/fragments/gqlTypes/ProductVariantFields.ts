@@ -108,18 +108,6 @@ export interface ProductVariantFields_pricing {
   price: ProductVariantFields_pricing_price | null;
 }
 
-export interface ProductVariantFields_attributes_attribute_metadata {
-  __typename: "MetadataItem";
-  /**
-   * Key of a metadata item.
-   */
-  key: string;
-  /**
-   * Value of a metadata item.
-   */
-  value: string;
-}
-
 export interface ProductVariantFields_attributes_attribute {
   __typename: "Attribute";
   /**
@@ -134,10 +122,6 @@ export interface ProductVariantFields_attributes_attribute {
    * Internal representation of an attribute name.
    */
   slug: string | null;
-  /**
-   * List of public metadata items. Can be accessed without permissions.
-   */
-  metadata: (ProductVariantFields_attributes_attribute_metadata | null)[];
 }
 
 export interface ProductVariantFields_attributes_values {
