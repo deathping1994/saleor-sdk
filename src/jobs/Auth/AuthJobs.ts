@@ -164,16 +164,15 @@ export class AuthJobs extends JobsHandler<AuthJobsEventsValues> {
 
   registerAccountV2 = async ({
     email,
-    password,
+    // password,
     phone,
   }: {
     email: string;
-    password: string;
+    // password?: string;
     phone: string;
   }): PromiseAuthJobRunResponse => {
     const { data, error } = await this.apolloClientManager.registerAccountV2(
       email,
-      password,
       phone
     );
 

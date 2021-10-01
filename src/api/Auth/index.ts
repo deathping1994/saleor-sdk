@@ -292,8 +292,8 @@ export class AuthAPI extends ErrorListener {
 
   registerAccountV2 = async (
     email: string,
-    password: string,
     phone: string
+    // password?: string
     // autoSignIn: boolean
   ): PromiseRunResponse<DataErrorAuthTypes> => {
     const { data, dataError } = await this.jobsManager.run(
@@ -301,7 +301,7 @@ export class AuthAPI extends ErrorListener {
       "registerAccountV2",
       {
         email,
-        password,
+        // password,
         phone,
       }
     );

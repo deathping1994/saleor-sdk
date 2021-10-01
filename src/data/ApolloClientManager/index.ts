@@ -380,9 +380,10 @@ export class ApolloClientManager {
 
   registerAccountV2 = async (
     email: string,
-    password: string,
     phone: string
+    // password?: string
   ) => {
+    // const input = password ? { email, password, phone } : { email, phone };
     const { data, errors } = await this.client.mutate<
       AccountRegisterV2,
       AccountRegisterV2Variables
@@ -392,7 +393,6 @@ export class ApolloClientManager {
       variables: {
         input: {
           email,
-          password,
           phone,
         },
       },
