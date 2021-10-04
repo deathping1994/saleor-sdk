@@ -48,6 +48,35 @@ export class AuthJobs extends JobsHandler<AuthJobsEventsValues> {
     };
   };
 
+  provideUserMeta = async ({
+    id,
+    companyId,
+    userType,
+  }: {
+    id: string;
+    companyId?: string;
+    userType?: string;
+  }): PromiseAuthJobRunResponse => {
+    const { data, error } = await this.apolloClientManager.getUserMeta(
+      id,
+      companyId,
+      userType
+    );
+
+    if (error) {
+      return {
+        dataError: {
+          error,
+          type: DataErrorAuthTypes.GET_USER,
+        },
+      };
+    }
+
+    return {
+      data,
+    };
+  };
+
   registerAccount = async ({
     email,
     password,

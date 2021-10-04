@@ -137,6 +137,10 @@ import {
   ConfirmAccountV2,
   ConfirmAccountV2Variables,
 } from "../../mutations/gqlTypes/ConfirmAccountV2";
+import {
+  UserMetaDetails,
+  UserMetaDetailsVariables,
+} from "../../queries/gqlTypes/UserMetaDetails";
 
 export class ApolloClientManager {
   private client: ApolloClient<any>;
@@ -249,6 +253,26 @@ export class ApolloClientManager {
     }
     return {
       data: data?.me,
+    };
+  };
+
+  getUserMeta = async (id: string, companyId?: string, userType?: string) => {
+    const { data, errors } = await this.client.query<
+      UserMetaDetails,
+      UserMetaDetailsVariables
+    >({
+      fetchPolicy: "network-only",
+      query: UserQueries.getUserMetaDetailsQuery,
+      variables: { companyId, id, userType },
+    });
+
+    if (errors?.length) {
+      return {
+        error: errors,
+      };
+    }
+    return {
+      data: data?.userMeta,
     };
   };
 
