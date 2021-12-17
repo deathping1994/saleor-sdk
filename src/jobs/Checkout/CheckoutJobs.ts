@@ -3,7 +3,7 @@ import {
   FunctionErrorCheckoutTypes,
 } from "../../api/Checkout/types";
 import { ApolloClientManager } from "../../data/ApolloClientManager";
-import { LocalStorageHandler } from "../../helpers/LocalStorageHandler";
+import { ICheckoutModel, LocalStorageHandler } from "../../helpers/LocalStorageHandler";
 import { JobRunResponse } from "../types";
 import {
   CompleteCheckoutJobInput,
@@ -38,6 +38,15 @@ class CheckoutJobs extends JobsHandler<{}> {
     this.apolloClientManager = apolloClientManager;
     this.localStorageHandler = localStorageHandler;
   }
+
+  setLocalCheckout = async (checkout: ICheckoutModel): PromiseCheckoutJobRunResponse => {
+  
+   const res=  this.localStorageHandler.setCheckout(checkout);
+
+    return {
+      data:res,
+    };
+  };
 
   provideCheckout = async ({
     isUserSignedIn,
