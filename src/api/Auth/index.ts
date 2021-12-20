@@ -119,6 +119,22 @@ export class AuthAPI extends ErrorListener {
     };
   };
 
+  getUserMeta = async (id: string, companyId?: string, userType?: string) => {
+    const { data, dataError } = await this.jobsManager.run(
+      "auth",
+      "provideUserMeta",
+      {
+        companyId,
+        id,
+        userType,
+      }
+    );
+    return {
+      data,
+      dataError,
+    };
+  };
+
   registerAccount = async (
     email: string,
     password: string,
@@ -262,19 +278,69 @@ export class AuthAPI extends ErrorListener {
       }
     );
 
-    // try {
-    //   if (autoSignIn && !dataError?.error && CREDENTIAL_API_EXISTS) {
-    //     await navigator.credentials.store(
-    //       new window.PasswordCredential({
-    //         id: phone,
-    //         otp,
-    //       })
-    //     );
-    //   }
-    // } catch (credentialsError) {
-    //   // eslint-disable-next-line no-console
-    //   console.warn(BROWSER_NO_CREDENTIAL_API_MESSAGE, credentialsError);
-    // }
+    if (dataError) {
+      return {
+        data,
+        dataError,
+        pending: false,
+      };
+    }
+
+    const {
+      data: userData,
+      dataError: userDataError,
+    } = await this.jobsManager.run("auth", "provideUser", undefined);
+    if (this.config.loadOnStart.checkout) {
+      await this.jobsManager.run("checkout", "provideCheckout", {
+        isUserSignedIn: !!data?.user,
+      });
+    }
+    if (this.config.loadOnStart.wishlist) {
+      await this.jobsManager.run("wishlist", "getWishlist", undefined);
+    }
+
+    return {
+      data: userData,
+      dataError: userDataError,
+      pending: false,
+    };
+  };
+
+  registerAccountV2 = async (
+    email: string,
+    phone: string
+    // password?: string
+    // autoSignIn: boolean
+  ): PromiseRunResponse<DataErrorAuthTypes> => {
+    const { data, dataError } = await this.jobsManager.run(
+      "auth",
+      "registerAccountV2",
+      {
+        email,
+        // password,
+        phone,
+      }
+    );
+
+    return {
+      data,
+      dataError,
+    };
+  };
+
+  confirmAccountV2 = async (
+    otp: string,
+    phone: string
+    // autoSignIn: boolean
+  ): PromiseRunResponse<DataErrorAuthTypes> => {
+    const { data, dataError } = await this.jobsManager.run(
+      "auth",
+      "confirmAccountV2",
+      {
+        otp,
+        phone,
+      }
+    );
 
     if (dataError) {
       return {
