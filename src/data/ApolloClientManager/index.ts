@@ -1413,6 +1413,7 @@ export class ApolloClientManager {
             attributes: itemVariant?.attributes,
             id: itemVariant!.id,
             isAvailable: itemVariant?.isAvailable,
+            metadata: itemVariant?.metadata,
             name: itemVariant?.name,
             pricing: itemVariant?.pricing,
             product: itemVariant?.product,
