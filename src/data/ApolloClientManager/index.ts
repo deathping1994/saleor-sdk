@@ -129,6 +129,18 @@ import {
 
 import { GetWalletAmount } from "../../queries/wallet";
 import { GetWallet } from "../../queries/gqlTypes/GetWallet";
+import {
+  AccountRegisterV2,
+  AccountRegisterV2Variables,
+} from "../../mutations/gqlTypes/AccountRegisterV2";
+import {
+  ConfirmAccountV2,
+  ConfirmAccountV2Variables,
+} from "../../mutations/gqlTypes/ConfirmAccountV2";
+import {
+  UserMetaDetails,
+  UserMetaDetailsVariables,
+} from "../../queries/gqlTypes/UserMetaDetails";
 
 export class ApolloClientManager {
   private client: ApolloClient<any>;
@@ -241,6 +253,26 @@ export class ApolloClientManager {
     }
     return {
       data: data?.me,
+    };
+  };
+
+  getUserMeta = async (id: string, companyId?: string, userType?: string) => {
+    const { data, errors } = await this.client.query<
+      UserMetaDetails,
+      UserMetaDetailsVariables
+    >({
+      fetchPolicy: "network-only",
+      query: UserQueries.getUserMetaDetailsQuery,
+      variables: { companyId, id, userType },
+    });
+
+    if (errors?.length) {
+      return {
+        error: errors,
+      };
+    }
+    return {
+      data: data?.userMeta,
     };
   };
 
@@ -366,6 +398,87 @@ export class ApolloClientManager {
         csrfToken: data?.CreateTokenOTP?.csrfToken,
         token: data?.CreateTokenOTP?.token,
         user: data?.CreateTokenOTP?.user,
+      },
+    };
+  };
+
+  registerAccountV2 = async (
+    email: string,
+    phone: string
+    // password?: string
+  ) => {
+    // const input = password ? { email, password, phone } : { email, phone };
+    const { data, errors } = await this.client.mutate<
+      AccountRegisterV2,
+      AccountRegisterV2Variables
+    >({
+      fetchPolicy: "no-cache",
+      mutation: AuthMutations.REGISTER_ACCOUNT,
+      variables: {
+        input: {
+          email,
+          phone,
+        },
+      },
+    });
+
+    if (errors?.length) {
+      return {
+        error: errors,
+      };
+    }
+    if (data?.accountRegisterV2?.errors.length) {
+      return {
+        error: data.accountRegisterV2.errors,
+      };
+    }
+    if (data?.accountRegisterV2?.accountErrors.length) {
+      return {
+        error: data.accountRegisterV2.accountErrors,
+      };
+    }
+    return {
+      data: {
+        isActiveUser: data?.accountRegisterV2?.isActiveUser,
+        isNewUser: data?.accountRegisterV2?.isNewUser,
+        user: data?.accountRegisterV2?.user,
+      },
+    };
+  };
+
+  confirmAccountV2 = async (otp: string, phone: string) => {
+    const { data, errors } = await this.client.mutate<
+      ConfirmAccountV2,
+      ConfirmAccountV2Variables
+    >({
+      fetchPolicy: "no-cache",
+      mutation: AuthMutations.CONFIRM_ACCOUNT,
+      variables: {
+        otp,
+        phone,
+      },
+    });
+
+    if (errors?.length) {
+      return {
+        error: errors,
+      };
+    }
+    if (data?.confirmAccountV2?.errors.length) {
+      return {
+        error: data.confirmAccountV2.errors,
+      };
+    }
+    if (data?.confirmAccountV2?.accountErrors.length) {
+      return {
+        error: data.confirmAccountV2.accountErrors,
+      };
+    }
+    return {
+      data: {
+        csrfToken: data?.confirmAccountV2?.csrfToken,
+        token: data?.confirmAccountV2?.token,
+        user: data?.confirmAccountV2?.user,
       },
     };
   };

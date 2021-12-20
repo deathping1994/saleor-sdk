@@ -48,6 +48,35 @@ export class AuthJobs extends JobsHandler<AuthJobsEventsValues> {
     };
   };
 
+  provideUserMeta = async ({
+    id,
+    companyId,
+    userType,
+  }: {
+    id: string;
+    companyId?: string;
+    userType?: string;
+  }): PromiseAuthJobRunResponse => {
+    const { data, error } = await this.apolloClientManager.getUserMeta(
+      id,
+      companyId,
+      userType
+    );
+
+    if (error) {
+      return {
+        dataError: {
+          error,
+          type: DataErrorAuthTypes.GET_USER,
+        },
+      };
+    }
+
+    return {
+      data,
+    };
+  };
+
   registerAccount = async ({
     email,
     password,
@@ -141,6 +170,63 @@ export class AuthJobs extends JobsHandler<AuthJobsEventsValues> {
   }): PromiseAuthJobRunResponse => {
     const { data, error } = await this.apolloClientManager.signInMobile(
       checkoutId,
+      otp,
+      phone
+    );
+
+    if (error) {
+      return {
+        dataError: {
+          error,
+          type: DataErrorAuthTypes.SIGN_IN,
+        },
+      };
+    }
+
+    this.localStorageHandler.setSignInToken(data?.token || null);
+    this.localStorageHandler.setCsrfToken(data?.csrfToken || null);
+
+    return {
+      data,
+    };
+  };
+
+  registerAccountV2 = async ({
+    email,
+    // password,
+    phone,
+  }: {
+    email: string;
+    // password?: string;
+    phone: string;
+  }): PromiseAuthJobRunResponse => {
+    const { data, error } = await this.apolloClientManager.registerAccountV2(
+      email,
+      phone
+    );
+
+    if (error) {
+      return {
+        dataError: {
+          error,
+          type: DataErrorAuthTypes.REGISTER_ACCOUNT,
+        },
+      };
+    }
+
+    return {
+      data,
+    };
+  };
+
+  confirmAccountV2 = async ({
+    otp,
+    phone,
+  }: {
+    otp: string;
+    phone: string;
+  }): PromiseAuthJobRunResponse => {
+    const { data, error } = await this.apolloClientManager.confirmAccountV2(
       otp,
       phone
     );

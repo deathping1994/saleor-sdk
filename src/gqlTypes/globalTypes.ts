@@ -448,6 +448,15 @@ export enum StockAvailability {
 /**
  * An enumeration.
  */
+export enum UserMetaAccess {
+  ACCESSTYPES_ADMIN = "ACCESSTYPES_ADMIN",
+  ACCESSTYPES_ASSOCIATE = "ACCESSTYPES_ASSOCIATE",
+  ACCESSTYPES_SUPER_ADMIN = "ACCESSTYPES_SUPER_ADMIN",
+}
+
+/**
+ * An enumeration.
+ */
 export enum WeightUnitsEnum {
   G = "G",
   KG = "KG",
@@ -460,6 +469,12 @@ export interface AccountInput {
   lastName?: string | null;
   defaultBillingAddress?: AddressInput | null;
   defaultShippingAddress?: AddressInput | null;
+}
+
+export interface AccountRegisterInputV2 {
+  email: string;
+  phone: string;
+  password?: string | null;
 }
 
 export interface AddressInput {
