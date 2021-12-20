@@ -575,6 +575,7 @@ export class ApolloClientManager {
               attributes: edge.node.attributes,
               id: edge.node.id,
               isAvailable: edge.node.isAvailable,
+              metadata: edge.node.metadata,
               name: edge.node.name,
               pricing: edge.node.pricing,
               product: edge.node.product,
