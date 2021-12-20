@@ -7,7 +7,7 @@ module.exports = {
     ],
     service: {
       name: "saleor",
-      url: "http://3.6.150.84:8000/graphql/",
+      url: "https://lotusstageapi.farziengineer.co/graphql/",
     },
   },
 };

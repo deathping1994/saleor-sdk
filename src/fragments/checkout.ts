@@ -43,6 +43,10 @@ export const checkoutProductVariantFragment = gql`
     sku
     quantityAvailable
     isAvailable
+    metadata {
+      key
+      value
+    }
     pricing {
       onSale
       priceUndiscounted {

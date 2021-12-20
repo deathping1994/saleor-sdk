@@ -9,6 +9,18 @@ import { WeightUnitsEnum } from "./../../gqlTypes/globalTypes";
 // GraphQL query operation: CheckoutProductVariants
 // ====================================================
 
+export interface CheckoutProductVariants_productVariants_edges_node_metadata {
+  __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
+  key: string;
+  /**
+   * Value of a metadata item.
+   */
+  value: string;
+}
+
 export interface CheckoutProductVariants_productVariants_edges_node_pricing_priceUndiscounted_gross {
   __typename: "Money";
   /**
@@ -244,6 +256,10 @@ export interface CheckoutProductVariants_productVariants_edges_node {
    * Whether the variant is in stock and visible or not.
    */
   isAvailable: boolean | null;
+  /**
+   * List of public metadata items. Can be accessed without permissions.
+   */
+  metadata: (CheckoutProductVariants_productVariants_edges_node_metadata | null)[];
   /**
    * Lists the storefront variant's pricing, the current price and discounts, only meant for displaying.
    */

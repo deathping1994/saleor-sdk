@@ -279,6 +279,18 @@ export interface checkoutPaymentMethodUpdate_checkoutPaymentMethodUpdate_checkou
   net: checkoutPaymentMethodUpdate_checkoutPaymentMethodUpdate_checkout_lines_totalPrice_net;
 }
 
+export interface checkoutPaymentMethodUpdate_checkoutPaymentMethodUpdate_checkout_lines_variant_metadata {
+  __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
+  key: string;
+  /**
+   * Value of a metadata item.
+   */
+  value: string;
+}
+
 export interface checkoutPaymentMethodUpdate_checkoutPaymentMethodUpdate_checkout_lines_variant_pricing_priceUndiscounted_gross {
   __typename: "Money";
   /**
@@ -514,6 +526,10 @@ export interface checkoutPaymentMethodUpdate_checkoutPaymentMethodUpdate_checkou
    * Whether the variant is in stock and visible or not.
    */
   isAvailable: boolean | null;
+  /**
+   * List of public metadata items. Can be accessed without permissions.
+   */
+  metadata: (checkoutPaymentMethodUpdate_checkoutPaymentMethodUpdate_checkout_lines_variant_metadata | null)[];
   /**
    * Lists the storefront variant's pricing, the current price and discounts, only meant for displaying.
    */

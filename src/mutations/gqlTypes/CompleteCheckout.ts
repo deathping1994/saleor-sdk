@@ -79,6 +79,18 @@ export interface CompleteCheckout_checkoutComplete_order_shippingAddress {
   isDefaultShippingAddress: boolean | null;
 }
 
+export interface CompleteCheckout_checkoutComplete_order_lines_variant_metadata {
+  __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
+  key: string;
+  /**
+   * Value of a metadata item.
+   */
+  value: string;
+}
+
 export interface CompleteCheckout_checkoutComplete_order_lines_variant_pricing_priceUndiscounted_gross {
   __typename: "Money";
   /**
@@ -314,6 +326,10 @@ export interface CompleteCheckout_checkoutComplete_order_lines_variant {
    * Whether the variant is in stock and visible or not.
    */
   isAvailable: boolean | null;
+  /**
+   * List of public metadata items. Can be accessed without permissions.
+   */
+  metadata: (CompleteCheckout_checkoutComplete_order_lines_variant_metadata | null)[];
   /**
    * Lists the storefront variant's pricing, the current price and discounts, only meant for displaying.
    */
