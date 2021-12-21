@@ -7,7 +7,12 @@ import {
   LocalStorageHandler,
 } from "../../helpers/LocalStorageHandler";
 import { JobsManager } from "../../jobs";
-import { dummyEmail, SaleorState, SaleorStateLoaded } from "../../state";
+import {
+  dummyAddress,
+  dummyEmail,
+  SaleorState,
+  SaleorStateLoaded,
+} from "../../state";
 import { StateItems } from "../../state/types";
 
 import { PromiseRunResponse } from "../types";
@@ -140,6 +145,7 @@ export class SaleorCheckoutAPI extends ErrorListener {
       {
         email: dummyEmail,
         lines: [],
+        shippingAddress: dummyAddress,
       }
     );
     return {
