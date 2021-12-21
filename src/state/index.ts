@@ -34,6 +34,23 @@ const defaultSaleorStateLoaded = {
   user: false,
 };
 
+export const dummyAddress = {
+  city: "delhi",
+  companyName: "dummy",
+  country: {
+    code: "IN",
+    country: "India",
+  },
+  countryArea: "Delhi",
+  firstName: "dummy",
+  id: "1",
+  lastName: "dummy",
+  phone: "7894561230",
+  postalCode: "110006",
+  streetAddress1: "dummy",
+  streetAddress2: "dummy",
+};
+
 export const dummyEmail = "dummy@dummy.com";
 
 export class SaleorState extends NamedObservable<StateItems> {
@@ -140,6 +157,7 @@ export class SaleorState extends NamedObservable<StateItems> {
       await this.jobsManager.run("checkout", "createCheckout", {
         email: dummyEmail,
         lines: [],
+        shippingAddress: dummyAddress,
       });
     }
     this.onSignInTokenVerifyingUpdate(false);
