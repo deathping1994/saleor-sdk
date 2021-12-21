@@ -34,23 +34,6 @@ const defaultSaleorStateLoaded = {
   user: false,
 };
 
-export const dummyAddress = {
-  city: "delhi",
-  companyName: "nkjnk",
-  country: {
-    code: "IN",
-    country: "India",
-  },
-  countryArea: "Delhi",
-  firstName: "dummy",
-  id: "1",
-  lastName: "dummy",
-  phone: "7894561230",
-  postalCode: "110006",
-  streetAddress1: "dummy",
-  streetAddress2: "dummy",
-};
-
 export const dummyEmail = "dummy@dummy.com";
 
 export class SaleorState extends NamedObservable<StateItems> {
@@ -154,27 +137,10 @@ export class SaleorState extends NamedObservable<StateItems> {
     }
     if (!LocalStorageHandler.getCheckout()?.id) {
       // console.log("create checkout 2", LocalStorageHandler.getCheckout()?.id);
-      const { data } = await this.jobsManager.run(
-        "checkout",
-        "createCheckout",
-        {
-          billingAddress: dummyAddress,
-          email: dummyEmail,
-          lines: [],
-          shippingAddress: dummyAddress,
-        }
-      );
-
-      const { data: sData, dataError } = await this.jobsManager.run(
-        "checkout",
-        "setShippingAddress",
-        {
-          checkoutId: data.id,
-          email: dummyEmail,
-          shippingAddress: dummyAddress,
-        }
-      );
-      console.log(sData, dataError);
+      await this.jobsManager.run("checkout", "createCheckout", {
+        email: dummyEmail,
+        lines: [],
+      });
     }
     this.onSignInTokenVerifyingUpdate(false);
 
@@ -339,7 +305,6 @@ export class SaleorState extends NamedObservable<StateItems> {
       "getCashbackRecieveAmount",
       { token }
     );
-    console.log("getCashbackRecieveAmount", data, dataError);
     if (dataError) {
       return {
         error: {

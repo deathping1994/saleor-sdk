@@ -3,7 +3,10 @@ import {
   FunctionErrorCheckoutTypes,
 } from "../../api/Checkout/types";
 import { ApolloClientManager } from "../../data/ApolloClientManager";
-import { ICheckoutModel, LocalStorageHandler } from "../../helpers/LocalStorageHandler";
+import {
+  ICheckoutModel,
+  LocalStorageHandler,
+} from "../../helpers/LocalStorageHandler";
 import { JobRunResponse } from "../types";
 import {
   CompleteCheckoutJobInput,
@@ -39,12 +42,13 @@ class CheckoutJobs extends JobsHandler<{}> {
     this.localStorageHandler = localStorageHandler;
   }
 
-  setLocalCheckout = async (checkout: ICheckoutModel): PromiseCheckoutJobRunResponse => {
-  
-   const res=  this.localStorageHandler.setCheckout(checkout);
+  setLocalCheckout = async (
+    checkout: ICheckoutModel
+  ): PromiseCheckoutJobRunResponse => {
+    const res = this.localStorageHandler.setCheckout(checkout);
 
     return {
-      data:res,
+      data: res,
     };
   };
 
@@ -175,7 +179,6 @@ class CheckoutJobs extends JobsHandler<{}> {
         },
       };
     }
-    console.log("data s", data);
 
     this.localStorageHandler.setCheckout({
       ...checkout,
@@ -185,9 +188,6 @@ class CheckoutJobs extends JobsHandler<{}> {
       selectedShippingAddressId,
       shippingAddress: data?.shippingAddress,
     });
-
-    const checkout2 = LocalStorageHandler.getCheckout();
-    console.log("data s", checkout2);
 
     return { data };
   };
@@ -213,19 +213,14 @@ class CheckoutJobs extends JobsHandler<{}> {
         },
       };
     }
-    console.log("data b", data);
 
     this.localStorageHandler.setCheckout({
       ...checkout,
       availablePaymentGateways: data?.availablePaymentGateways,
       billingAddress: data?.billingAddress,
       billingAsShipping: !!billingAsShipping,
-      email: data?.email,
       selectedBillingAddressId,
-      shippingAddress: data?.shippingAddress,
     });
-    const checkout2 = LocalStorageHandler.getCheckout();
-    console.log("data b", checkout2);
     return { data };
   };
 

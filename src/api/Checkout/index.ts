@@ -7,12 +7,7 @@ import {
   LocalStorageHandler,
 } from "../../helpers/LocalStorageHandler";
 import { JobsManager } from "../../jobs";
-import {
-  dummyAddress,
-  dummyEmail,
-  SaleorState,
-  SaleorStateLoaded,
-} from "../../state";
+import { dummyEmail, SaleorState, SaleorStateLoaded } from "../../state";
 import { StateItems } from "../../state/types";
 
 import { PromiseRunResponse } from "../types";
@@ -143,10 +138,8 @@ export class SaleorCheckoutAPI extends ErrorListener {
       "checkout",
       "createCheckout",
       {
-        billingAddress: dummyAddress,
         email: dummyEmail,
         lines: [],
-        shippingAddress: dummyAddress,
       }
     );
     return {
@@ -222,6 +215,81 @@ export class SaleorCheckoutAPI extends ErrorListener {
         pending: false,
       };
     }
+    return {
+      functionError: {
+        error: new Error(
+          "You need to add items to cart before setting shipping address."
+        ),
+        type: FunctionErrorCheckoutTypes.ITEMS_NOT_ADDED_TO_CART,
+      },
+      pending: false,
+    };
+  };
+
+  setShippingAndBillingAddress = async (
+    shippingAddress: IAddress,
+    email: string
+  ): CheckoutResponse => {
+    const checkoutId = this.saleorState.checkout?.id;
+    const alteredLines = this.saleorState.checkout?.lines?.map(item => ({
+      quantity: item!.quantity,
+      variantId: item?.variant!.id,
+    }));
+
+    if (alteredLines && checkoutId) {
+      const {
+        data: shippingData,
+        dataError: shippingDataError,
+      } = await this.jobsManager.run("checkout", "setShippingAddress", {
+        checkoutId,
+        email,
+        selectedShippingAddressId: shippingAddress.id,
+        shippingAddress,
+      });
+
+      await this.jobsManager.run("auth", "provideUser", undefined);
+
+      const {
+        data: billingData,
+        dataError: billingDataError,
+      } = await this.jobsManager.run("checkout", "setBillingAddress", {
+        billingAddress: shippingAddress,
+        billingAsShipping: false,
+        checkoutId,
+        selectedBillingAddressId: shippingAddress.id,
+      });
+      const dataError = shippingDataError || billingDataError;
+      return {
+        data: {
+          billingData,
+          shippingData,
+        },
+        dataError,
+        pending: false,
+      };
+    }
+    if (alteredLines) {
+      const { data, dataError } = await this.jobsManager.run(
+        "checkout",
+        "createCheckout",
+        {
+          billingAddress: shippingAddress,
+          email,
+          lines: alteredLines,
+          selectedShippingAddressId: shippingAddress.id,
+          shippingAddress,
+        }
+      );
+
+      await this.jobsManager.run("auth", "provideUser", undefined);
+
+      return {
+        data,
+        dataError,
+        pending: false,
+      };
+    }
+
     return {
       functionError: {
         error: new Error(
