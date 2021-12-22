@@ -250,36 +250,46 @@ export class SaleorState extends NamedObservable<StateItems> {
 
   private onCheckoutUpdate = (checkout?: ICheckoutModel) => {
     this.checkout = checkout;
-    console.log("onCheckoutUpdate", checkout);
-    this.notifyChange(StateItems.CHECKOUT, this.checkout);
+    console.log(
+      "onCheckoutUpdate",
+      checkout,
+      checkout?.lines?.filter(line => line.variant?.sku).length
+    );
+    if (
+      checkout?.lines?.filter(line => line.variant?.sku).length ===
+      checkout?.lines?.length
+    ) {
+      this.calculateSummaryPrices(checkout)
+        .then(res => {
+          console.log("promise resolved");
+          console.log(res);
+          this.summaryPrices = res;
+          console.log("summary prices", this.summaryPrices);
 
-    this.calculateSummaryPrices(checkout)
-      .then(res => {
-        console.log("promise resolved");
-        console.log(res);
-        this.summaryPrices = res;
-        console.log("summary prices", this.summaryPrices);
+          console.log("in then promise checkout", checkout);
+          const checkoutWithSummaryPrices = {
+            checkout: this.checkout,
+            summaryPrices: this.summaryPrices,
+          };
+          console.log(
+            "in then promise checkoutWithSummaryPrices",
+            checkoutWithSummaryPrices
+          );
 
-        console.log("in then promise checkout", checkout);
-        const checkoutWithSummaryPrices = {
-          checkout: this.checkout,
-          summaryPrices: this.summaryPrices,
-        };
-        console.log(
-          "in then promise checkoutWithSummaryPrices",
-          checkoutWithSummaryPrices
-        );
+          this.notifyChange(
+            StateItems.SUMMARY_PRICES,
+            checkoutWithSummaryPrices
+          );
+        })
+        .finally(() => {
+          console.log("in finally promise checkout", checkout);
 
-        this.notifyChange(StateItems.SUMMARY_PRICES, checkoutWithSummaryPrices);
-      })
-      .finally(() => {
-        console.log("in finally promise checkout", checkout);
-
-        this.onLoadedUpdate({
-          checkout: true,
-          summaryPrices: true,
+          this.onLoadedUpdate({
+            checkout: true,
+            summaryPrices: true,
+          });
         });
-      });
+    }
   };
 
   private onWishlistUpdate = (wishlist?: IWishlistModel) => {
