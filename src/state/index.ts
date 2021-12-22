@@ -250,6 +250,8 @@ export class SaleorState extends NamedObservable<StateItems> {
 
   private onCheckoutUpdate = (checkout?: ICheckoutModel) => {
     this.checkout = checkout;
+    this.notifyChange(StateItems.CHECKOUT, this.checkout);
+
     this.calculateSummaryPrices(checkout)
       .then(res => {
         // console.log("promise resolved");
@@ -258,11 +260,13 @@ export class SaleorState extends NamedObservable<StateItems> {
         // console.log("summary prices", this.summaryPrices);
 
         // console.log("in then promise", this.summaryPrices);
-        this.notifyChange(StateItems.SUMMARY_PRICES, this.summaryPrices);
+        const checkoutWithSummaryPrices = {
+          checkout: this.checkout,
+          summaryPrices: this.summaryPrices,
+        };
+        this.notifyChange(StateItems.SUMMARY_PRICES, checkoutWithSummaryPrices);
       })
       .finally(() => {
-        // console.log("in finally");
-        this.notifyChange(StateItems.CHECKOUT, this.checkout);
         this.onLoadedUpdate({
           checkout: true,
           summaryPrices: true,
@@ -354,17 +358,7 @@ export class SaleorState extends NamedObservable<StateItems> {
         !freeGiftProductsRegex.test(line.variant.product?.category?.slug)
     );
 
-    // const data1: Array<
-    //   | {
-    //       couponDiscount: any;
-    //       prepaidDiscount: any;
-    //     }
-    //   | undefined
-    // > = [];
-
     if (items && items.length && items[0].quantity > 0) {
-      // console.log(checkout?.token);
-
       const { data, error } =
         checkout?.token &&
         (await this.getCouponPrepaidDiscount(checkout?.token));
@@ -372,8 +366,6 @@ export class SaleorState extends NamedObservable<StateItems> {
       const { data: cashbackRecieveData, error: cashbackRecieveError } =
         checkout?.token &&
         (await this.getCashbackRecieveAmount(checkout?.token));
-      // console.log(data);
-      // console.log(data?.prepaidDiscount);
 
       const prepaidAmount = error
         ? 0
@@ -384,9 +376,6 @@ export class SaleorState extends NamedObservable<StateItems> {
       const cashbackRecieveAmount = cashbackRecieveError
         ? 0
         : round(parseFloat(cashbackRecieveData?.cashbackRecieve), 2);
-      // const cashbackRecieveAmount = cashbackRecieveData.cashbackRecieve;
-      // console.log({ prepaidAmount });
-      // const couponAmount = data?.couponDiscount;
 
       const shippingMethod = checkout?.shippingMethod;
       const promoCodeDiscount = checkout?.promoCodeDiscount?.discount;

@@ -84,7 +84,11 @@ export class SaleorCartAPI extends ErrorListener {
     );
     this.saleorState.subscribeToChange(
       StateItems.SUMMARY_PRICES,
-      (summaryPrices: ISaleorStateSummeryPrices) => {
+
+      (checkoutWithSummaryPrices: {
+        summaryPrices: ISaleorStateSummeryPrices;
+        checkout: ICheckoutModel;
+      }) => {
         const {
           totalPrice,
           subtotalPrice,
@@ -97,7 +101,7 @@ export class SaleorCartAPI extends ErrorListener {
           prepaidDiscount,
           cashbackDiscount,
           cashbackRecieve,
-        } = summaryPrices || {};
+        } = checkoutWithSummaryPrices.summaryPrices || {};
         this.totalPrice = totalPrice;
         this.subtotalPrice = subtotalPrice;
         this.shippingPrice = shippingPrice;
@@ -109,6 +113,9 @@ export class SaleorCartAPI extends ErrorListener {
         this.prepaidDiscount = prepaidDiscount;
         this.cashbackDiscount = cashbackDiscount;
         this.cashbackRecieve = cashbackRecieve;
+        this.items = checkoutWithSummaryPrices.checkout?.lines
+          ?.filter(line => line.quantity > 0)
+          .sort(sortCheckoutLines);
       }
     );
     this.saleorState.subscribeToChange(
