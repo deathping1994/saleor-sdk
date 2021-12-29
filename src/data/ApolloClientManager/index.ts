@@ -1337,6 +1337,7 @@ export class ApolloClientManager {
     paymentData,
     redirectUrl,
     storeSource,
+    context,
   }: CompleteCheckoutInput) => {
     try {
       const paymentDataString = paymentData && JSON.stringify(paymentData);
@@ -1345,6 +1346,7 @@ export class ApolloClientManager {
         CompleteCheckout,
         CompleteCheckoutVariables
       >({
+        context,
         mutation: CheckoutMutations.completeCheckoutMutation,
         variables: {
           checkoutId,

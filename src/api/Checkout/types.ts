@@ -94,4 +94,5 @@ export interface CompleteCheckoutInput {
   paymentData?: object;
   redirectUrl?: string;
   storeSource?: boolean;
+  context?: any;
 }

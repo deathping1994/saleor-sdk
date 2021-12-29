@@ -45,6 +45,7 @@ export interface CheckoutPaymentUpdateInput {
 }
 export interface CompleteCheckoutInput {
   checkoutId: string;
+  context?: any;
   paymentData?: object;
   redirectUrl?: string;
   storeSource?: boolean;

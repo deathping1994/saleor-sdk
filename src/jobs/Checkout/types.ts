@@ -62,6 +62,7 @@ export interface CreatePaymentJobInput {
 
 export interface CompleteCheckoutJobInput {
   checkoutId: string;
+  context?: any;
   paymentData?: object;
   redirectUrl?: string;
   storeSource?: boolean;

@@ -478,9 +478,11 @@ class CheckoutJobs extends JobsHandler<{}> {
     paymentData,
     redirectUrl,
     storeSource,
+    context,
   }: CompleteCheckoutJobInput): PromiseCheckoutJobRunResponse => {
     const { data, error } = await this.apolloClientManager.completeCheckout({
       checkoutId,
+      context,
       paymentData,
       redirectUrl,
       storeSource,
