@@ -85,32 +85,15 @@ export class SaleorCartAPI extends ErrorListener {
     this.saleorState.subscribeToChange(
       StateItems.SUMMARY_PRICES,
       (summaryPrices: ISaleorStateSummeryPrices) => {
-        const {
-          totalPrice,
-          subtotalPrice,
-          shippingPrice,
-          discount,
-          mrp,
-          netPrice,
-          itemDiscount,
-          offerDiscount,
-          prepaidDiscount,
-          cashbackDiscount,
-          cashbackRecieve,
-        } = summaryPrices || {};
+        const { totalPrice, subtotalPrice, shippingPrice, discount } =
+          summaryPrices || {};
         this.totalPrice = totalPrice;
         this.subtotalPrice = subtotalPrice;
         this.shippingPrice = shippingPrice;
         this.discount = discount;
-        this.mrp = mrp;
-        this.netPrice = netPrice;
-        this.itemDiscount = itemDiscount;
-        this.offerDiscount = offerDiscount;
-        this.prepaidDiscount = prepaidDiscount;
-        this.cashbackDiscount = cashbackDiscount;
-        this.cashbackRecieve = cashbackRecieve;
       }
     );
+
     this.saleorState.subscribeToChange(
       StateItems.LOADED,
       (loaded: SaleorStateLoaded) => {

@@ -1,3 +1,4 @@
+import round from "lodash/round";
 import { ApolloClientManager } from "../data/ApolloClientManager";
 import { PaymentGateway } from "../fragments/gqlTypes/PaymentGateway";
 import { User } from "../fragments/gqlTypes/User";
@@ -248,6 +249,13 @@ export class SaleorState extends NamedObservable<StateItems> {
 
   private onCheckoutUpdate = (checkout?: ICheckoutModel) => {
     this.checkout = checkout;
+    this.summaryPrices = SaleorState.calculateSummaryPrices(checkout);
+    this.notifyChange(StateItems.CHECKOUT, this.checkout);
+    this.notifyChange(StateItems.SUMMARY_PRICES, this.summaryPrices);
+    this.onLoadedUpdate({
+      checkout: true,
+      summaryPrices: true,
+    });
   };
 
   private onWishlistUpdate = (wishlist?: IWishlistModel) => {
@@ -262,6 +270,84 @@ export class SaleorState extends NamedObservable<StateItems> {
       payment: true,
     });
   };
+
+  private static calculateSummaryPrices(
+    checkout?: ICheckoutModel
+  ): ISaleorStateSummeryPrices {
+    const items = checkout?.lines;
+    const shippingMethod = checkout?.shippingMethod;
+    const promoCodeDiscount = checkout?.promoCodeDiscount?.discount;
+
+    if (items && items.length) {
+      const firstItemTotalPrice = items[0].totalPrice;
+
+      if (firstItemTotalPrice) {
+        const shippingPrice = {
+          ...shippingMethod?.price,
+          amount: shippingMethod?.price?.amount || 0,
+          currency:
+            shippingMethod?.price?.currency ||
+            firstItemTotalPrice.gross.currency,
+        };
+
+        const itemsNetPrice = items.reduce(
+          (accumulatorPrice, line) =>
+            accumulatorPrice + (line.totalPrice?.net.amount || 0),
+          0
+        );
+        const itemsGrossPrice = items.reduce(
+          (accumulatorPrice, line) =>
+            accumulatorPrice + (line.totalPrice?.gross?.amount || 0),
+          0
+        );
+
+        const subtotalPrice = {
+          ...firstItemTotalPrice,
+          gross: {
+            ...firstItemTotalPrice.gross,
+            amount: round(itemsGrossPrice, 2),
+          },
+          net: {
+            ...firstItemTotalPrice.net,
+            amount: round(itemsNetPrice, 2),
+          },
+        };
+
+        const discount = {
+          ...promoCodeDiscount,
+          amount: promoCodeDiscount?.amount || 0,
+          currency:
+            promoCodeDiscount?.currency || firstItemTotalPrice.gross.currency,
+        };
+
+        const totalPrice = {
+          ...subtotalPrice,
+          gross: {
+            ...subtotalPrice.gross,
+            amount: round(
+              itemsGrossPrice + shippingPrice.amount - discount.amount,
+              2
+            ),
+          },
+          net: {
+            ...subtotalPrice.net,
+            amount: round(
+              itemsNetPrice + shippingPrice.amount - discount.amount,
+              2
+            ),
+          },
+        };
+
+        return {
+          discount,
+          shippingPrice,
+          subtotalPrice,
+          totalPrice,
+        };
+      }
+    }
+    return {};
+  }
 
   // private getCouponPrepaidDiscount = async (token: any) => {
   //   // console.log({ token });
