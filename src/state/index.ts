@@ -1,5 +1,3 @@
-import round from "lodash/round";
-
 import { ApolloClientManager } from "../data/ApolloClientManager";
 import { PaymentGateway } from "../fragments/gqlTypes/PaymentGateway";
 import { User } from "../fragments/gqlTypes/User";
@@ -265,265 +263,265 @@ export class SaleorState extends NamedObservable<StateItems> {
     });
   };
 
-  private getCouponPrepaidDiscount = async (token: any) => {
-    // console.log({ token });
-    const { data, dataError } = await this.jobsManager.run(
-      "checkout",
-      "getCheckoutDiscounts",
-      { token }
-    );
+  // private getCouponPrepaidDiscount = async (token: any) => {
+  //   // console.log({ token });
+  //   const { data, dataError } = await this.jobsManager.run(
+  //     "checkout",
+  //     "getCheckoutDiscounts",
+  //     { token }
+  //   );
 
-    // console.log("in getCouponPrepaidDiscount", { data, dataError });
+  //   // console.log("in getCouponPrepaidDiscount", { data, dataError });
 
-    if (dataError) {
-      return {
-        error: {
-          dataError,
-        },
-      };
-    }
-    if (data && data.checkoutDiscounts)
-      return {
-        data: {
-          cashbackDiscount: data.checkoutDiscounts.cashbackDiscout || 0,
-          couponDiscount: data.checkoutDiscounts.couponDiscount || 0,
-          prepaidDiscount: data.checkoutDiscounts.prepaidDiscount || 0,
-        },
-      };
-    return {
-      data: {
-        cashbackDiscount: 0,
-        couponDiscount: 0,
-        prepaidDiscount: 0,
-      },
-    };
-  };
+  //   if (dataError) {
+  //     return {
+  //       error: {
+  //         dataError,
+  //       },
+  //     };
+  //   }
+  //   if (data && data.checkoutDiscounts)
+  //     return {
+  //       data: {
+  //         cashbackDiscount: data.checkoutDiscounts.cashbackDiscout || 0,
+  //         couponDiscount: data.checkoutDiscounts.couponDiscount || 0,
+  //         prepaidDiscount: data.checkoutDiscounts.prepaidDiscount || 0,
+  //       },
+  //     };
+  //   return {
+  //     data: {
+  //       cashbackDiscount: 0,
+  //       couponDiscount: 0,
+  //       prepaidDiscount: 0,
+  //     },
+  //   };
+  // };
 
-  private getCashbackRecieveAmount = async (token: any) => {
-    const { data, dataError } = await this.jobsManager.run(
-      "checkout",
-      "getCashbackRecieveAmount",
-      { token }
-    );
-    if (dataError) {
-      return {
-        error: {
-          dataError,
-        },
-      };
-    }
-    if (data && data.cashback)
-      return {
-        data: {
-          cashbackRecieve: data.cashback.amount || 0,
-        },
-      };
-    return {
-      data: {
-        cashbackRecieve: 0,
-      },
-    };
-  };
+  // private getCashbackRecieveAmount = async (token: any) => {
+  //   const { data, dataError } = await this.jobsManager.run(
+  //     "checkout",
+  //     "getCashbackRecieveAmount",
+  //     { token }
+  //   );
+  //   if (dataError) {
+  //     return {
+  //       error: {
+  //         dataError,
+  //       },
+  //     };
+  //   }
+  //   if (data && data.cashback)
+  //     return {
+  //       data: {
+  //         cashbackRecieve: data.cashback.amount || 0,
+  //       },
+  //     };
+  //   return {
+  //     data: {
+  //       cashbackRecieve: 0,
+  //     },
+  //   };
+  // };
 
-  private async calculateSummaryPrices(
-    checkout?: ICheckoutModel
-  ): Promise<ISaleorStateSummeryPrices> {
-    const freeGiftProductsRegex = /free-gift-products(-[0-9])*/;
+  // private async calculateSummaryPrices(
+  //   checkout?: ICheckoutModel
+  // ): Promise<ISaleorStateSummeryPrices> {
+  //   const freeGiftProductsRegex = /free-gift-products(-[0-9])*/;
 
-    const items = checkout?.lines?.filter(
-      line =>
-        line.variant.product?.category?.slug &&
-        !freeGiftProductsRegex.test(line.variant.product?.category?.slug)
-    );
+  //   const items = checkout?.lines?.filter(
+  //     line =>
+  //       line.variant.product?.category?.slug &&
+  //       !freeGiftProductsRegex.test(line.variant.product?.category?.slug)
+  //   );
 
-    // const data1: Array<
-    //   | {
-    //       couponDiscount: any;
-    //       prepaidDiscount: any;
-    //     }
-    //   | undefined
-    // > = [];
+  //   // const data1: Array<
+  //   //   | {
+  //   //       couponDiscount: any;
+  //   //       prepaidDiscount: any;
+  //   //     }
+  //   //   | undefined
+  //   // > = [];
 
-    if (items && items.length && items[0].quantity > 0) {
-      // console.log(checkout?.token);
+  //   if (items && items.length && items[0].quantity > 0) {
+  //     // console.log(checkout?.token);
 
-      const { data, error } =
-        checkout?.token &&
-        (await this.getCouponPrepaidDiscount(checkout?.token));
+  //     const { data, error } =
+  //       checkout?.token &&
+  //       (await this.getCouponPrepaidDiscount(checkout?.token));
 
-      const { data: cashbackRecieveData, error: cashbackRecieveError } =
-        checkout?.token &&
-        (await this.getCashbackRecieveAmount(checkout?.token));
-      // console.log(data);
-      // console.log(data?.prepaidDiscount);
+  //     const { data: cashbackRecieveData, error: cashbackRecieveError } =
+  //       checkout?.token &&
+  //       (await this.getCashbackRecieveAmount(checkout?.token));
+  //     // console.log(data);
+  //     // console.log(data?.prepaidDiscount);
 
-      const prepaidAmount = error
-        ? 0
-        : round(parseFloat(data?.prepaidDiscount), 2);
-      const cashbackAmount = error
-        ? 0
-        : round(parseFloat(data?.cashbackDiscount), 2);
-      const cashbackRecieveAmount = cashbackRecieveError
-        ? 0
-        : round(parseFloat(cashbackRecieveData?.cashbackRecieve), 2);
-      // const cashbackRecieveAmount = cashbackRecieveData.cashbackRecieve;
-      // console.log({ prepaidAmount });
-      // const couponAmount = data?.couponDiscount;
+  //     const prepaidAmount = error
+  //       ? 0
+  //       : round(parseFloat(data?.prepaidDiscount), 2);
+  //     const cashbackAmount = error
+  //       ? 0
+  //       : round(parseFloat(data?.cashbackDiscount), 2);
+  //     const cashbackRecieveAmount = cashbackRecieveError
+  //       ? 0
+  //       : round(parseFloat(cashbackRecieveData?.cashbackRecieve), 2);
+  //     // const cashbackRecieveAmount = cashbackRecieveData.cashbackRecieve;
+  //     // console.log({ prepaidAmount });
+  //     // const couponAmount = data?.couponDiscount;
 
-      const shippingMethod = checkout?.shippingMethod;
-      const promoCodeDiscount = checkout?.promoCodeDiscount?.discount;
-      const firstItemTotalPrice = items[0].totalPrice;
-      const firstItemMrpAmount =
-        items[0].variant.product?.metadata.filter(
-          metaitem => metaitem?.key === "listprice"
-        )[0]?.value ||
-        items[0].variant.pricing?.priceUndiscounted?.gross.amount;
+  //     const shippingMethod = checkout?.shippingMethod;
+  //     const promoCodeDiscount = checkout?.promoCodeDiscount?.discount;
+  //     const firstItemTotalPrice = items[0].totalPrice;
+  //     const firstItemMrpAmount =
+  //       items[0].variant.product?.metadata.filter(
+  //         metaitem => metaitem?.key === "listprice"
+  //       )[0]?.value ||
+  //       items[0].variant.pricing?.priceUndiscounted?.gross.amount;
 
-      const firstItemMrp = { amount: firstItemMrpAmount, currency: "INR" };
+  //     const firstItemMrp = { amount: firstItemMrpAmount, currency: "INR" };
 
-      if (firstItemTotalPrice) {
-        const shippingPrice = {
-          ...shippingMethod?.price,
-          amount: shippingMethod?.price?.amount || 0,
-          currency:
-            shippingMethod?.price?.currency ||
-            firstItemTotalPrice.gross.currency,
-        };
+  //     if (firstItemTotalPrice) {
+  //       const shippingPrice = {
+  //         ...shippingMethod?.price,
+  //         amount: shippingMethod?.price?.amount || 0,
+  //         currency:
+  //           shippingMethod?.price?.currency ||
+  //           firstItemTotalPrice.gross.currency,
+  //       };
 
-        const itemsNetPrice = items.reduce(
-          (accumulatorPrice, line) =>
-            accumulatorPrice + (line.totalPrice?.net.amount || 0),
-          0
-        );
-        const itemsGrossPrice = items.reduce(
-          (accumulatorPrice, line) =>
-            accumulatorPrice + (line.totalPrice?.gross?.amount || 0),
-          0
-        );
+  //       const itemsNetPrice = items.reduce(
+  //         (accumulatorPrice, line) =>
+  //           accumulatorPrice + (line.totalPrice?.net.amount || 0),
+  //         0
+  //       );
+  //       const itemsGrossPrice = items.reduce(
+  //         (accumulatorPrice, line) =>
+  //           accumulatorPrice + (line.totalPrice?.gross?.amount || 0),
+  //         0
+  //       );
 
-        const itemsMrp = items.reduce(
-          (accumulatorPrice, line) =>
-            accumulatorPrice +
-            (parseInt(
-              line.variant.product?.metadata.filter(
-                metaitem => metaitem?.key === "listPrice"
-              )[0]?.value!,
-              10
-            ) ||
-              line.variant.pricing?.priceUndiscounted?.gross.amount ||
-              0) *
-              line.quantity,
-          0
-        );
+  //       const itemsMrp = items.reduce(
+  //         (accumulatorPrice, line) =>
+  //           accumulatorPrice +
+  //           (parseInt(
+  //             line.variant.product?.metadata.filter(
+  //               metaitem => metaitem?.key === "listPrice"
+  //             )[0]?.value!,
+  //             10
+  //           ) ||
+  //             line.variant.pricing?.priceUndiscounted?.gross.amount ||
+  //             0) *
+  //             line.quantity,
+  //         0
+  //       );
 
-        const itemsMyNetPrice = items.reduce(
-          (accumulatorPrice, line) =>
-            accumulatorPrice +
-            (line.variant.pricing?.priceUndiscounted?.gross.amount || 0) *
-              line.quantity,
-          0
-        );
+  //       const itemsMyNetPrice = items.reduce(
+  //         (accumulatorPrice, line) =>
+  //           accumulatorPrice +
+  //           (line.variant.pricing?.priceUndiscounted?.gross.amount || 0) *
+  //             line.quantity,
+  //         0
+  //       );
 
-        const discount = {
-          ...promoCodeDiscount,
-          amount: promoCodeDiscount?.amount || 0,
-          currency:
-            promoCodeDiscount?.currency || firstItemTotalPrice.gross.currency,
-        };
+  //       const discount = {
+  //         ...promoCodeDiscount,
+  //         amount: promoCodeDiscount?.amount || 0,
+  //         currency:
+  //           promoCodeDiscount?.currency || firstItemTotalPrice.gross.currency,
+  //       };
 
-        const subtotalPrice = {
-          ...firstItemTotalPrice,
-          gross: {
-            ...firstItemTotalPrice.gross,
-            amount: round(
-              itemsGrossPrice -
-                discount.amount +
-                prepaidAmount +
-                cashbackAmount,
-              2
-            ),
-          },
-          net: {
-            ...firstItemTotalPrice.net,
-            amount: round(
-              itemsNetPrice - discount.amount + prepaidAmount + cashbackAmount,
-              2
-            ),
-          },
-        };
+  //       const subtotalPrice = {
+  //         ...firstItemTotalPrice,
+  //         gross: {
+  //           ...firstItemTotalPrice.gross,
+  //           amount: round(
+  //             itemsGrossPrice -
+  //               discount.amount +
+  //               prepaidAmount +
+  //               cashbackAmount,
+  //             2
+  //           ),
+  //         },
+  //         net: {
+  //           ...firstItemTotalPrice.net,
+  //           amount: round(
+  //             itemsNetPrice - discount.amount + prepaidAmount + cashbackAmount,
+  //             2
+  //           ),
+  //         },
+  //       };
 
-        const totalPrice = {
-          ...subtotalPrice,
-          gross: {
-            ...subtotalPrice.gross,
-            amount: round(
-              itemsGrossPrice + shippingPrice.amount - discount.amount,
-              2
-            ),
-          },
-          net: {
-            ...subtotalPrice.net,
-            amount: round(
-              itemsNetPrice + shippingPrice.amount - discount.amount,
-              2
-            ),
-          },
-        };
+  //       const totalPrice = {
+  //         ...subtotalPrice,
+  //         gross: {
+  //           ...subtotalPrice.gross,
+  //           amount: round(
+  //             itemsGrossPrice + shippingPrice.amount - discount.amount,
+  //             2
+  //           ),
+  //         },
+  //         net: {
+  //           ...subtotalPrice.net,
+  //           amount: round(
+  //             itemsNetPrice + shippingPrice.amount - discount.amount,
+  //             2
+  //           ),
+  //         },
+  //       };
 
-        const mrp = {
-          ...firstItemMrp,
-          amount: round(itemsMrp, 2),
-        };
+  //       const mrp = {
+  //         ...firstItemMrp,
+  //         amount: round(itemsMrp, 2),
+  //       };
 
-        const netPrice = {
-          amount: itemsMyNetPrice,
-          currency: "INR",
-        };
+  //       const netPrice = {
+  //         amount: itemsMyNetPrice,
+  //         currency: "INR",
+  //       };
 
-        const itemDiscount = {
-          amount: mrp.amount - netPrice.amount,
-          currency: "INR",
-        };
+  //       const itemDiscount = {
+  //         amount: mrp.amount - netPrice.amount,
+  //         currency: "INR",
+  //       };
 
-        const offerDiscount = {
-          amount: netPrice.amount - subtotalPrice.net.amount,
-          currency: "INR",
-        };
+  //       const offerDiscount = {
+  //         amount: netPrice.amount - subtotalPrice.net.amount,
+  //         currency: "INR",
+  //       };
 
-        const prepaidDiscount = {
-          amount: prepaidAmount,
-          currency: "INR",
-        };
+  //       const prepaidDiscount = {
+  //         amount: prepaidAmount,
+  //         currency: "INR",
+  //       };
 
-        const cashbackDiscount = {
-          amount: cashbackAmount,
-          currency: "INR",
-        };
+  //       const cashbackDiscount = {
+  //         amount: cashbackAmount,
+  //         currency: "INR",
+  //       };
 
-        const cashbackRecieve = {
-          amount: cashbackRecieveAmount,
-          currency: "INR",
-        };
+  //       const cashbackRecieve = {
+  //         amount: cashbackRecieveAmount,
+  //         currency: "INR",
+  //       };
 
-        // console.log({ prepaidDiscount });
+  //       // console.log({ prepaidDiscount });
 
-        return new Promise(resolve => {
-          resolve({
-            cashbackDiscount,
-            cashbackRecieve,
-            discount,
-            itemDiscount,
-            mrp,
-            netPrice,
-            offerDiscount,
-            prepaidDiscount,
-            shippingPrice,
-            subtotalPrice,
-            totalPrice,
-          });
-        });
-      }
-    }
-    return {};
-  }
+  //       return new Promise(resolve => {
+  //         resolve({
+  //           cashbackDiscount,
+  //           cashbackRecieve,
+  //           discount,
+  //           itemDiscount,
+  //           mrp,
+  //           netPrice,
+  //           offerDiscount,
+  //           prepaidDiscount,
+  //           shippingPrice,
+  //           subtotalPrice,
+  //           totalPrice,
+  //         });
+  //       });
+  //     }
+  //   }
+  //   return {};
+  // }
 }
