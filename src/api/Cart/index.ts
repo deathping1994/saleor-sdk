@@ -124,25 +124,25 @@ export class SaleorCartAPI extends ErrorListener {
     this.localStorageManager.addItemToCart(variantId, quantity);
 
     // 2. save online if possible (if checkout id available)
-    if (this.saleorState.checkout?.lines) {
-      const {
-        data,
-        error,
-      } = await this.apolloClientManager.getRefreshedCheckoutLines(
-        this.saleorState.checkout.lines
-      );
+    // if (this.saleorState.checkout?.lines) {
+    //   const {
+    //     data,
+    //     error,
+    //   } = await this.apolloClientManager.getRefreshedCheckoutLines(
+    //     this.saleorState.checkout.lines
+    //   );
 
-      // console.log("in sdk", data);
+    //   // console.log("in sdk", data);
 
-      if (error) {
-        this.fireError(error, ErrorCartTypes.SET_CART_ITEM);
-      } else {
-        this.localStorageManager.getHandler().setCheckout({
-          ...this.saleorState.checkout,
-          lines: data,
-        });
-      }
-    }
+    //   if (error) {
+    //     this.fireError(error, ErrorCartTypes.SET_CART_ITEM);
+    //   } else {
+    //     this.localStorageManager.getHandler().setCheckout({
+    //       ...this.saleorState.checkout,
+    //       lines: data,
+    //     });
+    //   }
+    // }
     if (this.saleorState.checkout?.id) {
       const { data, error } = await this.jobsManager.addToQueue(
         "cart",

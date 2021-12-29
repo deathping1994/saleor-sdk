@@ -250,24 +250,6 @@ export class SaleorState extends NamedObservable<StateItems> {
 
   private onCheckoutUpdate = (checkout?: ICheckoutModel) => {
     this.checkout = checkout;
-    this.calculateSummaryPrices(checkout)
-      .then(res => {
-        // console.log("promise resolved");
-        // console.log(res);
-        this.summaryPrices = res;
-        // console.log("summary prices", this.summaryPrices);
-
-        // console.log("in then promise", this.summaryPrices);
-        this.notifyChange(StateItems.SUMMARY_PRICES, this.summaryPrices);
-      })
-      .finally(() => {
-        // console.log("in finally");
-        this.notifyChange(StateItems.CHECKOUT, this.checkout);
-        this.onLoadedUpdate({
-          checkout: true,
-          summaryPrices: true,
-        });
-      });
   };
 
   private onWishlistUpdate = (wishlist?: IWishlistModel) => {
