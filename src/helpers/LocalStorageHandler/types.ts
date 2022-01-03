@@ -6,6 +6,7 @@ import {
   Checkout_lines_variant_product,
   Checkout_availablePaymentGateways,
   Checkout_lines_variant_metadata,
+  Checkout_lines_variant_images,
 } from "../../fragments/gqlTypes/Checkout";
 import { Payment_total } from "../../fragments/gqlTypes/Payment";
 import { IQueuedJobs } from "../../jobs/QueuedJobs";
@@ -39,6 +40,7 @@ export interface ICheckoutModelLineVariant {
   isAvailable?: boolean | null;
   attributes?: Checkout_lines_variant_attributes[];
   metadata?: (Checkout_lines_variant_metadata | null)[];
+  images?: (Checkout_lines_variant_images | null)[] | null;
 }
 
 export interface ICheckoutModelLine {
