@@ -225,4 +225,5 @@ export interface ConfirmAccountV2 {
 export interface ConfirmAccountV2Variables {
   otp: string;
   phone: string;
+  checkoutId?: string | null;
 }

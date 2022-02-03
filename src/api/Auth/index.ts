@@ -329,6 +329,7 @@ export class AuthAPI extends ErrorListener {
   };
 
   confirmAccountV2 = async (
+    checkoutId: string,
     otp: string,
     phone: string
     // autoSignIn: boolean
@@ -337,6 +338,7 @@ export class AuthAPI extends ErrorListener {
       "auth",
       "confirmAccountV2",
       {
+        checkoutId,
         otp,
         phone,
       }
