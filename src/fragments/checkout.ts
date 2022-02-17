@@ -153,6 +153,10 @@ export const checkoutFragment = gql`
     shippingAddress {
       ...Address
     }
+    metadata {
+      key
+      value
+    }
     email
     availableShippingMethods {
       ...ShippingMethod

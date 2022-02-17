@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { WeightUnitsEnum } from "./../../gqlTypes/globalTypes";
+import { WeightUnitsEnum } from "./../../../gqlTypes/globalTypes";
 
 // ====================================================
 // GraphQL fragment: Checkout
@@ -161,6 +161,18 @@ export interface Checkout_shippingAddress {
    * Address is user's default shipping address.
    */
   isDefaultShippingAddress: boolean | null;
+}
+
+export interface Checkout_metadata {
+  __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
+  key: string;
+  /**
+   * Value of a metadata item.
+   */
+  value: string;
 }
 
 export interface Checkout_availableShippingMethods_price {
@@ -637,6 +649,10 @@ export interface Checkout {
   subtotalPrice: Checkout_subtotalPrice | null;
   billingAddress: Checkout_billingAddress | null;
   shippingAddress: Checkout_shippingAddress | null;
+  /**
+   * List of public metadata items. Can be accessed without permissions.
+   */
+  metadata: (Checkout_metadata | null)[];
   /**
    * Email of a customer.
    */

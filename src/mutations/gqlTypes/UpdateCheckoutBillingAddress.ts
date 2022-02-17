@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { AddressInput, CheckoutErrorCode, WeightUnitsEnum } from "./../../gqlTypes/globalTypes";
+import { AddressInput, CheckoutErrorCode, WeightUnitsEnum } from "./../../../gqlTypes/globalTypes";
 
 // ====================================================
 // GraphQL mutation operation: UpdateCheckoutBillingAddress
@@ -178,6 +178,18 @@ export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
    * Address is user's default shipping address.
    */
   isDefaultShippingAddress: boolean | null;
+}
+
+export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_metadata {
+  __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
+  key: string;
+  /**
+   * Value of a metadata item.
+   */
+  value: string;
 }
 
 export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_availableShippingMethods_price {
@@ -654,6 +666,10 @@ export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
   subtotalPrice: UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_subtotalPrice | null;
   billingAddress: UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_billingAddress | null;
   shippingAddress: UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_shippingAddress | null;
+  /**
+   * List of public metadata items. Can be accessed without permissions.
+   */
+  metadata: (UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_metadata | null)[];
   /**
    * Email of a customer.
    */

@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { AddressInput, CheckoutErrorCode, WeightUnitsEnum } from "./../../gqlTypes/globalTypes";
+import { AddressInput, CheckoutErrorCode, WeightUnitsEnum } from "./../../../gqlTypes/globalTypes";
 
 // ====================================================
 // GraphQL mutation operation: UpdateCheckoutShippingAddress
@@ -178,6 +178,18 @@ export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_che
    * Address is user's default shipping address.
    */
   isDefaultShippingAddress: boolean | null;
+}
+
+export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_metadata {
+  __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
+  key: string;
+  /**
+   * Value of a metadata item.
+   */
+  value: string;
 }
 
 export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_availableShippingMethods_price {
@@ -655,6 +667,10 @@ export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_che
   billingAddress: UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_billingAddress | null;
   shippingAddress: UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_shippingAddress | null;
   /**
+   * List of public metadata items. Can be accessed without permissions.
+   */
+  metadata: (UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_metadata | null)[];
+  /**
    * Email of a customer.
    */
   email: string;
@@ -846,6 +862,18 @@ export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_ship
    * Address is user's default shipping address.
    */
   isDefaultShippingAddress: boolean | null;
+}
+
+export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_metadata {
+  __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
+  key: string;
+  /**
+   * Value of a metadata item.
+   */
+  value: string;
 }
 
 export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_availableShippingMethods_price {
@@ -1322,6 +1350,10 @@ export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout {
   subtotalPrice: UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_subtotalPrice | null;
   billingAddress: UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_billingAddress | null;
   shippingAddress: UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_shippingAddress | null;
+  /**
+   * List of public metadata items. Can be accessed without permissions.
+   */
+  metadata: (UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_metadata | null)[];
   /**
    * Email of a customer.
    */

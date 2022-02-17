@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { JobStatusEnum, WeightUnitsEnum } from "./../../gqlTypes/globalTypes";
+import { JobStatusEnum, WeightUnitsEnum } from "./../../../gqlTypes/globalTypes";
 
 // ====================================================
 // GraphQL query operation: OrdersByUser

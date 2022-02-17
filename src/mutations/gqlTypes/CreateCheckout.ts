@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { CheckoutCreateInput, CheckoutErrorCode, WeightUnitsEnum } from "./../../gqlTypes/globalTypes";
+import { CheckoutCreateInput, CheckoutErrorCode, WeightUnitsEnum } from "./../../../gqlTypes/globalTypes";
 
 // ====================================================
 // GraphQL mutation operation: CreateCheckout
@@ -178,6 +178,18 @@ export interface CreateCheckout_checkoutCreate_checkout_shippingAddress {
    * Address is user's default shipping address.
    */
   isDefaultShippingAddress: boolean | null;
+}
+
+export interface CreateCheckout_checkoutCreate_checkout_metadata {
+  __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
+  key: string;
+  /**
+   * Value of a metadata item.
+   */
+  value: string;
 }
 
 export interface CreateCheckout_checkoutCreate_checkout_availableShippingMethods_price {
@@ -654,6 +666,10 @@ export interface CreateCheckout_checkoutCreate_checkout {
   subtotalPrice: CreateCheckout_checkoutCreate_checkout_subtotalPrice | null;
   billingAddress: CreateCheckout_checkoutCreate_checkout_billingAddress | null;
   shippingAddress: CreateCheckout_checkoutCreate_checkout_shippingAddress | null;
+  /**
+   * List of public metadata items. Can be accessed without permissions.
+   */
+  metadata: (CreateCheckout_checkoutCreate_checkout_metadata | null)[];
   /**
    * Email of a customer.
    */

@@ -7,7 +7,7 @@ module.exports = {
     ],
     service: {
       name: "saleor",
-      url: "https://lotusstageapi.farziengineer.co/graphql/",
+      url: "https://wowfcapi.farziengineer.co/graphql/",
     },
   },
 };
