@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { PaymentInput, WeightUnitsEnum, PaymentErrorCode } from "./../../../gqlTypes/globalTypes";
+import { PaymentInput, WeightUnitsEnum, PaymentErrorCode } from "./../../gqlTypes/globalTypes";
 
 // ====================================================
 // GraphQL mutation operation: CreateCheckoutPayment

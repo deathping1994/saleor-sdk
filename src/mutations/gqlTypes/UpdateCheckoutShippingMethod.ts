@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { WeightUnitsEnum, CheckoutErrorCode } from "./../../../gqlTypes/globalTypes";
+import { WeightUnitsEnum, CheckoutErrorCode } from "./../../gqlTypes/globalTypes";
 
 // ====================================================
 // GraphQL mutation operation: UpdateCheckoutShippingMethod

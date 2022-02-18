@@ -137,10 +137,10 @@ import {
   ConfirmAccountV2,
   ConfirmAccountV2Variables,
 } from "../../mutations/gqlTypes/ConfirmAccountV2";
-import {
-  UserMetaDetails,
-  UserMetaDetailsVariables,
-} from "../../queries/gqlTypes/UserMetaDetails";
+// import {
+//   UserMetaDetails,
+//   UserMetaDetailsVariables,
+// } from "../../queries/gqlTypes/UserMetaDetails";
 
 export class ApolloClientManager {
   private client: ApolloClient<any>;
@@ -256,25 +256,25 @@ export class ApolloClientManager {
     };
   };
 
-  getUserMeta = async (id: string, companyId?: string, userType?: string) => {
-    const { data, errors } = await this.client.query<
-      UserMetaDetails,
-      UserMetaDetailsVariables
-    >({
-      fetchPolicy: "network-only",
-      query: UserQueries.getUserMetaDetailsQuery,
-      variables: { companyId, id, userType },
-    });
+  // getUserMeta = async (id: string, companyId?: string, userType?: string) => {
+  //   const { data, errors } = await this.client.query<
+  //     UserMetaDetails,
+  //     UserMetaDetailsVariables
+  //   >({
+  //     fetchPolicy: "network-only",
+  //     query: UserQueries.getUserMetaDetailsQuery,
+  //     variables: { companyId, id, userType },
+  //   });
 
-    if (errors?.length) {
-      return {
-        error: errors,
-      };
-    }
-    return {
-      data: data?.userMeta,
-    };
-  };
+  //   if (errors?.length) {
+  //     return {
+  //       error: errors,
+  //     };
+  //   }
+  //   return {
+  //     data: data?.userMeta,
+  //   };
+  // };
 
   registerAccount = async (
     email: string,
@@ -1388,12 +1388,12 @@ export class ApolloClientManager {
     discountName,
     voucherCode,
     lines,
+    metadata,
     availablePaymentGateways,
     availableShippingMethods,
     shippingMethod,
     subtotalPrice,
     totalPrice,
-    metadata,
   }: Checkout): ICheckoutModel => ({
     availablePaymentGateways,
     availableShippingMethods: availableShippingMethods
@@ -1425,6 +1425,7 @@ export class ApolloClientManager {
           },
         };
       }),
+    metadata,
     promoCodeDiscount: {
       discount,
       discountName,
@@ -1435,7 +1436,6 @@ export class ApolloClientManager {
     subtotalPrice,
     token,
     totalPrice,
-    metadata,
   });
 
   private constructPaymentModel = ({

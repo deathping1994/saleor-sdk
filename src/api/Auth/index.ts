@@ -119,21 +119,21 @@ export class AuthAPI extends ErrorListener {
     };
   };
 
-  getUserMeta = async (id: string, companyId?: string, userType?: string) => {
-    const { data, dataError } = await this.jobsManager.run(
-      "auth",
-      "provideUserMeta",
-      {
-        companyId,
-        id,
-        userType,
-      }
-    );
-    return {
-      data,
-      dataError,
-    };
-  };
+  // getUserMeta = async (id: string, companyId?: string, userType?: string) => {
+  //   const { data, dataError } = await this.jobsManager.run(
+  //     "auth",
+  //     "provideUserMeta",
+  //     {
+  //       companyId,
+  //       id,
+  //       userType,
+  //     }
+  //   );
+  //   return {
+  //     data,
+  //     dataError,
+  //   };
+  // };
 
   registerAccount = async (
     email: string,
