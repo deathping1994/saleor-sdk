@@ -82,6 +82,7 @@ export class SaleorCheckoutAPI extends ErrorListener {
           promoCodeDiscount,
           totalPrice,
           subtotalPrice,
+          metadata,
         } = checkout || {};
         this.checkout = {
           billingAddress,
@@ -92,6 +93,7 @@ export class SaleorCheckoutAPI extends ErrorListener {
           subtotalPrice,
           token,
           totalPrice,
+          metadata,
         };
         this.selectedShippingAddressId = selectedShippingAddressId;
         this.selectedBillingAddressId = selectedBillingAddressId;

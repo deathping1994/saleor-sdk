@@ -112,6 +112,18 @@ export interface IPaymentCreditCard {
   expYear?: number | null;
 }
 
+export interface Checkout_metadata {
+  __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
+  key: string;
+  /**
+   * Value of a metadata item.
+   */
+  value: string;
+}
+
 export interface ICheckoutModel {
   id?: string;
   token?: any;
@@ -128,6 +140,7 @@ export interface ICheckoutModel {
   shippingMethod?: ICheckoutModelShippingMethod | null;
   subtotalPrice?: ICheckoutModelPrice | null;
   totalPrice?: ICheckoutModelPrice | null;
+  metadata?: (Checkout_metadata | null)[];
 }
 
 export interface IPaymentModel {

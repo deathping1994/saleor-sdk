@@ -49,6 +49,18 @@ export interface IPayment {
   total?: Payment_total | null;
 }
 
+export interface Checkout_metadata {
+  __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
+  key: string;
+  /**
+   * Value of a metadata item.
+   */
+  value: string;
+}
+
 export interface ICheckout {
   id?: string;
   token: any;
@@ -58,6 +70,7 @@ export interface ICheckout {
   billingAddress?: IAddress | null;
   subtotalPrice: ICheckoutModelPrice | null | undefined;
   totalPrice: ICheckoutModelPrice | null | undefined;
+  metadata?: (Checkout_metadata | null)[];
 }
 
 export enum FunctionErrorCheckoutTypes {
