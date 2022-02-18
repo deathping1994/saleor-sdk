@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { WeightUnitsEnum } from "./../../gqlTypes/globalTypes";
+import { WeightUnitsEnum } from "./../../../gqlTypes/globalTypes";
 
 // ====================================================
 // GraphQL query operation: UserCheckoutDetails
@@ -617,6 +617,18 @@ export interface UserCheckoutDetails_me_checkout_availablePaymentGateways {
   currencies: (string | null)[];
 }
 
+export interface UserCheckoutDetails_me_checkout_metadata {
+  __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
+  key: string;
+  /**
+   * Value of a metadata item.
+   */
+  value: string;
+}
+
 export interface UserCheckoutDetails_me_checkout {
   __typename: "Checkout";
   /**
@@ -666,6 +678,10 @@ export interface UserCheckoutDetails_me_checkout {
    * List of available payment gateways.
    */
   availablePaymentGateways: UserCheckoutDetails_me_checkout_availablePaymentGateways[];
+  /**
+   * List of public metadata items. Can be accessed without permissions.
+   */
+  metadata: (UserCheckoutDetails_me_checkout_metadata | null)[];
 }
 
 export interface UserCheckoutDetails_me {

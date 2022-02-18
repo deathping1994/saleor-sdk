@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { CheckoutLineInput, WeightUnitsEnum, CheckoutErrorCode } from "./../../gqlTypes/globalTypes";
+import { CheckoutLineInput, WeightUnitsEnum, CheckoutErrorCode } from "./../../../gqlTypes/globalTypes";
 
 // ====================================================
 // GraphQL mutation operation: UpdateCheckoutLine
@@ -617,6 +617,18 @@ export interface UpdateCheckoutLine_checkoutLinesUpdate_checkout_availablePaymen
   currencies: (string | null)[];
 }
 
+export interface UpdateCheckoutLine_checkoutLinesUpdate_checkout_metadata {
+  __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
+  key: string;
+  /**
+   * Value of a metadata item.
+   */
+  value: string;
+}
+
 export interface UpdateCheckoutLine_checkoutLinesUpdate_checkout {
   __typename: "Checkout";
   /**
@@ -666,6 +678,10 @@ export interface UpdateCheckoutLine_checkoutLinesUpdate_checkout {
    * List of available payment gateways.
    */
   availablePaymentGateways: UpdateCheckoutLine_checkoutLinesUpdate_checkout_availablePaymentGateways[];
+  /**
+   * List of public metadata items. Can be accessed without permissions.
+   */
+  metadata: (UpdateCheckoutLine_checkoutLinesUpdate_checkout_metadata | null)[];
 }
 
 export interface UpdateCheckoutLine_checkoutLinesUpdate_errors {

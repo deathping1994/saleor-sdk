@@ -177,5 +177,9 @@ export const checkoutFragment = gql`
     availablePaymentGateways {
       ...PaymentGateway
     }
+    metadata {
+      key
+      value
+    }
   }
 `;
