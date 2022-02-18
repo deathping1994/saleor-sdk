@@ -38,6 +38,7 @@ export class CartQueuedJobs extends QueuedJobsHandler<ErrorCartTypes> {
           availablePaymentGateways: data.availablePaymentGateways,
           availableShippingMethods: data.availableShippingMethods,
           lines: data.lines,
+          metadata: data.metadata,
           promoCodeDiscount: data.promoCodeDiscount,
           shippingMethod: data.shippingMethod,
           subtotalPrice: data.subtotalPrice,

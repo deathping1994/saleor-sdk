@@ -76,6 +76,7 @@ class CheckoutJobs extends JobsHandler<{}> {
       billingAddress: data?.billingAddress,
       id: data?.id,
       lines: data?.lines,
+      metadata: data?.metadata,
       promoCodeDiscount: data?.promoCodeDiscount,
       shippingAddress: data?.shippingAddress,
       shippingMethod: data?.shippingMethod,
@@ -185,6 +186,7 @@ class CheckoutJobs extends JobsHandler<{}> {
       availableShippingMethods: data?.availableShippingMethods,
       billingAsShipping: true,
       email: data?.email,
+      metadata: data?.metadata,
       selectedShippingAddressId,
       shippingAddress: data?.shippingAddress,
     });
