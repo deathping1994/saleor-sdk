@@ -116,8 +116,8 @@ export const REGISTER_ACCOUNT = gql`
 
 export const CONFIRM_ACCOUNT = gql`
   ${userFragment}
-  mutation ConfirmAccountV2($otp: String!, $phone: String!) {
-    confirmAccountV2(otp: $otp, phone: $phone) {
+  mutation ConfirmAccountV2($otp: String!, $phone: String!, $checkoutId: ID) {
+    confirmAccountV2(otp: $otp, phone: $phone, checkoutId: $checkoutId) {
       token
       refreshToken
       csrfToken

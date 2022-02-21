@@ -446,7 +446,11 @@ export class ApolloClientManager {
     };
   };
 
-  confirmAccountV2 = async (otp: string, phone: string) => {
+  confirmAccountV2 = async (
+    checkoutId: string | undefined,
+    otp: string,
+    phone: string
+  ) => {
     const { data, errors } = await this.client.mutate<
       ConfirmAccountV2,
       ConfirmAccountV2Variables
@@ -454,6 +458,7 @@ export class ApolloClientManager {
       fetchPolicy: "no-cache",
       mutation: AuthMutations.CONFIRM_ACCOUNT,
       variables: {
+        checkoutId,
         otp,
         phone,
       },
