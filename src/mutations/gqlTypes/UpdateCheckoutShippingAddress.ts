@@ -520,6 +520,7 @@ export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_che
    */
   id: string;
   name: string;
+  slug: string;
   /**
    * Whether the product is available for purchase.
    */
@@ -1188,6 +1189,7 @@ export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_line
    */
   id: string;
   name: string;
+  slug: string;
   /**
    * Whether the product is available for purchase.
    */

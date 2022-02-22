@@ -503,6 +503,7 @@ export interface checkoutPaymentMethodUpdate_checkoutPaymentMethodUpdate_checkou
    */
   id: string;
   name: string;
+  slug: string;
   /**
    * Whether the product is available for purchase.
    */

@@ -26,6 +26,33 @@ export interface CompleteCheckout_checkoutComplete_errors {
   message: string | null;
 }
 
+export interface CompleteCheckout_checkoutComplete_order_user_metadata {
+  __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
+  key: string;
+  /**
+   * Value of a metadata item.
+   */
+  value: string;
+}
+
+export interface CompleteCheckout_checkoutComplete_order_user {
+  __typename: "User";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  /**
+   * List of public metadata items. Can be accessed without permissions.
+   */
+  metadata: (CompleteCheckout_checkoutComplete_order_user_metadata | null)[];
+}
+
 export interface CompleteCheckout_checkoutComplete_order_metadata {
   __typename: "MetadataItem";
   /**
@@ -303,6 +330,7 @@ export interface CompleteCheckout_checkoutComplete_order_lines_variant_product {
    */
   id: string;
   name: string;
+  slug: string;
   /**
    * Whether the product is available for purchase.
    */
@@ -597,6 +625,7 @@ export interface CompleteCheckout_checkoutComplete_order {
    * User-friendly number of an order.
    */
   number: string | null;
+  user: CompleteCheckout_checkoutComplete_order_user | null;
   /**
    * List of public metadata items. Can be accessed without permissions.
    */

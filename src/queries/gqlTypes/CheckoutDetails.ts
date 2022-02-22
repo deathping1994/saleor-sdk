@@ -503,6 +503,7 @@ export interface CheckoutDetails_checkout_lines_variant_product {
    */
   id: string;
   name: string;
+  slug: string;
   /**
    * Whether the product is available for purchase.
    */

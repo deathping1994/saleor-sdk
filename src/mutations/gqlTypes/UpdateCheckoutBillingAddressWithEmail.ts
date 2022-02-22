@@ -520,6 +520,7 @@ export interface UpdateCheckoutBillingAddressWithEmail_checkoutBillingAddressUpd
    */
   id: string;
   name: string;
+  slug: string;
   /**
    * Whether the product is available for purchase.
    */
@@ -1188,6 +1189,7 @@ export interface UpdateCheckoutBillingAddressWithEmail_checkoutEmailUpdate_check
    */
   id: string;
   name: string;
+  slug: string;
   /**
    * Whether the product is available for purchase.
    */

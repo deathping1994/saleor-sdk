@@ -503,6 +503,7 @@ export interface AddCheckoutPromoCode_checkoutAddPromoCode_checkout_lines_varian
    */
   id: string;
   name: string;
+  slug: string;
   /**
    * Whether the product is available for purchase.
    */

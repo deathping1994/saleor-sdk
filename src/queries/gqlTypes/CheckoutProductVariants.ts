@@ -233,6 +233,7 @@ export interface CheckoutProductVariants_productVariants_edges_node_product {
    */
   id: string;
   name: string;
+  slug: string;
   /**
    * Whether the product is available for purchase.
    */
