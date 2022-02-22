@@ -561,6 +561,7 @@ export interface OrderDetail {
   /**
    * Internal payment status.
    */
+  user?: any;
   paymentStatus: PaymentChargeStatusEnum | null;
   /**
    * User-friendly payment status.
