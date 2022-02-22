@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { WeightUnitsEnum } from "./../../gqlTypes/globalTypes";
+import { WeightUnitsEnum } from "./../../../gqlTypes/globalTypes";
 
 // ====================================================
 // GraphQL fragment: ProductVariant
@@ -45,6 +45,18 @@ export interface ProductVariant_pricing_priceUndiscounted_net {
   currency: string;
 }
 
+export interface ProductVariant_pricing_priceUndiscounted_tax {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+}
+
 export interface ProductVariant_pricing_priceUndiscounted {
   __typename: "TaxedMoney";
   /**
@@ -55,6 +67,10 @@ export interface ProductVariant_pricing_priceUndiscounted {
    * Amount of money without taxes.
    */
   net: ProductVariant_pricing_priceUndiscounted_net;
+  /**
+   * Amount of taxes.
+   */
+  tax: ProductVariant_pricing_priceUndiscounted_tax;
 }
 
 export interface ProductVariant_pricing_price_gross {
@@ -81,6 +97,18 @@ export interface ProductVariant_pricing_price_net {
   currency: string;
 }
 
+export interface ProductVariant_pricing_price_tax {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+}
+
 export interface ProductVariant_pricing_price {
   __typename: "TaxedMoney";
   /**
@@ -91,6 +119,10 @@ export interface ProductVariant_pricing_price {
    * Amount of money without taxes.
    */
   net: ProductVariant_pricing_price_net;
+  /**
+   * Amount of taxes.
+   */
+  tax: ProductVariant_pricing_price_tax;
 }
 
 export interface ProductVariant_pricing {
