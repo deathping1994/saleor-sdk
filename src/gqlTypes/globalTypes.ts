@@ -448,12 +448,11 @@ export enum StockAvailability {
 /**
  * An enumeration.
  */
-export enum UserMetaAccess {
+ export enum UserMetaAccess {
   ACCESSTYPES_ADMIN = "ACCESSTYPES_ADMIN",
   ACCESSTYPES_ASSOCIATE = "ACCESSTYPES_ASSOCIATE",
   ACCESSTYPES_SUPER_ADMIN = "ACCESSTYPES_SUPER_ADMIN",
 }
-
 /**
  * An enumeration.
  */

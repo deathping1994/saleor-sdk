@@ -31,6 +31,18 @@ export interface Price_net {
   currency: string;
 }
 
+export interface Price_tax {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+}
+
 export interface Price {
   __typename: "TaxedMoney";
   /**
@@ -41,4 +53,8 @@ export interface Price {
    * Amount of money without taxes.
    */
   net: Price_net;
+  /**
+   * Amount of taxes.
+   */
+  tax: Price_tax;
 }

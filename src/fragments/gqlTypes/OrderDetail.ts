@@ -98,6 +98,18 @@ export interface OrderDetail_lines_variant_pricing_priceUndiscounted_net {
   currency: string;
 }
 
+export interface OrderDetail_lines_variant_pricing_priceUndiscounted_tax {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+}
+
 export interface OrderDetail_lines_variant_pricing_priceUndiscounted {
   __typename: "TaxedMoney";
   /**
@@ -108,6 +120,10 @@ export interface OrderDetail_lines_variant_pricing_priceUndiscounted {
    * Amount of money without taxes.
    */
   net: OrderDetail_lines_variant_pricing_priceUndiscounted_net;
+  /**
+   * Amount of taxes.
+   */
+  tax: OrderDetail_lines_variant_pricing_priceUndiscounted_tax;
 }
 
 export interface OrderDetail_lines_variant_pricing_price_gross {
@@ -134,6 +150,18 @@ export interface OrderDetail_lines_variant_pricing_price_net {
   currency: string;
 }
 
+export interface OrderDetail_lines_variant_pricing_price_tax {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+}
+
 export interface OrderDetail_lines_variant_pricing_price {
   __typename: "TaxedMoney";
   /**
@@ -144,6 +172,10 @@ export interface OrderDetail_lines_variant_pricing_price {
    * Amount of money without taxes.
    */
   net: OrderDetail_lines_variant_pricing_price_net;
+  /**
+   * Amount of taxes.
+   */
+  tax: OrderDetail_lines_variant_pricing_price_tax;
 }
 
 export interface OrderDetail_lines_variant_pricing {

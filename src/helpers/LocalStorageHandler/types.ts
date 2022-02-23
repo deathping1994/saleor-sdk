@@ -56,6 +56,7 @@ export interface ICheckoutModelPriceValue {
 export interface ICheckoutModelPrice {
   gross: ICheckoutModelPriceValue;
   net: ICheckoutModelPriceValue;
+  tax?: ICheckoutModelPriceValue;
 }
 
 export interface ICheckoutAddress {
