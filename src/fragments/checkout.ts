@@ -11,10 +11,6 @@ export const checkoutPriceFragment = gql`
       amount
       currency
     }
-    tax {
-      amount
-      currency
-    }
   }
 `;
 

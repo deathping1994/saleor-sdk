@@ -31,18 +31,6 @@ export interface ProductPricingField_pricing_priceRangeUndiscounted_start_net {
   currency: string;
 }
 
-export interface ProductPricingField_pricing_priceRangeUndiscounted_start_tax {
-  __typename: "Money";
-  /**
-   * Amount of money.
-   */
-  amount: number;
-  /**
-   * Currency code.
-   */
-  currency: string;
-}
-
 export interface ProductPricingField_pricing_priceRangeUndiscounted_start {
   __typename: "TaxedMoney";
   /**
@@ -53,10 +41,6 @@ export interface ProductPricingField_pricing_priceRangeUndiscounted_start {
    * Amount of money without taxes.
    */
   net: ProductPricingField_pricing_priceRangeUndiscounted_start_net;
-  /**
-   * Amount of taxes.
-   */
-  tax: ProductPricingField_pricing_priceRangeUndiscounted_start_tax;
 }
 
 export interface ProductPricingField_pricing_priceRangeUndiscounted_stop_gross {
@@ -83,18 +67,6 @@ export interface ProductPricingField_pricing_priceRangeUndiscounted_stop_net {
   currency: string;
 }
 
-export interface ProductPricingField_pricing_priceRangeUndiscounted_stop_tax {
-  __typename: "Money";
-  /**
-   * Amount of money.
-   */
-  amount: number;
-  /**
-   * Currency code.
-   */
-  currency: string;
-}
-
 export interface ProductPricingField_pricing_priceRangeUndiscounted_stop {
   __typename: "TaxedMoney";
   /**
@@ -105,10 +77,6 @@ export interface ProductPricingField_pricing_priceRangeUndiscounted_stop {
    * Amount of money without taxes.
    */
   net: ProductPricingField_pricing_priceRangeUndiscounted_stop_net;
-  /**
-   * Amount of taxes.
-   */
-  tax: ProductPricingField_pricing_priceRangeUndiscounted_stop_tax;
 }
 
 export interface ProductPricingField_pricing_priceRangeUndiscounted {
@@ -147,18 +115,6 @@ export interface ProductPricingField_pricing_priceRange_start_net {
   currency: string;
 }
 
-export interface ProductPricingField_pricing_priceRange_start_tax {
-  __typename: "Money";
-  /**
-   * Amount of money.
-   */
-  amount: number;
-  /**
-   * Currency code.
-   */
-  currency: string;
-}
-
 export interface ProductPricingField_pricing_priceRange_start {
   __typename: "TaxedMoney";
   /**
@@ -169,10 +125,6 @@ export interface ProductPricingField_pricing_priceRange_start {
    * Amount of money without taxes.
    */
   net: ProductPricingField_pricing_priceRange_start_net;
-  /**
-   * Amount of taxes.
-   */
-  tax: ProductPricingField_pricing_priceRange_start_tax;
 }
 
 export interface ProductPricingField_pricing_priceRange_stop_gross {
@@ -199,18 +151,6 @@ export interface ProductPricingField_pricing_priceRange_stop_net {
   currency: string;
 }
 
-export interface ProductPricingField_pricing_priceRange_stop_tax {
-  __typename: "Money";
-  /**
-   * Amount of money.
-   */
-  amount: number;
-  /**
-   * Currency code.
-   */
-  currency: string;
-}
-
 export interface ProductPricingField_pricing_priceRange_stop {
   __typename: "TaxedMoney";
   /**
@@ -221,10 +161,6 @@ export interface ProductPricingField_pricing_priceRange_stop {
    * Amount of money without taxes.
    */
   net: ProductPricingField_pricing_priceRange_stop_net;
-  /**
-   * Amount of taxes.
-   */
-  tax: ProductPricingField_pricing_priceRange_stop_tax;
 }
 
 export interface ProductPricingField_pricing_priceRange {

@@ -51,18 +51,6 @@ export interface ProductDetails_pricing_priceRangeUndiscounted_start_net {
   currency: string;
 }
 
-export interface ProductDetails_pricing_priceRangeUndiscounted_start_tax {
-  __typename: "Money";
-  /**
-   * Amount of money.
-   */
-  amount: number;
-  /**
-   * Currency code.
-   */
-  currency: string;
-}
-
 export interface ProductDetails_pricing_priceRangeUndiscounted_start {
   __typename: "TaxedMoney";
   /**
@@ -73,10 +61,6 @@ export interface ProductDetails_pricing_priceRangeUndiscounted_start {
    * Amount of money without taxes.
    */
   net: ProductDetails_pricing_priceRangeUndiscounted_start_net;
-  /**
-   * Amount of taxes.
-   */
-  tax: ProductDetails_pricing_priceRangeUndiscounted_start_tax;
 }
 
 export interface ProductDetails_pricing_priceRangeUndiscounted_stop_gross {
@@ -103,18 +87,6 @@ export interface ProductDetails_pricing_priceRangeUndiscounted_stop_net {
   currency: string;
 }
 
-export interface ProductDetails_pricing_priceRangeUndiscounted_stop_tax {
-  __typename: "Money";
-  /**
-   * Amount of money.
-   */
-  amount: number;
-  /**
-   * Currency code.
-   */
-  currency: string;
-}
-
 export interface ProductDetails_pricing_priceRangeUndiscounted_stop {
   __typename: "TaxedMoney";
   /**
@@ -125,10 +97,6 @@ export interface ProductDetails_pricing_priceRangeUndiscounted_stop {
    * Amount of money without taxes.
    */
   net: ProductDetails_pricing_priceRangeUndiscounted_stop_net;
-  /**
-   * Amount of taxes.
-   */
-  tax: ProductDetails_pricing_priceRangeUndiscounted_stop_tax;
 }
 
 export interface ProductDetails_pricing_priceRangeUndiscounted {
@@ -167,18 +135,6 @@ export interface ProductDetails_pricing_priceRange_start_net {
   currency: string;
 }
 
-export interface ProductDetails_pricing_priceRange_start_tax {
-  __typename: "Money";
-  /**
-   * Amount of money.
-   */
-  amount: number;
-  /**
-   * Currency code.
-   */
-  currency: string;
-}
-
 export interface ProductDetails_pricing_priceRange_start {
   __typename: "TaxedMoney";
   /**
@@ -189,10 +145,6 @@ export interface ProductDetails_pricing_priceRange_start {
    * Amount of money without taxes.
    */
   net: ProductDetails_pricing_priceRange_start_net;
-  /**
-   * Amount of taxes.
-   */
-  tax: ProductDetails_pricing_priceRange_start_tax;
 }
 
 export interface ProductDetails_pricing_priceRange_stop_gross {
@@ -219,18 +171,6 @@ export interface ProductDetails_pricing_priceRange_stop_net {
   currency: string;
 }
 
-export interface ProductDetails_pricing_priceRange_stop_tax {
-  __typename: "Money";
-  /**
-   * Amount of money.
-   */
-  amount: number;
-  /**
-   * Currency code.
-   */
-  currency: string;
-}
-
 export interface ProductDetails_pricing_priceRange_stop {
   __typename: "TaxedMoney";
   /**
@@ -241,10 +181,6 @@ export interface ProductDetails_pricing_priceRange_stop {
    * Amount of money without taxes.
    */
   net: ProductDetails_pricing_priceRange_stop_net;
-  /**
-   * Amount of taxes.
-   */
-  tax: ProductDetails_pricing_priceRange_stop_tax;
 }
 
 export interface ProductDetails_pricing_priceRange {
@@ -319,18 +255,6 @@ export interface ProductDetails_category_products_edges_node_pricing_priceRangeU
   currency: string;
 }
 
-export interface ProductDetails_category_products_edges_node_pricing_priceRangeUndiscounted_start_tax {
-  __typename: "Money";
-  /**
-   * Amount of money.
-   */
-  amount: number;
-  /**
-   * Currency code.
-   */
-  currency: string;
-}
-
 export interface ProductDetails_category_products_edges_node_pricing_priceRangeUndiscounted_start {
   __typename: "TaxedMoney";
   /**
@@ -341,10 +265,6 @@ export interface ProductDetails_category_products_edges_node_pricing_priceRangeU
    * Amount of money without taxes.
    */
   net: ProductDetails_category_products_edges_node_pricing_priceRangeUndiscounted_start_net;
-  /**
-   * Amount of taxes.
-   */
-  tax: ProductDetails_category_products_edges_node_pricing_priceRangeUndiscounted_start_tax;
 }
 
 export interface ProductDetails_category_products_edges_node_pricing_priceRangeUndiscounted_stop_gross {
@@ -371,18 +291,6 @@ export interface ProductDetails_category_products_edges_node_pricing_priceRangeU
   currency: string;
 }
 
-export interface ProductDetails_category_products_edges_node_pricing_priceRangeUndiscounted_stop_tax {
-  __typename: "Money";
-  /**
-   * Amount of money.
-   */
-  amount: number;
-  /**
-   * Currency code.
-   */
-  currency: string;
-}
-
 export interface ProductDetails_category_products_edges_node_pricing_priceRangeUndiscounted_stop {
   __typename: "TaxedMoney";
   /**
@@ -393,10 +301,6 @@ export interface ProductDetails_category_products_edges_node_pricing_priceRangeU
    * Amount of money without taxes.
    */
   net: ProductDetails_category_products_edges_node_pricing_priceRangeUndiscounted_stop_net;
-  /**
-   * Amount of taxes.
-   */
-  tax: ProductDetails_category_products_edges_node_pricing_priceRangeUndiscounted_stop_tax;
 }
 
 export interface ProductDetails_category_products_edges_node_pricing_priceRangeUndiscounted {
@@ -435,18 +339,6 @@ export interface ProductDetails_category_products_edges_node_pricing_priceRange_
   currency: string;
 }
 
-export interface ProductDetails_category_products_edges_node_pricing_priceRange_start_tax {
-  __typename: "Money";
-  /**
-   * Amount of money.
-   */
-  amount: number;
-  /**
-   * Currency code.
-   */
-  currency: string;
-}
-
 export interface ProductDetails_category_products_edges_node_pricing_priceRange_start {
   __typename: "TaxedMoney";
   /**
@@ -457,10 +349,6 @@ export interface ProductDetails_category_products_edges_node_pricing_priceRange_
    * Amount of money without taxes.
    */
   net: ProductDetails_category_products_edges_node_pricing_priceRange_start_net;
-  /**
-   * Amount of taxes.
-   */
-  tax: ProductDetails_category_products_edges_node_pricing_priceRange_start_tax;
 }
 
 export interface ProductDetails_category_products_edges_node_pricing_priceRange_stop_gross {
@@ -487,18 +375,6 @@ export interface ProductDetails_category_products_edges_node_pricing_priceRange_
   currency: string;
 }
 
-export interface ProductDetails_category_products_edges_node_pricing_priceRange_stop_tax {
-  __typename: "Money";
-  /**
-   * Amount of money.
-   */
-  amount: number;
-  /**
-   * Currency code.
-   */
-  currency: string;
-}
-
 export interface ProductDetails_category_products_edges_node_pricing_priceRange_stop {
   __typename: "TaxedMoney";
   /**
@@ -509,10 +385,6 @@ export interface ProductDetails_category_products_edges_node_pricing_priceRange_
    * Amount of money without taxes.
    */
   net: ProductDetails_category_products_edges_node_pricing_priceRange_stop_net;
-  /**
-   * Amount of taxes.
-   */
-  tax: ProductDetails_category_products_edges_node_pricing_priceRange_stop_tax;
 }
 
 export interface ProductDetails_category_products_edges_node_pricing_priceRange {
@@ -693,18 +565,6 @@ export interface ProductDetails_variants_pricing_priceUndiscounted_net {
   currency: string;
 }
 
-export interface ProductDetails_variants_pricing_priceUndiscounted_tax {
-  __typename: "Money";
-  /**
-   * Amount of money.
-   */
-  amount: number;
-  /**
-   * Currency code.
-   */
-  currency: string;
-}
-
 export interface ProductDetails_variants_pricing_priceUndiscounted {
   __typename: "TaxedMoney";
   /**
@@ -715,10 +575,6 @@ export interface ProductDetails_variants_pricing_priceUndiscounted {
    * Amount of money without taxes.
    */
   net: ProductDetails_variants_pricing_priceUndiscounted_net;
-  /**
-   * Amount of taxes.
-   */
-  tax: ProductDetails_variants_pricing_priceUndiscounted_tax;
 }
 
 export interface ProductDetails_variants_pricing_price_gross {
@@ -745,18 +601,6 @@ export interface ProductDetails_variants_pricing_price_net {
   currency: string;
 }
 
-export interface ProductDetails_variants_pricing_price_tax {
-  __typename: "Money";
-  /**
-   * Amount of money.
-   */
-  amount: number;
-  /**
-   * Currency code.
-   */
-  currency: string;
-}
-
 export interface ProductDetails_variants_pricing_price {
   __typename: "TaxedMoney";
   /**
@@ -767,10 +611,6 @@ export interface ProductDetails_variants_pricing_price {
    * Amount of money without taxes.
    */
   net: ProductDetails_variants_pricing_price_net;
-  /**
-   * Amount of taxes.
-   */
-  tax: ProductDetails_variants_pricing_price_tax;
 }
 
 export interface ProductDetails_variants_pricing {

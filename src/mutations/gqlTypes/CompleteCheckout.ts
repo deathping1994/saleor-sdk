@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { CheckoutErrorCode, PaymentChargeStatusEnum, OrderStatus, WeightUnitsEnum } from "./../../../gqlTypes/globalTypes";
+import { CheckoutErrorCode, PaymentChargeStatusEnum, OrderStatus, WeightUnitsEnum } from "./../../gqlTypes/globalTypes";
 
 // ====================================================
 // GraphQL mutation operation: CompleteCheckout
@@ -115,18 +115,6 @@ export interface CompleteCheckout_checkoutComplete_order_lines_variant_pricing_p
   currency: string;
 }
 
-export interface CompleteCheckout_checkoutComplete_order_lines_variant_pricing_priceUndiscounted_tax {
-  __typename: "Money";
-  /**
-   * Amount of money.
-   */
-  amount: number;
-  /**
-   * Currency code.
-   */
-  currency: string;
-}
-
 export interface CompleteCheckout_checkoutComplete_order_lines_variant_pricing_priceUndiscounted {
   __typename: "TaxedMoney";
   /**
@@ -137,10 +125,6 @@ export interface CompleteCheckout_checkoutComplete_order_lines_variant_pricing_p
    * Amount of money without taxes.
    */
   net: CompleteCheckout_checkoutComplete_order_lines_variant_pricing_priceUndiscounted_net;
-  /**
-   * Amount of taxes.
-   */
-  tax: CompleteCheckout_checkoutComplete_order_lines_variant_pricing_priceUndiscounted_tax;
 }
 
 export interface CompleteCheckout_checkoutComplete_order_lines_variant_pricing_price_gross {
@@ -167,18 +151,6 @@ export interface CompleteCheckout_checkoutComplete_order_lines_variant_pricing_p
   currency: string;
 }
 
-export interface CompleteCheckout_checkoutComplete_order_lines_variant_pricing_price_tax {
-  __typename: "Money";
-  /**
-   * Amount of money.
-   */
-  amount: number;
-  /**
-   * Currency code.
-   */
-  currency: string;
-}
-
 export interface CompleteCheckout_checkoutComplete_order_lines_variant_pricing_price {
   __typename: "TaxedMoney";
   /**
@@ -189,10 +161,6 @@ export interface CompleteCheckout_checkoutComplete_order_lines_variant_pricing_p
    * Amount of money without taxes.
    */
   net: CompleteCheckout_checkoutComplete_order_lines_variant_pricing_price_net;
-  /**
-   * Amount of taxes.
-   */
-  tax: CompleteCheckout_checkoutComplete_order_lines_variant_pricing_price_tax;
 }
 
 export interface CompleteCheckout_checkoutComplete_order_lines_variant_pricing {

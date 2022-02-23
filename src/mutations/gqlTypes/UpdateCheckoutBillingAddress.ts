@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { AddressInput, CheckoutErrorCode, WeightUnitsEnum } from "./../../../gqlTypes/globalTypes";
+import { AddressInput, CheckoutErrorCode, WeightUnitsEnum } from "./../../gqlTypes/globalTypes";
 
 // ====================================================
 // GraphQL mutation operation: UpdateCheckoutBillingAddress
@@ -50,18 +50,6 @@ export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
   currency: string;
 }
 
-export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_totalPrice_tax {
-  __typename: "Money";
-  /**
-   * Amount of money.
-   */
-  amount: number;
-  /**
-   * Currency code.
-   */
-  currency: string;
-}
-
 export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_totalPrice {
   __typename: "TaxedMoney";
   /**
@@ -72,10 +60,6 @@ export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
    * Amount of money without taxes.
    */
   net: UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_totalPrice_net;
-  /**
-   * Amount of taxes.
-   */
-  tax: UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_totalPrice_tax;
 }
 
 export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_subtotalPrice_gross {
@@ -102,18 +86,6 @@ export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
   currency: string;
 }
 
-export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_subtotalPrice_tax {
-  __typename: "Money";
-  /**
-   * Amount of money.
-   */
-  amount: number;
-  /**
-   * Currency code.
-   */
-  currency: string;
-}
-
 export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_subtotalPrice {
   __typename: "TaxedMoney";
   /**
@@ -124,10 +96,6 @@ export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
    * Amount of money without taxes.
    */
   net: UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_subtotalPrice_net;
-  /**
-   * Amount of taxes.
-   */
-  tax: UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_subtotalPrice_tax;
 }
 
 export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_billingAddress_country {
@@ -280,18 +248,6 @@ export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
   currency: string;
 }
 
-export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_shippingPrice_tax {
-  __typename: "Money";
-  /**
-   * Amount of money.
-   */
-  amount: number;
-  /**
-   * Currency code.
-   */
-  currency: string;
-}
-
 export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_shippingPrice {
   __typename: "TaxedMoney";
   /**
@@ -302,10 +258,6 @@ export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
    * Amount of money without taxes.
    */
   net: UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_shippingPrice_net;
-  /**
-   * Amount of taxes.
-   */
-  tax: UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_shippingPrice_tax;
 }
 
 export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines_totalPrice_gross {
@@ -332,18 +284,6 @@ export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
   currency: string;
 }
 
-export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines_totalPrice_tax {
-  __typename: "Money";
-  /**
-   * Amount of money.
-   */
-  amount: number;
-  /**
-   * Currency code.
-   */
-  currency: string;
-}
-
 export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines_totalPrice {
   __typename: "TaxedMoney";
   /**
@@ -354,10 +294,6 @@ export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
    * Amount of money without taxes.
    */
   net: UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines_totalPrice_net;
-  /**
-   * Amount of taxes.
-   */
-  tax: UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines_totalPrice_tax;
 }
 
 export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines_variant_metadata {
@@ -396,18 +332,6 @@ export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
   currency: string;
 }
 
-export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines_variant_pricing_priceUndiscounted_tax {
-  __typename: "Money";
-  /**
-   * Amount of money.
-   */
-  amount: number;
-  /**
-   * Currency code.
-   */
-  currency: string;
-}
-
 export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines_variant_pricing_priceUndiscounted {
   __typename: "TaxedMoney";
   /**
@@ -418,10 +342,6 @@ export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
    * Amount of money without taxes.
    */
   net: UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines_variant_pricing_priceUndiscounted_net;
-  /**
-   * Amount of taxes.
-   */
-  tax: UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines_variant_pricing_priceUndiscounted_tax;
 }
 
 export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines_variant_pricing_price_gross {
@@ -448,18 +368,6 @@ export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
   currency: string;
 }
 
-export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines_variant_pricing_price_tax {
-  __typename: "Money";
-  /**
-   * Amount of money.
-   */
-  amount: number;
-  /**
-   * Currency code.
-   */
-  currency: string;
-}
-
 export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines_variant_pricing_price {
   __typename: "TaxedMoney";
   /**
@@ -470,10 +378,6 @@ export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
    * Amount of money without taxes.
    */
   net: UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines_variant_pricing_price_net;
-  /**
-   * Amount of taxes.
-   */
-  tax: UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines_variant_pricing_price_tax;
 }
 
 export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines_variant_pricing {
