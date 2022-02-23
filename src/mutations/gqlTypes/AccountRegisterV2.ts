@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { AccountRegisterInputV2 } from "./../../../gqlTypes/globalTypes";
+import { AccountRegisterInputV2 } from "./../../gqlTypes/globalTypes";
 
 // ====================================================
 // GraphQL mutation operation: AccountRegisterV2

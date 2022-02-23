@@ -364,8 +364,7 @@ export class SaleorState extends NamedObservable<StateItems> {
 
     if (items && items.length && items[0].quantity > 0) {
       // console.log(checkout?.token);
-      const checkoutSubtotal = checkout?.subtotalPrice;
-      const checkoutTotal = checkout?.totalPrice;
+
       const { data, error } =
         checkout?.token &&
         (await this.getCouponPrepaidDiscount(checkout?.token));
@@ -469,7 +468,6 @@ export class SaleorState extends NamedObservable<StateItems> {
               2
             ),
           },
-          tax: checkoutSubtotal?.tax,
         };
 
         const totalPrice = {
@@ -488,7 +486,6 @@ export class SaleorState extends NamedObservable<StateItems> {
               2
             ),
           },
-          tax: checkoutTotal?.tax,
         };
 
         const mrp = {
