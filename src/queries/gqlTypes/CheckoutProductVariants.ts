@@ -45,6 +45,18 @@ export interface CheckoutProductVariants_productVariants_edges_node_pricing_pric
   currency: string;
 }
 
+export interface CheckoutProductVariants_productVariants_edges_node_pricing_priceUndiscounted_tax {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+}
+
 export interface CheckoutProductVariants_productVariants_edges_node_pricing_priceUndiscounted {
   __typename: "TaxedMoney";
   /**
@@ -55,6 +67,10 @@ export interface CheckoutProductVariants_productVariants_edges_node_pricing_pric
    * Amount of money without taxes.
    */
   net: CheckoutProductVariants_productVariants_edges_node_pricing_priceUndiscounted_net;
+  /**
+   * Amount of taxes.
+   */
+  tax: CheckoutProductVariants_productVariants_edges_node_pricing_priceUndiscounted_tax;
 }
 
 export interface CheckoutProductVariants_productVariants_edges_node_pricing_price_gross {
@@ -81,6 +97,18 @@ export interface CheckoutProductVariants_productVariants_edges_node_pricing_pric
   currency: string;
 }
 
+export interface CheckoutProductVariants_productVariants_edges_node_pricing_price_tax {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+}
+
 export interface CheckoutProductVariants_productVariants_edges_node_pricing_price {
   __typename: "TaxedMoney";
   /**
@@ -91,6 +119,10 @@ export interface CheckoutProductVariants_productVariants_edges_node_pricing_pric
    * Amount of money without taxes.
    */
   net: CheckoutProductVariants_productVariants_edges_node_pricing_price_net;
+  /**
+   * Amount of taxes.
+   */
+  tax: CheckoutProductVariants_productVariants_edges_node_pricing_price_tax;
 }
 
 export interface CheckoutProductVariants_productVariants_edges_node_pricing {
