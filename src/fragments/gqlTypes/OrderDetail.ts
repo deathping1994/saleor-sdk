@@ -9,33 +9,6 @@ import { PaymentChargeStatusEnum, OrderStatus, WeightUnitsEnum } from "./../../g
 // GraphQL fragment: OrderDetail
 // ====================================================
 
-export interface OrderDetail_user_metadata {
-  __typename: "MetadataItem";
-  /**
-   * Key of a metadata item.
-   */
-  key: string;
-  /**
-   * Value of a metadata item.
-   */
-  value: string;
-}
-
-export interface OrderDetail_user {
-  __typename: "User";
-  /**
-   * The ID of the object.
-   */
-  id: string;
-  email: string;
-  firstName: string;
-  lastName: string;
-  /**
-   * List of public metadata items. Can be accessed without permissions.
-   */
-  metadata: (OrderDetail_user_metadata | null)[];
-}
-
 export interface OrderDetail_metadata {
   __typename: "MetadataItem";
   /**
@@ -608,7 +581,6 @@ export interface OrderDetail {
    * User-friendly number of an order.
    */
   number: string | null;
-  user: OrderDetail_user | null;
   /**
    * List of public metadata items. Can be accessed without permissions.
    */

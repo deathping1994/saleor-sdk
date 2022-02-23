@@ -9,33 +9,6 @@ import { PaymentChargeStatusEnum, OrderStatus, WeightUnitsEnum } from "./../../g
 // GraphQL query operation: OrderByToken
 // ====================================================
 
-export interface OrderByToken_orderByToken_user_metadata {
-  __typename: "MetadataItem";
-  /**
-   * Key of a metadata item.
-   */
-  key: string;
-  /**
-   * Value of a metadata item.
-   */
-  value: string;
-}
-
-export interface OrderByToken_orderByToken_user {
-  __typename: "User";
-  /**
-   * The ID of the object.
-   */
-  id: string;
-  email: string;
-  firstName: string;
-  lastName: string;
-  /**
-   * List of public metadata items. Can be accessed without permissions.
-   */
-  metadata: (OrderByToken_orderByToken_user_metadata | null)[];
-}
-
 export interface OrderByToken_orderByToken_metadata {
   __typename: "MetadataItem";
   /**
@@ -608,7 +581,6 @@ export interface OrderByToken_orderByToken {
    * User-friendly number of an order.
    */
   number: string | null;
-  user: OrderByToken_orderByToken_user | null;
   /**
    * List of public metadata items. Can be accessed without permissions.
    */
