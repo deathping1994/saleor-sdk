@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { ProductOrder, ProductFilterInput } from "./../../gqlTypes/globalTypes";
+import { ProductOrder, ProductFilterInput } from "./../../../gqlTypes/globalTypes";
 
 // ====================================================
 // GraphQL query operation: ProductList
@@ -53,6 +53,18 @@ export interface ProductList_products_edges_node_pricing_priceRangeUndiscounted_
   currency: string;
 }
 
+export interface ProductList_products_edges_node_pricing_priceRangeUndiscounted_start_tax {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+}
+
 export interface ProductList_products_edges_node_pricing_priceRangeUndiscounted_start {
   __typename: "TaxedMoney";
   /**
@@ -63,6 +75,10 @@ export interface ProductList_products_edges_node_pricing_priceRangeUndiscounted_
    * Amount of money without taxes.
    */
   net: ProductList_products_edges_node_pricing_priceRangeUndiscounted_start_net;
+  /**
+   * Amount of taxes.
+   */
+  tax: ProductList_products_edges_node_pricing_priceRangeUndiscounted_start_tax;
 }
 
 export interface ProductList_products_edges_node_pricing_priceRangeUndiscounted_stop_gross {
@@ -89,6 +105,18 @@ export interface ProductList_products_edges_node_pricing_priceRangeUndiscounted_
   currency: string;
 }
 
+export interface ProductList_products_edges_node_pricing_priceRangeUndiscounted_stop_tax {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+}
+
 export interface ProductList_products_edges_node_pricing_priceRangeUndiscounted_stop {
   __typename: "TaxedMoney";
   /**
@@ -99,6 +127,10 @@ export interface ProductList_products_edges_node_pricing_priceRangeUndiscounted_
    * Amount of money without taxes.
    */
   net: ProductList_products_edges_node_pricing_priceRangeUndiscounted_stop_net;
+  /**
+   * Amount of taxes.
+   */
+  tax: ProductList_products_edges_node_pricing_priceRangeUndiscounted_stop_tax;
 }
 
 export interface ProductList_products_edges_node_pricing_priceRangeUndiscounted {
@@ -137,6 +169,18 @@ export interface ProductList_products_edges_node_pricing_priceRange_start_net {
   currency: string;
 }
 
+export interface ProductList_products_edges_node_pricing_priceRange_start_tax {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+}
+
 export interface ProductList_products_edges_node_pricing_priceRange_start {
   __typename: "TaxedMoney";
   /**
@@ -147,6 +191,10 @@ export interface ProductList_products_edges_node_pricing_priceRange_start {
    * Amount of money without taxes.
    */
   net: ProductList_products_edges_node_pricing_priceRange_start_net;
+  /**
+   * Amount of taxes.
+   */
+  tax: ProductList_products_edges_node_pricing_priceRange_start_tax;
 }
 
 export interface ProductList_products_edges_node_pricing_priceRange_stop_gross {
@@ -173,6 +221,18 @@ export interface ProductList_products_edges_node_pricing_priceRange_stop_net {
   currency: string;
 }
 
+export interface ProductList_products_edges_node_pricing_priceRange_stop_tax {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+}
+
 export interface ProductList_products_edges_node_pricing_priceRange_stop {
   __typename: "TaxedMoney";
   /**
@@ -183,6 +243,10 @@ export interface ProductList_products_edges_node_pricing_priceRange_stop {
    * Amount of money without taxes.
    */
   net: ProductList_products_edges_node_pricing_priceRange_stop_net;
+  /**
+   * Amount of taxes.
+   */
+  tax: ProductList_products_edges_node_pricing_priceRange_stop_tax;
 }
 
 export interface ProductList_products_edges_node_pricing_priceRange {

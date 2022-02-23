@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { WeightUnitsEnum } from "./../../gqlTypes/globalTypes";
+import { WeightUnitsEnum } from "./../../../gqlTypes/globalTypes";
 
 // ====================================================
 // GraphQL query operation: CheckoutDetails
@@ -33,6 +33,18 @@ export interface CheckoutDetails_checkout_totalPrice_net {
   currency: string;
 }
 
+export interface CheckoutDetails_checkout_totalPrice_tax {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+}
+
 export interface CheckoutDetails_checkout_totalPrice {
   __typename: "TaxedMoney";
   /**
@@ -43,6 +55,10 @@ export interface CheckoutDetails_checkout_totalPrice {
    * Amount of money without taxes.
    */
   net: CheckoutDetails_checkout_totalPrice_net;
+  /**
+   * Amount of taxes.
+   */
+  tax: CheckoutDetails_checkout_totalPrice_tax;
 }
 
 export interface CheckoutDetails_checkout_subtotalPrice_gross {
@@ -69,6 +85,18 @@ export interface CheckoutDetails_checkout_subtotalPrice_net {
   currency: string;
 }
 
+export interface CheckoutDetails_checkout_subtotalPrice_tax {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+}
+
 export interface CheckoutDetails_checkout_subtotalPrice {
   __typename: "TaxedMoney";
   /**
@@ -79,6 +107,10 @@ export interface CheckoutDetails_checkout_subtotalPrice {
    * Amount of money without taxes.
    */
   net: CheckoutDetails_checkout_subtotalPrice_net;
+  /**
+   * Amount of taxes.
+   */
+  tax: CheckoutDetails_checkout_subtotalPrice_tax;
 }
 
 export interface CheckoutDetails_checkout_billingAddress_country {
@@ -231,6 +263,18 @@ export interface CheckoutDetails_checkout_shippingPrice_net {
   currency: string;
 }
 
+export interface CheckoutDetails_checkout_shippingPrice_tax {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+}
+
 export interface CheckoutDetails_checkout_shippingPrice {
   __typename: "TaxedMoney";
   /**
@@ -241,6 +285,10 @@ export interface CheckoutDetails_checkout_shippingPrice {
    * Amount of money without taxes.
    */
   net: CheckoutDetails_checkout_shippingPrice_net;
+  /**
+   * Amount of taxes.
+   */
+  tax: CheckoutDetails_checkout_shippingPrice_tax;
 }
 
 export interface CheckoutDetails_checkout_lines_totalPrice_gross {
@@ -267,6 +315,18 @@ export interface CheckoutDetails_checkout_lines_totalPrice_net {
   currency: string;
 }
 
+export interface CheckoutDetails_checkout_lines_totalPrice_tax {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+}
+
 export interface CheckoutDetails_checkout_lines_totalPrice {
   __typename: "TaxedMoney";
   /**
@@ -277,6 +337,10 @@ export interface CheckoutDetails_checkout_lines_totalPrice {
    * Amount of money without taxes.
    */
   net: CheckoutDetails_checkout_lines_totalPrice_net;
+  /**
+   * Amount of taxes.
+   */
+  tax: CheckoutDetails_checkout_lines_totalPrice_tax;
 }
 
 export interface CheckoutDetails_checkout_lines_variant_metadata {
@@ -315,6 +379,18 @@ export interface CheckoutDetails_checkout_lines_variant_pricing_priceUndiscounte
   currency: string;
 }
 
+export interface CheckoutDetails_checkout_lines_variant_pricing_priceUndiscounted_tax {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+}
+
 export interface CheckoutDetails_checkout_lines_variant_pricing_priceUndiscounted {
   __typename: "TaxedMoney";
   /**
@@ -325,6 +401,10 @@ export interface CheckoutDetails_checkout_lines_variant_pricing_priceUndiscounte
    * Amount of money without taxes.
    */
   net: CheckoutDetails_checkout_lines_variant_pricing_priceUndiscounted_net;
+  /**
+   * Amount of taxes.
+   */
+  tax: CheckoutDetails_checkout_lines_variant_pricing_priceUndiscounted_tax;
 }
 
 export interface CheckoutDetails_checkout_lines_variant_pricing_price_gross {
@@ -351,6 +431,18 @@ export interface CheckoutDetails_checkout_lines_variant_pricing_price_net {
   currency: string;
 }
 
+export interface CheckoutDetails_checkout_lines_variant_pricing_price_tax {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+}
+
 export interface CheckoutDetails_checkout_lines_variant_pricing_price {
   __typename: "TaxedMoney";
   /**
@@ -361,6 +453,10 @@ export interface CheckoutDetails_checkout_lines_variant_pricing_price {
    * Amount of money without taxes.
    */
   net: CheckoutDetails_checkout_lines_variant_pricing_price_net;
+  /**
+   * Amount of taxes.
+   */
+  tax: CheckoutDetails_checkout_lines_variant_pricing_price_tax;
 }
 
 export interface CheckoutDetails_checkout_lines_variant_pricing {
