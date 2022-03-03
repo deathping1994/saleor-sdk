@@ -9,6 +9,7 @@ import { ApolloClientManager } from "../../data/ApolloClientManager";
 import { sortCheckoutLines } from "./utils";
 
 import {
+  IAddItem,
   ICashbackDiscount,
   ICashbackRecieve,
   IDiscount,
@@ -272,6 +273,30 @@ export class SaleorCartAPI extends ErrorListener {
       return {
         data,
         error,
+        pending: true,
+      };
+    }
+    return {
+      pending: false,
+    };
+  };
+
+  addMultipleItems = async (variantArray: IAddItem[]) => {
+    this.localStorageManager.addItemsToCart(variantArray);
+    if (this.saleorState.checkout?.id) {
+      const { data, error } = await this.jobsManager.addToQueue(
+        "cart",
+        "setCartItem"
+      );
+
+      if (error) {
+        return {
+          error,
+        };
+      }
+
+      return {
+        data,
         pending: true,
       };
     }

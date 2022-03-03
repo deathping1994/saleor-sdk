@@ -1,6 +1,7 @@
 import { SaleorState } from "../../state";
 import { LocalStorageHandler } from "../../helpers/LocalStorageHandler/LocalStorageHandler";
 import { Wishlist_wishlist_items_edges_node_product } from "../../queries/gqlTypes/Wishlist";
+import { IAddItem } from "../../api/Cart/types";
 
 export class LocalStorageManager {
   private handler: LocalStorageHandler;
@@ -46,6 +47,58 @@ export class LocalStorageManager {
         }
       : {
           lines: alteredLines,
+        };
+    this.handler.setCheckout(alteredCheckout);
+
+    return alteredCheckout;
+  };
+
+  addItemsToCart = (variantArray: IAddItem[]) => {
+    const lines = this.saleorState.checkout?.lines || [];
+    console.log("lines: ", lines);
+    const variantsInCheckoutWithUpdatedQuantity = lines.filter(lineVariant => {
+      const thisVariantInCheckout = variantArray.find(
+        variant => variant.variantId === lineVariant.variant.id
+      );
+      console.log(
+        "variantsInCheckoutWithUpdatedQuantity: ",
+        variantsInCheckoutWithUpdatedQuantity
+      );
+      if (thisVariantInCheckout?.variantId) {
+        console.log("thisVariantInCheckout: ", thisVariantInCheckout);
+        return {
+          quantity: thisVariantInCheckout?.quantity
+            ? thisVariantInCheckout?.quantity + lineVariant.quantity
+            : lineVariant.quantity,
+          variant: {
+            id: thisVariantInCheckout?.variantId,
+          },
+        };
+      }
+      return false;
+    });
+
+    const alteredLines = lines.filter(
+      lineVariant =>
+        !variantArray.find(
+          variant => variant.variantId !== lineVariant.variant.id
+        )
+    );
+
+    console.log("alteredLines", alteredLines);
+    const updatedCheckoutLines = [
+      ...alteredLines,
+      ...variantsInCheckoutWithUpdatedQuantity,
+    ];
+
+    console.log("updatedCheckoutLines", updatedCheckoutLines);
+    const alteredCheckout = this.saleorState.checkout
+      ? {
+          ...this.saleorState.checkout,
+          lines: updatedCheckoutLines,
+        }
+      : {
+          lines: updatedCheckoutLines,
         };
     this.handler.setCheckout(alteredCheckout);
 
