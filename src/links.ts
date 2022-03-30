@@ -33,6 +33,9 @@ export const createSaleorLinks = ({
 
   const uploadLink = createUploadLink(linkOptions);
 
+  console.log("uploadLink", uploadLink);
+  console.log("invalidTokenLink", invalidTokenLink);
+
   return [
     invalidTokenLink,
     authLink,
