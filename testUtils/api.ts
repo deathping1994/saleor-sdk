@@ -61,13 +61,13 @@ export async function setupAPI() {
   const links = [
     invalidTokenLink,
     authLink,
+    uploadLink as any,
     new RetryLink(),
     new BatchHttpLink({
       // @ts-ignore
       fetch,
       uri: apiUrl,
     }),
-    uploadLink as any,
   ];
   const client = createSaleorClient(cache, links);
 
