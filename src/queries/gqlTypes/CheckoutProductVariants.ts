@@ -9,6 +9,20 @@ import { WeightUnitsEnum } from "./../../gqlTypes/globalTypes";
 // GraphQL query operation: CheckoutProductVariants
 // ====================================================
 
+export interface CheckoutProductVariants_productVariants_edges_node_images {
+  __typename: "ProductImage";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  sortOrder: number | null;
+  alt: string;
+  /**
+   * The URL of the image.
+   */
+  url: string;
+}
+
 export interface CheckoutProductVariants_productVariants_edges_node_metadata {
   __typename: "MetadataItem";
   /**
@@ -288,6 +302,10 @@ export interface CheckoutProductVariants_productVariants_edges_node {
    * Whether the variant is in stock and visible or not.
    */
   isAvailable: boolean | null;
+  /**
+   * List of images for the product variant.
+   */
+  images: (CheckoutProductVariants_productVariants_edges_node_images | null)[] | null;
   /**
    * List of public metadata items. Can be accessed without permissions.
    */

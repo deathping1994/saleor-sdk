@@ -343,6 +343,20 @@ export interface CreateCheckoutPayment_checkoutPaymentCreate_checkout_lines_tota
   tax: CreateCheckoutPayment_checkoutPaymentCreate_checkout_lines_totalPrice_tax;
 }
 
+export interface CreateCheckoutPayment_checkoutPaymentCreate_checkout_lines_variant_images {
+  __typename: "ProductImage";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  sortOrder: number | null;
+  alt: string;
+  /**
+   * The URL of the image.
+   */
+  url: string;
+}
+
 export interface CreateCheckoutPayment_checkoutPaymentCreate_checkout_lines_variant_metadata {
   __typename: "MetadataItem";
   /**
@@ -622,6 +636,10 @@ export interface CreateCheckoutPayment_checkoutPaymentCreate_checkout_lines_vari
    * Whether the variant is in stock and visible or not.
    */
   isAvailable: boolean | null;
+  /**
+   * List of images for the product variant.
+   */
+  images: (CreateCheckoutPayment_checkoutPaymentCreate_checkout_lines_variant_images | null)[] | null;
   /**
    * List of public metadata items. Can be accessed without permissions.
    */

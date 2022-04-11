@@ -22,6 +22,7 @@ export interface ProductVariant_images {
    */
   url: string;
 }
+
 export interface ProductVariant_metadata {
   __typename: "MetadataItem";
   /**
@@ -301,7 +302,7 @@ export interface ProductVariant {
    * Whether the variant is in stock and visible or not.
    */
   isAvailable: boolean | null;
-    /**
+  /**
    * List of images for the product variant.
    */
   images: (ProductVariant_images | null)[] | null;

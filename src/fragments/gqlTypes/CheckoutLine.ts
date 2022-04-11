@@ -61,6 +61,20 @@ export interface CheckoutLine_totalPrice {
   tax: CheckoutLine_totalPrice_tax;
 }
 
+export interface CheckoutLine_variant_images {
+  __typename: "ProductImage";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  sortOrder: number | null;
+  alt: string;
+  /**
+   * The URL of the image.
+   */
+  url: string;
+}
+
 export interface CheckoutLine_variant_metadata {
   __typename: "MetadataItem";
   /**
@@ -340,6 +354,10 @@ export interface CheckoutLine_variant {
    * Whether the variant is in stock and visible or not.
    */
   isAvailable: boolean | null;
+  /**
+   * List of images for the product variant.
+   */
+  images: (CheckoutLine_variant_images | null)[] | null;
   /**
    * List of public metadata items. Can be accessed without permissions.
    */

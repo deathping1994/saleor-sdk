@@ -639,7 +639,7 @@ export interface Checkout_lines_variant {
   /**
    * List of images for the product variant.
    */
-   images: (Checkout_lines_variant_images | null)[] | null;
+  images: (Checkout_lines_variant_images | null)[] | null;
   /**
    * List of public metadata items. Can be accessed without permissions.
    */

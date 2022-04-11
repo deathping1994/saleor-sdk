@@ -445,14 +445,11 @@ export enum StockAvailability {
   OUT_OF_STOCK = "OUT_OF_STOCK",
 }
 
-/**
- * An enumeration.
- */
- export enum UserMetaAccess {
-  ACCESSTYPES_ADMIN = "ACCESSTYPES_ADMIN",
-  ACCESSTYPES_ASSOCIATE = "ACCESSTYPES_ASSOCIATE",
-  ACCESSTYPES_SUPER_ADMIN = "ACCESSTYPES_SUPER_ADMIN",
+export enum TagFilter {
+  AND = "AND",
+  OR = "OR",
 }
+
 /**
  * An enumeration.
  */
@@ -474,6 +471,7 @@ export interface AccountRegisterInputV2 {
   email: string;
   phone: string;
   password?: string | null;
+  type?: string | null;
 }
 
 export interface AddressInput {
@@ -547,6 +545,7 @@ export interface ProductFilterInput {
   productType?: string | null;
   stocks?: ProductStockFilterInput | null;
   search?: string | null;
+  tags?: TagsListInput | null;
   price?: PriceRangeInput | null;
   discount?: IntRangeInput | null;
   rating?: IntRangeInput | null;
@@ -564,6 +563,11 @@ export interface ProductOrder {
 export interface ProductStockFilterInput {
   warehouseIds?: string[] | null;
   quantity?: IntRangeInput | null;
+}
+
+export interface TagsListInput {
+  tagsList?: (string | null)[] | null;
+  filterType: TagFilter;
 }
 
 //==============================================================
