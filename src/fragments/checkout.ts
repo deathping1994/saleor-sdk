@@ -42,6 +42,12 @@ export const checkoutProductVariantFragment = gql`
     name
     sku
     quantityAvailable
+    images {
+      id
+      sortOrder
+      alt
+      url
+    }
     pricing {
       onSale
       priceUndiscounted {

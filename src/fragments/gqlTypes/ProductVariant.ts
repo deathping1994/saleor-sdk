@@ -7,6 +7,21 @@
 // GraphQL fragment: ProductVariant
 // ====================================================
 
+export interface ProductVariant_images {
+  __typename: "ProductImage";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  sortOrder: number | null;
+  alt: string;
+  /**
+   * The URL of the image.
+   */
+  url: string;
+}
+
+
 export interface ProductVariant_pricing_priceUndiscounted_gross {
   __typename: "Money";
   /**
@@ -191,6 +206,10 @@ export interface ProductVariant {
   id: string;
   name: string;
   sku: string;
+  /**
+   * List of images for the product variant.
+   */
+   images: (ProductVariant_images | null)[] | null;
   /**
    * Quantity of a product available for sale in one checkout.
    */
