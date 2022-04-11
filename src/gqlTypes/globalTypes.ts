@@ -46,6 +46,15 @@ export enum AccountErrorCode {
 /**
  * An enumeration.
  */
+ export enum UserMetaAccess {
+  ACCESSTYPES_ADMIN = "ACCESSTYPES_ADMIN",
+  ACCESSTYPES_ASSOCIATE = "ACCESSTYPES_ASSOCIATE",
+  ACCESSTYPES_SUPER_ADMIN = "ACCESSTYPES_SUPER_ADMIN",
+}
+
+/**
+ * An enumeration.
+ */
 export enum AddressTypeEnum {
   BILLING = "BILLING",
   SHIPPING = "SHIPPING",

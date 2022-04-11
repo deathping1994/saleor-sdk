@@ -3,8 +3,8 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { UserMetaAccess } from "./../gqlTypes/globalTypes";
-
+// import { UserMetaAccess, UserMetaDetails } from "./../gqlTypes/globalTypes";
+import { UserMetaAccess } from "./../../gqlTypes/globalTypes";
 // ====================================================
 // GraphQL query operation: UserMetaDetails
 // ====================================================
