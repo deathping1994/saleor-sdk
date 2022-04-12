@@ -687,6 +687,7 @@ export class ApolloClientManager {
             variant: {
               attributes: edge.node.attributes,
               id: edge.node.id,
+              images: edge.node.images,
               isAvailable: edge.node.isAvailable,
               metadata: edge.node.metadata,
               name: edge.node.name,
@@ -1412,6 +1413,7 @@ export class ApolloClientManager {
           variant: {
             attributes: itemVariant?.attributes,
             id: itemVariant!.id,
+            images: itemVariant?.images,
             isAvailable: itemVariant?.isAvailable,
             metadata: itemVariant?.metadata,
             name: itemVariant?.name,
