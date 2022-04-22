@@ -1,6 +1,7 @@
 import { BatchHttpLink } from "apollo-link-batch-http";
 import { RetryLink } from "apollo-link-retry";
 
+import { createUploadLink } from "apollo-upload-client";
 import { authLink, invalidTokenLinkWithTokenHandler } from "./auth";
 
 interface SaleorLinksConfig {
@@ -25,10 +26,20 @@ export const createSaleorLinks = ({
   const invalidTokenLink = invalidTokenLinkWithTokenHandler(
     tokenExpirationCallback
   );
+  const linkOptions = {
+    credentials: "include",
+    uri: apiUrl,
+  };
+
+  const uploadLink = createUploadLink(linkOptions);
+
+  console.log("uploadLink", uploadLink);
+  console.log("invalidTokenLink", invalidTokenLink);
 
   return [
     invalidTokenLink,
     authLink,
+    uploadLink as any,
     new RetryLink(),
     new BatchHttpLink({ credentials: "include", uri: apiUrl }),
   ];

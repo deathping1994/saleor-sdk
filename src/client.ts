@@ -15,6 +15,8 @@ export function createSaleorClient(
   links: ApolloLink[],
   options?: ApolloConfigOptions
 ) {
+  console.log("createSaleorClient links", links);
+  console.log("createSaleorClient links from", ApolloLink.from(links));
   return new ApolloClient({
     ...options,
     cache,

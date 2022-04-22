@@ -6,6 +6,7 @@ import NodeHttpAdapter from "@pollyjs/adapter-node-http";
 import FSPersister from "@pollyjs/persister-fs";
 import path from "path";
 import { RetryLink } from "apollo-link-retry";
+import { createUploadLink } from "apollo-upload-client";
 import {
   createSaleorCache,
   createSaleorClient,
@@ -51,9 +52,16 @@ export async function setupAPI() {
   const cache = await createSaleorCache({ persistCache: true });
   const apiUrl = process.env.API_URL || "http://localhost:8000/graphql/";
   const invalidTokenLink = invalidTokenLinkWithTokenHandler(() => null);
+  const linkOptions = {
+    credentials: "include",
+    uri: apiUrl,
+  };
+  const uploadLink = createUploadLink(linkOptions);
+
   const links = [
     invalidTokenLink,
     authLink,
+    uploadLink as any,
     new RetryLink(),
     new BatchHttpLink({
       // @ts-ignore
