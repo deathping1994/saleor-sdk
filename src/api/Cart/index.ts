@@ -282,7 +282,7 @@ export class SaleorCartAPI extends ErrorListener {
   };
 
   addMultipleItems = async (variantArray: IAddItem[]) => {
-    this.localStorageManager.addItemsToCart(variantArray);
+    this.localStorageManager.addItemsToCart2(variantArray);
     if (this.saleorState.checkout?.id) {
       const { data, error } = await this.jobsManager.addToQueue(
         "cart",
