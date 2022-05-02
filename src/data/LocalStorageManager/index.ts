@@ -105,6 +105,48 @@ export class LocalStorageManager {
     return alteredCheckout;
   };
 
+  addItemsToCart2 = (variantArray: IAddItem[]) => {
+    let finalAlteredCheckout = {};
+    variantArray.forEach(({ variantId, quantity }) => {
+      var _a;
+      const lines =
+        ((_a = this.saleorState.checkout) === null || _a === void 0
+          ? void 0
+          : _a.lines) || [];
+      let variantInCheckout = lines.find(
+        variant => variant.variant.id === variantId
+      );
+      const alteredLines = lines.filter(
+        variant => variant.variant.id !== variantId
+      );
+      const newVariantQuantity = variantInCheckout
+        ? variantInCheckout.quantity + quantity
+        : quantity;
+      if (variantInCheckout) {
+        variantInCheckout.quantity = newVariantQuantity;
+        alteredLines.push(variantInCheckout);
+      } else {
+        variantInCheckout = {
+          quantity,
+          variant: {
+            id: variantId,
+          },
+        };
+        alteredLines.push(variantInCheckout);
+      }
+      const alteredCheckout = this.saleorState.checkout
+        ? Object.assign(Object.assign({}, this.saleorState.checkout), {
+            lines: alteredLines,
+          })
+        : {
+            lines: alteredLines,
+          };
+      this.handler.setCheckout(alteredCheckout);
+      finalAlteredCheckout = alteredCheckout;
+    });
+    return finalAlteredCheckout;
+  };
+
   removeItemFromCart = (variantId: string) => {
     const lines = this.saleorState.checkout?.lines || [];
     const variantInCheckout = lines.find(
