@@ -106,52 +106,52 @@ export const checkoutProductVariantFragment = gql`
       key
       value
     }
-    // pricing {
-    //   onSale
-    //   priceUndiscounted {
-    //     ...Price
-    //   }
-    //   price {
-    //     ...Price
-    //   }
-    // }
-    // attributes {
-    //   attribute {
-    //     id
-    //     name
-    //   }
-    //   values {
-    //     id
-    //     name
-    //     value: name
-    //   }
-    // }
+    # pricing {
+    #   onSale
+    #   priceUndiscounted {
+    #     ...Price
+    #   }
+    #   price {
+    #     ...Price
+    #   }
+    # }
+    # attributes {
+    #   attribute {
+    #     id
+    #     name
+    #   }
+    #   values {
+    #     id
+    #     name
+    #     value: name
+    #   }
+    # }
     product {
       id
       name
       isAvailableForPurchase
-      // weight {
-      //   unit
-      //   value
-      // }
+      # weight {
+      #   unit
+      #   value
+      # }
       category {
         id
         name
         slug
       }
-      // thumbnail {
-      //   url
-      //   alt
-      // }
+      # thumbnail {
+      #   url
+      #   alt
+      # }
 
-      // productType {
-      //   id
-      //   isShippingRequired
-      // }
-      // metadata {
-      //   key
-      //   value
-      // }
+      # productType {
+      #   id
+      #   isShippingRequired
+      # }
+      # metadata {
+      #   key
+      #   value
+      # }
     }
   }
 `;
@@ -214,36 +214,36 @@ export const checkoutFragment = gql`
     subtotalPrice {
       ...Price
     }
-    // billingAddress {
-    //   ...Address
-    // }
-    // shippingAddress {
-    //   ...Address
-    // }
-    // email
-    // availableShippingMethods {
-    //   ...ShippingMethod
-    // }
-    // shippingMethod {
-    //   ...ShippingMethod
-    // }
+    # billingAddress {
+    #   ...Address
+    # }
+    # shippingAddress {
+    #   ...Address
+    # }
+    # email
+    # availableShippingMethods {
+    #   ...ShippingMethod
+    # }
+    # shippingMethod {
+    #   ...ShippingMethod
+    # }
     shippingPrice {
       ...Price
     }
     lines {
       ...CheckoutLine
     }
-    // isShippingRequired
+    # isShippingRequired
     discount {
       currency
       amount
     }
     discountName
-    // translatedDiscountName
+    # translatedDiscountName
     voucherCode
-    // availablePaymentGateways {
-    //   ...PaymentGateway
-    // }
+    # availablePaymentGateways {
+    #   ...PaymentGateway
+    # }
   }
 `;
 
